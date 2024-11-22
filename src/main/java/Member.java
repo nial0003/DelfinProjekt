@@ -2,6 +2,8 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Member {
+    private String firstName;
+    private String lastName;
     private String name;
     private int age;
     private String gender;
@@ -11,8 +13,8 @@ public class Member {
     private String memberType;
     private boolean hasPaid;
 
-    public Member (String name, LocalDate birthday, String gender, String address, int phoneNumber, String memberType, boolean hasPaid){
-        this.name = name;
+    public Member (String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber, String memberType, boolean hasPaid){
+        this.name = lastName + firstName;
         this.age = calculateAge(birthday);
         this.gender = gender;
         this.address = address;
