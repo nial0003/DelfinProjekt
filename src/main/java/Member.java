@@ -12,12 +12,18 @@ public class Member {
     private String gender;
     private String address;
     private int phoneNumber;
-    private static int memberNumber;
-    private String memberType;
+    private int memberNumber;
+    private static int memberCounter = 0;
+    private Enum<MembershipType> memberShipStatus;
+    private Enum<MembershipType> membershipType;
+    private Enum<MembershipType> ageGroup;
     private boolean hasPaid;
+    private LocalDate ld;
 
-    public Member (String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber, String memberType, boolean hasPaid){
-        this.name = lastName + firstName;
+
+    public Member(String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber,
+                  String membershipStatus, String membershipType, boolean hasPaid) {
+        this.name = lastName + ", " + firstName;
         this.age = calculateAge(birthday);
         this.gender = gender;
         this.address = address;
@@ -26,7 +32,8 @@ public class Member {
         this.membershipType = MembershipType.membershipType(membershipType);
         this.ageGroup = MembershipType.ageGroup(age);
         this.hasPaid = hasPaid;
-        memberNumber++;
+        this.memberNumber = ++memberCounter;
+        this.ld = birthday;
     }
 
     //Calculates the age based on the birthday provided and subtracts it from the current date.

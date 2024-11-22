@@ -9,7 +9,6 @@ public class FileHandler {
     public ArrayList<Member> loadFromFile() {
         ArrayList<Member> listOfMembers = new ArrayList<>();
 
-
         try (FileReader fr = new FileReader(file)) {
 
             BufferedReader br = new BufferedReader(fr);
