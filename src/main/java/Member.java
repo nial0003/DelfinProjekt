@@ -17,6 +17,7 @@ public class Member {
     private Enum<MembershipType> memberShipStatus;
     private Enum<MembershipType> membershipType;
     private Enum<MembershipType> ageGroup;
+
     private boolean hasPaid;
     private LocalDate ld;
 
@@ -70,5 +71,48 @@ public class Member {
                 "-----------------------------";
     }
 
+    //Getters
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public int getMemberNumber() {
+        return memberNumber;
+    }
+
+    public Enum<MembershipType> getMemberShipStatus() {
+        return memberShipStatus;
+    }
+
+    public Enum<MembershipType> getMembershipType() {
+        return membershipType;
+    }
+
+    public Enum<MembershipType> getAgeGroup() {
+        return ageGroup;
+    }
+
+    public boolean getHasPaid() {
+        return hasPaid;
+    }
 }
