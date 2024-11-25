@@ -40,9 +40,8 @@ public class Accountant {
         return 0;
     }
 
-    //TODO
-    //Implement method to calculate membership fees for all members
 
+    // Method to calculate membership fees for all members
     public String calculateMembershipFees() {
         String feeDetails = "";
         int totalFees = 0;
@@ -53,7 +52,7 @@ public class Accountant {
             totalFees += fee;
         }
 
-        feeDetails += "\nTotal Membership Fees: " + totalFees + " kr";
+        feeDetails += "\nSamlede konigentindtægter: " + totalFees + " kr";
 
         return feeDetails;
     }
@@ -61,10 +60,10 @@ public class Accountant {
 
     // Format membership fee details for display
     private String formatFeeDetails(Member member, int fee) {
-        return "Name: " + member.getName() +
-                ", Age: " + member.calculateAge(member.getLd()) +
-                ", Membership Type: " + member.getMembershipType() +
-                ", Fee: " + fee + " kr";
+        return "Navn: " + member.getName() +
+                ", Alder: " + member.calculateAge(member.getLd()) +
+                ", Medlemstype: " + member.getMembershipType() +
+                ", Kontigent: " + fee + " kr";
     }
 
 

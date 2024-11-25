@@ -69,25 +69,22 @@ public class Member {
 
 
 
-    //TODO
-    //Change language of output to Danish
-
     // Formats the member details as a user-friendly string
     @Override
     public String toString() {
-        return "Member Details:\n" +
+        return "Medlemsdetaljer:\n" +
                 "-----------------------------\n" +
-                "Name: " + name + "\n" +
-                "Birthday: " + ld + "\n" +
-                "Age: " + age + "\n" +
-                "Gender: " + gender + "\n" +
-                "Address: " + address + "\n" +
-                "Phone Number: " + phoneNumber + "\n" +
-                "Membership Status: " + memberShipStatus + "\n" +
-                "Membership Type: " + membershipType + "\n" +
-                "Age Group: " + ageGroup + "\n" +
-                "Has Paid: " + (hasPaid ? "Yes" : "No") + "\n" +
-                "Member Number: " + memberNumber + "\n" +
+                "Navn: " + name + "\n" +
+                "Fødselsdato: " + ld + "\n" +
+                "Alder: " + age + "\n" +
+                "Køn: " + gender + "\n" +
+                "Adresse: " + address + "\n" +
+                "Telefonnummer: " + phoneNumber + "\n" +
+                "Medlemsstatus: " + memberShipStatus + "\n" +
+                "Medlemstype: " + membershipType + "\n" +
+                "Aldersgruppe: " + ageGroup + "\n" +
+                "Betalt: " + (hasPaid ? "Ja" : "Nej") + "\n" +
+                "Medlemsnummer: " + memberNumber + "\n" +
                 "-----------------------------";
     }
 
