@@ -1,14 +1,17 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
     private Chairman chairman;
     private FileHandler fh;
     private Scanner sc;
+    private Accountant accountant;
 
     public UserInterface() {
         this.chairman = new Chairman();
         this.fh = new FileHandler();
         this.sc = new Scanner(System.in);
+        this.accountant = new Accountant();
     }
 
     public void startProgram() {
@@ -83,5 +86,7 @@ public class UserInterface {
 
         chairman.addMember(firstName, lastName, year, month, day, gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
         System.out.println("Medlem tilføjet!");
+
+        System.out.println(accountant.calculateMembershipFees());
     }
 }
