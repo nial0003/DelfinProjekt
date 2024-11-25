@@ -72,12 +72,8 @@ public class Member {
     }
 
     //Getters
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
     public LocalDate getLd() {
