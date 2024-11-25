@@ -4,6 +4,7 @@ import java.time.Period;
 //TODO
 //Fix it so that the memberNumber increments correctly.
 
+
 public class Member {
     private String firstName;
     private String lastName;
@@ -46,10 +47,29 @@ public class Member {
 
 
     //Converts the member details into a CSV-style string
-    public String toCSVStyle () {
-        return "\n" + name + "," + ld.getYear() + "," + ld.getMonthValue()+ "," + ld.getDayOfMonth() + "," + gender + "," + address + "," + phoneNumber +
-                "," + memberShipStatus + "," + membershipType + "," + ageGroup+ "," + hasPaid+ "," + memberNumber;
+    public String toCSVStyle() {
+        return "\n" + name + "," + ld.getYear() + "," + ld.getMonthValue() + "," + ld.getDayOfMonth() + "," + gender + "," + address + "," + phoneNumber +
+                "," + memberShipStatus + "," + membershipType + "," + ageGroup + "," + hasPaid + "," + memberNumber;
     }
+
+
+    //GETTERS
+
+    public Enum<MembershipType> getMembershipType() {
+        return membershipType;
+    }
+
+    public LocalDate getLd () {
+        return ld;
+    }
+
+
+
+
+
+
+    //TODO
+    //Change language of output to Danish
 
     // Formats the member details as a user-friendly string
     @Override
