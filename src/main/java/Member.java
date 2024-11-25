@@ -80,8 +80,8 @@ public class Member {
         return lastName;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDate getLd() {
+        return ld;
     }
 
     public String getGender() {
