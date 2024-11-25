@@ -63,8 +63,9 @@ public class Member {
         return ld;
     }
 
-
-
+    public String getName () {
+        return name;
+    }
 
 
 

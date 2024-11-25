@@ -12,7 +12,7 @@ public class Accountant {
     private ArrayList<Member> listOfMembers;
 
     public Accountant() {
-        listOfMembers = fh.loadFromFile();
+        this.listOfMembers = fh.loadFromFile();
     }
 
     //Method to determine annual fee based on age group and membership type
@@ -38,6 +38,33 @@ public class Accountant {
             }
         }
         return 0;
+    }
+
+    //TODO
+    //Implement method to calculate membership fees for all members
+
+    public String calculateMembershipFees() {
+        String feeDetails = "";
+        int totalFees = 0;
+
+        for (Member member : listOfMembers) {
+            int fee = determineMembershipFee(member);
+            feeDetails += formatFeeDetails(member,fee) + "\n";
+            totalFees += fee;
+        }
+
+        feeDetails += "\nTotal Membership Fees: " + totalFees + " kr";
+
+        return feeDetails;
+    }
+
+
+    // Format membership fee details for display
+    private String formatFeeDetails(Member member, int fee) {
+        return "Name: " + member.getName() +
+                ", Age: " + member.calculateAge(member.getLd()) +
+                ", Membership Type: " + member.getMembershipType() +
+                ", Fee: " + fee + " kr";
     }
 
 
