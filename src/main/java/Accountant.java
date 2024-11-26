@@ -63,16 +63,50 @@ public class Accountant {
                 ", Kontigent: " + fee + " kr";
     }
 
-    // Method to show if members have paid for their membership yet
+    /*
+    // Method to show all members and their membership payment status
     public String listMembershipPaymentStatus() {
         String paymentDetails = "";
 
         for (Member member : listOfMembers) {
             paymentDetails += "Navn: " + member.getName() +
                     ", Medlemsnummer: " + member.getMemberNumber() +
-                    ", Betalt: " + member.getHasPaid()+"\n";
+                    ", Betalt: " + member.getHasPaid() + "\n";
         }
         return paymentDetails;
     }
+
+     */
+
+    public ArrayList<Member> filterMembersByPaymentStatus(boolean hasPaid) {
+        ArrayList<Member> filteredMembers = new ArrayList<>();
+        for (Member member : listOfMembers) {
+            if (member.getHasPaid() == hasPaid) {
+                filteredMembers.add(member);
+            }
+        }
+        return filteredMembers;
+    }
+
+    // Print members
+    public void printMembers(ArrayList<Member> members) {
+        if (members == null || members.isEmpty()) {
+            System.out.println("Ingen medlemmer fundet.");
+            return;
+        }
+        System.out.println("Medlemsliste:");
+        System.out.println("-------------------------------------------------");
+        for (Member member : members) {
+            System.out.println("Navn: " + member.getName());
+            System.out.println("Medlemsnummer: " + member.getMemberNumber());
+            System.out.println("Betalt: " + (member.getHasPaid() ? "Ja" : "Nej"));
+            System.out.println("-------------------------------------------------");
+        }
+    }
+
+    public ArrayList<Member> getListOfMembers() {
+        return listOfMembers;
+    }
+
 
 }
