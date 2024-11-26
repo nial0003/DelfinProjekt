@@ -15,14 +15,12 @@ public class Accountant {
         this.listOfMembers = fh.loadFromFile();
     }
 
-    //Method to determine annual fee based on age group and membership type
-
+    // Method to determine annual fee based on age group and membership type
     private int determineMembershipFee(Member member) {
-
         String membershipType = member.getMembershipType().toString();
         int age = member.calculateAge(member.getLd());
 
-        if (membershipType.equals("HOBBY") || membershipType.equals("ATHLETE")) {
+        if (membershipType.equals("HOBBY") || membershipType.equals("ATLET")) {
             if (age < 18) {
                 return JUNIOR_FEE;
             } else if (age < 60) {
@@ -30,7 +28,7 @@ public class Accountant {
             } else {
                 return ELDER_FEE;
             }
-        } else if (membershipType.equals("PASSIVE")) {
+        } else if (membershipType.equals("PASSIV")) {
             if (age < 60) {
                 return PASSIVE_FEE;
             } else {
@@ -41,14 +39,14 @@ public class Accountant {
     }
 
 
-    // Method to calculate membership fees for all members
+    // Method to show members annual fee, as well as providing the accountant with a total fee amount for all members combined
     public String calculateMembershipFees() {
         String feeDetails = "";
         int totalFees = 0;
 
         for (Member member : listOfMembers) {
             int fee = determineMembershipFee(member);
-            feeDetails += formatFeeDetails(member,fee) + "\n";
+            feeDetails += formatFeeDetails(member, fee) + "\n";
             totalFees += fee;
         }
 
@@ -56,7 +54,6 @@ public class Accountant {
 
         return feeDetails;
     }
-
 
     // Format membership fee details for display
     private String formatFeeDetails(Member member, int fee) {
@@ -66,5 +63,16 @@ public class Accountant {
                 ", Kontigent: " + fee + " kr";
     }
 
+    // Method to show if members have paid for their membership yet
+    public String membershipPaymentStatus() {
+        String paymentDetails = "";
+
+        for (Member member : listOfMembers) {
+            paymentDetails += "Navn: " + member.getName() +
+                    ", Alder: " + member.calculateAge(member.getLd()) +
+                    ", Betalt: " + member.getHasPaid()+"\n";
+        }
+        return paymentDetails;
+    }
 
 }
