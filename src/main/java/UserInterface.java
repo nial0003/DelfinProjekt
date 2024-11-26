@@ -1,7 +1,12 @@
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
+
+
 public class UserInterface {
+    Controller controller = new Controller();
+
     private Chairman chairman;
     private FileHandler fh;
     private Scanner sc;
@@ -35,7 +40,7 @@ public class UserInterface {
                 }
                 case "2" -> {
                     if (authenticateRole("Kasser", "2222")) {
-                        System.out.println("Velkommen Kassér! (Funktionalitet ikke implementeret endnu)");
+                        accountantMenu();
                     } else {
                         System.out.println("Ugyldig adgangskode. Prøv igen.");
                     }
@@ -69,13 +74,15 @@ public class UserInterface {
                     Vælg en funktion:
                     1. Tilføj et nyt medlem
                     2. Opdater medlemsoplysninger
-                    3. Tilbage til hovedmenu
+                    3. Medlemsliste
+                    4. Tilbage til hovedmenu
                     """);
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> addMember();
                 case "2" -> System.out.println("Opdater medlemsoplysninger (funktionalitet ikke implementeret endnu)");
-                case "3" -> {
+                case "3" -> displayMemberList();
+                case "4" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
@@ -83,20 +90,57 @@ public class UserInterface {
         }
     }
 
-    private void treasurerMenu() {
+    private void accountantMenu() {
         System.out.println("Velkommen Kassér!");
         while (true) {
             System.out.println("""
                     Vælg en funktion:
-                    1. 
-                    2. 
-                    3. 
+                    1. Vis medlemmers betalingsstatus
+                    2. Opdater betalingsstatus for medlem
+                    3. Vis samlede kontigent indtægter
+                    4. Søg efter medlem
+                    5. Tilbage til hovedmenu
                     """);
             String input = sc.nextLine();
             switch (input) {
-                case "1" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "1" -> showPaymentStatusSubMenu();
                 case "2" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "3" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "4" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "5" -> {
+                    return;
+                }
+                default -> System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
+    }
+
+    private void showPaymentStatusSubMenu() {
+        while (true) {
+            System.out.println("""
+                    Vis medlemmers betalingsstatus:
+                    1. Vis alle medlemmer
+                    2. Vis medlemmer, der har betalt
+                    3. Vis medlemmer, der mangler at betale
+                    4. Tilbage til kasser-menu
+                    """);
+            String input = sc.nextLine();
+            switch (input) {
+                case "1" -> {
+                    System.out.println("Alle medlemmers betalingsstatus:");
+                    controller.printMembers(controller.getAllMembers());
+                }
+
+                case "2" -> {
+                    System.out.println("Medlemmer, der har betalt:");
+                    controller.printMembers(controller.getFilteredMembers(true));
+                }
+
                 case "3" -> {
+                    System.out.println("Medlemmer, der mangler at betale:");
+                    controller.printMembers(controller.getFilteredMembers(false));
+                }
+                case "4" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
@@ -131,5 +175,47 @@ public class UserInterface {
 
         chairman.addMember(firstName, lastName, year, month, day, gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
         System.out.println("Medlem tilføjet!");
+    }
+
+    private void displayMemberList() {
+        while (true) {
+            System.out.println("""
+                Vælg hvorledes du ønsker at sortere medlemmerne ved at indtaste tilhørende nummer:
+                1. Medlemsstatus (AKTIV/PASSIV)
+                2. Medlemstype (HOBBY/ATLET)
+                3. Aldersgruppe (JUNIOR/SENIOR/PENSIONIST)
+                4. Tilbage til formandsmenu
+                """);
+            String input = sc.nextLine();
+
+            switch (input) {
+                case "1" -> {
+                    Map<MembershipType, ArrayList<Member>> groupedByStatus = chairman.groupByMembershipStatus();
+                    displayGroupedMembers(groupedByStatus);
+                }
+                case "2" -> {
+                    Map<MembershipType, ArrayList<Member>> groupedByType = chairman.groupByMembershipType();
+                    displayGroupedMembers(groupedByType);
+                }
+                case "3" -> {
+                    Map<MembershipType, ArrayList<Member>> groupedByAge = chairman.groupByAgeGroup();
+                    displayGroupedMembers(groupedByAge);
+                }
+                case "4" -> {
+                    return;
+                }
+                default -> System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
+    }
+
+    private void displayGroupedMembers(Map<MembershipType, ArrayList<Member>> groupedMembers) {
+        for (Map.Entry<MembershipType, ArrayList<Member>> entry : groupedMembers.entrySet()) {
+            System.out.println(entry.getKey());
+            for (Member member : entry.getValue()) {
+                System.out.println("- " + member.getName());
+            }
+            System.out.println();
+        }
     }
 }

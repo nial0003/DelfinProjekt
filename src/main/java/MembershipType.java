@@ -7,7 +7,7 @@ public enum MembershipType {
     ATLET,
     HOBBY;
 
-    // Assigns their age group based on their age.
+    // Assigns their age group based on their age
     public static Enum<MembershipType> ageGroup(int age) {
         if (age < 18) {
             return JUNIOR;
