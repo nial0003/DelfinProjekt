@@ -92,12 +92,15 @@ public class UserInterface {
                     2. Opdater betalingsstatus for medlem
                     3. Vis samlede kontigent indtægter
                     4. Søg efter medlem
+                    5. Tilbage til hovedmenu
                     """);
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> showPaymentStatusSubMenu();
                 case "2" -> System.out.println("(funktionalitet ikke implementeret endnu)");
-                case "3" -> {
+                case "3" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "4" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "5" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
@@ -120,7 +123,6 @@ public class UserInterface {
                 case "2" -> System.out.println("(Funktion til at vise medlemmer, der har betalt, ikke implementeret endnu)");
                 case "3" -> System.out.println("(Funktion til at vise medlemmer, der mangler at betale, ikke implementeret endnu)");
                 case "4" -> {
-                    System.out.println("Tilbage til kasser-menu...");
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
