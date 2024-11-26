@@ -64,12 +64,12 @@ public class Accountant {
     }
 
     // Method to show if members have paid for their membership yet
-    public String membershipPaymentStatus() {
+    public String listMembershipPaymentStatus() {
         String paymentDetails = "";
 
         for (Member member : listOfMembers) {
             paymentDetails += "Navn: " + member.getName() +
-                    ", Alder: " + member.calculateAge(member.getLd()) +
+                    ", Medlemsnummer: " + member.getMemberNumber() +
                     ", Betalt: " + member.getHasPaid()+"\n";
         }
         return paymentDetails;

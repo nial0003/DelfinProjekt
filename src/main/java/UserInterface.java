@@ -83,18 +83,19 @@ public class UserInterface {
         }
     }
 
-    private void treasurerMenu() {
+    private void accountantMenu() {
         System.out.println("Velkommen Kassér!");
         while (true) {
             System.out.println("""
                     Vælg en funktion:
-                    1. 
-                    2. 
-                    3. 
+                    1. Vis medlemmers betalingsstatus
+                    2. Opdater betalingsstatus for medlem
+                    3. Vis samlede kontigent indtægter
+                    4. Søg efter medlem
                     """);
             String input = sc.nextLine();
             switch (input) {
-                case "1" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "1" -> showPaymentStatusSubMenu();
                 case "2" -> System.out.println("(funktionalitet ikke implementeret endnu)");
                 case "3" -> {
                     return;
@@ -103,6 +104,33 @@ public class UserInterface {
             }
         }
     }
+
+    private void showPaymentStatusSubMenu() {
+        while (true) {
+            System.out.println("""
+                Vis medlemmers betalingsstatus:
+                1. Vis alle medlemmer
+                2. Vis medlemmer, der har betalt
+                3. Vis medlemmer, der mangler at betale
+                4. Tilbage til kasser-menu
+                """);
+            String input = sc.nextLine();
+            switch (input) {
+                case "1" -> System.out.println("(Funktion til at vise alle medlemmer ikke implementeret endnu)");
+                case "2" -> System.out.println("(Funktion til at vise medlemmer, der har betalt, ikke implementeret endnu)");
+                case "3" -> System.out.println("(Funktion til at vise medlemmer, der mangler at betale, ikke implementeret endnu)");
+                case "4" -> {
+                    System.out.println("Tilbage til kasser-menu...");
+                    return;
+                }
+                default -> System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
+    }
+
+
+
+
 
     private void addMember() {
         System.out.println("Udfyld venligst følgende oplysninger for det nye medlem:");
