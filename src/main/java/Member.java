@@ -25,7 +25,7 @@ public class Member {
 
     public Member(String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber,
                   String membershipStatus, String membershipType, boolean hasPaid) {
-        this.name = lastName + ", " + firstName;
+        this.name = lastName + "," + firstName;
         this.age = calculateAge(birthday);
         this.gender = gender;
         this.address = address;
@@ -49,8 +49,8 @@ public class Member {
 
     //Converts the member details into a CSV-style string
     public String toCSVStyle() {
-        return "\n" + name + "," + ld.getYear() + "," + ld.getMonthValue() + "," + ld.getDayOfMonth() + "," + gender + "," + address + "," + phoneNumber +
-                "," + memberShipStatus + "," + membershipType + "," + ageGroup + "," + hasPaid + "," + memberNumber;
+        return name + "," + ld.getYear() + "," + ld.getMonthValue() + "," + ld.getDayOfMonth() + "," + gender + "," + address + "," + phoneNumber +
+                "," + memberShipStatus + "," + membershipType + "," + ageGroup + "," + hasPaid + "," + memberNumber + "\n";
     }
 
 

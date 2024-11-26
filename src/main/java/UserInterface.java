@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -73,13 +74,15 @@ public class UserInterface {
                     Vælg en funktion:
                     1. Tilføj et nyt medlem
                     2. Opdater medlemsoplysninger
-                    3. Tilbage til hovedmenu
+                    3. Medlemsliste
+                    4. Tilbage til hovedmenu
                     """);
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> addMember();
                 case "2" -> System.out.println("Opdater medlemsoplysninger (funktionalitet ikke implementeret endnu)");
-                case "3" -> {
+                case "3" -> displayMemberList();
+                case "4" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
@@ -172,5 +175,47 @@ public class UserInterface {
 
         chairman.addMember(firstName, lastName, year, month, day, gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
         System.out.println("Medlem tilføjet!");
+    }
+
+    private void displayMemberList() {
+        while (true) {
+            System.out.println("""
+                Vælg hvorledes du ønsker at sortere medlemmerne ved at indtaste tilhørende nummer:
+                1. Medlemsstatus (AKTIV/PASSIV)
+                2. Medlemstype (HOBBY/ATLET)
+                3. Aldersgruppe (JUNIOR/SENIOR/PENSIONIST)
+                4. Tilbage til formandsmenu
+                """);
+            String input = sc.nextLine();
+
+            switch (input) {
+                case "1" -> {
+                    Map<MembershipType, ArrayList<Member>> groupedByStatus = chairman.groupByMembershipStatus();
+                    displayGroupedMembers(groupedByStatus);
+                }
+                case "2" -> {
+                    Map<MembershipType, ArrayList<Member>> groupedByType = chairman.groupByMembershipType();
+                    displayGroupedMembers(groupedByType);
+                }
+                case "3" -> {
+                    Map<MembershipType, ArrayList<Member>> groupedByAge = chairman.groupByAgeGroup();
+                    displayGroupedMembers(groupedByAge);
+                }
+                case "4" -> {
+                    return;
+                }
+                default -> System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
+    }
+
+    private void displayGroupedMembers(Map<MembershipType, ArrayList<Member>> groupedMembers) {
+        for (Map.Entry<MembershipType, ArrayList<Member>> entry : groupedMembers.entrySet()) {
+            System.out.println(entry.getKey());
+            for (Member member : entry.getValue()) {
+                System.out.println("- " + member.getName());
+            }
+            System.out.println();
+        }
     }
 }

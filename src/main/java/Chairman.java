@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Chairman {
     FileHandler fh = new FileHandler();
@@ -26,5 +28,23 @@ public class Chairman {
 
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;
+    }
+
+    public Map<MembershipType, ArrayList<Member>> groupByMembershipStatus() {
+        return listOfMembers.stream()
+                .collect(Collectors.groupingBy(member -> (MembershipType) member.getMemberShipStatus(),
+                        Collectors.toCollection(ArrayList::new)));
+    }
+
+    public Map<MembershipType, ArrayList<Member>> groupByMembershipType() {
+        return listOfMembers.stream()
+                .collect(Collectors.groupingBy(member -> (MembershipType) member.getMembershipType(),
+                        Collectors.toCollection(ArrayList::new)));
+    }
+
+    public Map<MembershipType, ArrayList<Member>> groupByAgeGroup() {
+        return listOfMembers.stream()
+                .collect(Collectors.groupingBy(member -> (MembershipType) member.getAgeGroup(),
+                        Collectors.toCollection(ArrayList::new)));
     }
 }
