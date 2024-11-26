@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Trainer {
     String name;
@@ -27,7 +28,15 @@ public class Trainer {
     }
 
     public double getAthleteTime(int x, SwimmingDisciplines discipline){
-        return athletes.get(x).getTime(discipline);
+        Athlete athlete = athletes.get(x);
+
+        List<Double> times = athlete.getTimes(discipline);
+
+        if (times == null || times.isEmpty()){
+            throw new IllegalArgumentException("No times recorded for the discipline: " + discipline);
+        }
+
+        return times.get(0);
     }
 
     public void saveAthletesToFile(){

@@ -54,7 +54,8 @@ public class FileHandler {
     public void saveToAthleteFile(ArrayList<Athlete> listOfAthletes) {
         try (FileWriter fw = new FileWriter(atheleteFile)) {
             for (Athlete athlete : listOfAthletes) {
-                fw.write(athlete.toCSVStyle());
+                String name = athlete.getName();
+                fw.write(athlete.toCSVStyle(name));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
