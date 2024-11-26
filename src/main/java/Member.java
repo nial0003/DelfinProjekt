@@ -55,7 +55,7 @@ public class Member {
 
 
     //GETTERS
-    public LocalDate getLd () {
+    public LocalDate getLd() {
         return ld;
     }
 

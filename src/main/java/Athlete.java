@@ -13,35 +13,35 @@ public class Athlete extends Member {
 
         this.disciplineTimes = new EnumMap<>(SwimmingDisciplines.class);
 
-        for (SwimmingDisciplines disciplines : SwimmingDisciplines.values()){
+        for (SwimmingDisciplines disciplines : SwimmingDisciplines.values()) {
             disciplineTimes.put(disciplines, new ArrayList<>());
         }
     }
 
-    public void setDisciplineTimes(SwimmingDisciplines discipline, Double time){
+    public void setDisciplineTimes(SwimmingDisciplines discipline, Double time) {
         disciplineTimes.get(discipline).add(time);
     }
 
-    public List<Double> getTimes(SwimmingDisciplines discipline){
+    public List<Double> getTimes(SwimmingDisciplines discipline) {
         return new ArrayList<>(disciplineTimes.get(discipline));
     }
 
 
-    public String toCSVStyle(String name){
+    public String toCSVStyle(String name) {
         StringBuilder disciplinTimeString = new StringBuilder();
         disciplinTimeString.append(name).append(",");
 
-        for (var entry : disciplineTimes.entrySet()){
+        for (var entry : disciplineTimes.entrySet()) {
             SwimmingDisciplines discipline = entry.getKey();
             List<Double> times = entry.getValue();
 
             disciplinTimeString.append(discipline).append(",");
 
-            if (times != null && !times.isEmpty()){
+            if (times != null && !times.isEmpty()) {
                 disciplinTimeString.append("[");
                 for (int i = 0; i < times.size(); i++) {
                     disciplinTimeString.append(times.get(i));
-                    if (i < times.size() -1) {
+                    if (i < times.size() - 1) {
                         disciplinTimeString.append(",");
                     }
                 }
@@ -49,7 +49,7 @@ public class Athlete extends Member {
             }
 
         }
-        if (disciplinTimeString.charAt(disciplinTimeString.length()-1) == ','){
+        if (disciplinTimeString.charAt(disciplinTimeString.length() - 1) == ',') {
             disciplinTimeString.deleteCharAt(disciplinTimeString.length() - 1);
         }
         disciplinTimeString.append("\n");
