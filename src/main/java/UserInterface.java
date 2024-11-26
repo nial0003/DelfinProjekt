@@ -26,9 +26,27 @@ public class UserInterface {
                     """);
             String input = sc.nextLine();
             switch (input) {
-                case "1" -> chairmanMenu();
-                case "2" -> System.out.println("Velkommen Kassér! (Funktionalitet ikke implementeret endnu)");
-                case "3" -> System.out.println("Velkommen Træner! (Funktionalitet ikke implementeret endnu)");
+                case "1" -> {
+                    if (authenticateRole("Formand", "1111")) {
+                        chairmanMenu();
+                    } else {
+                        System.out.println("Ugyldig adgangskode. Prøv igen.");
+                    }
+                }
+                case "2" -> {
+                    if (authenticateRole("Kasser", "2222")) {
+                        System.out.println("Velkommen Kassér! (Funktionalitet ikke implementeret endnu)");
+                    } else {
+                        System.out.println("Ugyldig adgangskode. Prøv igen.");
+                    }
+                }
+                case "3" -> {
+                    if (authenticateRole("Træner", "3333")) {
+                        System.out.println("Velkommen Træner! (Funktionalitet ikke implementeret endnu)");
+                    } else {
+                        System.out.println("Ugyldig adgangskode. Prøv igen.");
+                    }
+                }
                 case "4" -> {
                     System.out.println("Tak for nu!");
                     return;
@@ -36,6 +54,12 @@ public class UserInterface {
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
             }
         }
+    }
+
+    private boolean authenticateRole(String role, String expectedCode) {
+        System.out.println("Indtast adgangskode for " + role + ": ");
+        String inputCode = sc.nextLine();
+        return inputCode.equals(expectedCode);
     }
 
     private void chairmanMenu() {
@@ -59,6 +83,27 @@ public class UserInterface {
         }
     }
 
+    private void treasurerMenu() {
+        System.out.println("Velkommen Kassér!");
+        while (true) {
+            System.out.println("""
+                    Vælg en funktion:
+                    1. 
+                    2. 
+                    3. 
+                    """);
+            String input = sc.nextLine();
+            switch (input) {
+                case "1" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "2" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "3" -> {
+                    return;
+                }
+                default -> System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
+    }
+
     private void addMember() {
         System.out.println("Udfyld venligst følgende oplysninger for det nye medlem:");
         System.out.print("Fornavn: ");
@@ -70,23 +115,21 @@ public class UserInterface {
         System.out.print("Fødselsmåned: ");
         int month = Integer.parseInt(sc.nextLine());
         System.out.print("Fødselsdag: ");
-        int day = Integer.parseInt(sc.nextLine());
+        int day = Integer.parseInt(sc.nextLine());// TODO try-catch
         System.out.print("Køn: ");
         String gender = sc.nextLine();
         System.out.print("Adresse: ");
         String address = sc.nextLine();
         System.out.print("Telefonnummer: ");
-        int phoneNumber = Integer.parseInt(sc.nextLine());
-        System.out.print("Medlemsstatus (AKTIV/PASSIV): ");
+        int phoneNumber = Integer.parseInt(sc.nextLine()); // TODO try-catch
+        System.out.print("Medlemsstatus (AKTIV/PASSIV): "); // TODO try-catch
         String membershipStatus = sc.nextLine();
         System.out.print("Medlemstype (HOBBY/ATLET): ");
         String membershipType = sc.nextLine();
-        System.out.print("Har betalt (true/false): ");
+        System.out.print("Har betalt (true/false): "); // TODO ja nej yallah
         boolean hasPaid = Boolean.parseBoolean(sc.nextLine());
 
         chairman.addMember(firstName, lastName, year, month, day, gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
         System.out.println("Medlem tilføjet!");
-
-        System.out.println(accountant.calculateMembershipFees());
     }
 }

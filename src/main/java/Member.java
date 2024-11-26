@@ -55,20 +55,9 @@ public class Member {
 
 
     //GETTERS
-
-    public Enum<MembershipType> getMembershipType() {
-        return membershipType;
-    }
-
     public LocalDate getLd () {
         return ld;
     }
-
-    public String getName () {
-        return name;
-    }
-
-
 
     // Formats the member details as a user-friendly string
     @Override
@@ -92,10 +81,6 @@ public class Member {
     //Getters
     public String getName() {
         return name;
-    }
-
-    public LocalDate getLd() {
-        return ld;
     }
 
     public String getGender() {
