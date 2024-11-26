@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class UserInterface {
+    Controller controller = new Controller();
+
     private Chairman chairman;
     private FileHandler fh;
     private Scanner sc;
@@ -35,7 +39,7 @@ public class UserInterface {
                 }
                 case "2" -> {
                     if (authenticateRole("Kasser", "2222")) {
-                        System.out.println("Velkommen Kassér! (Funktionalitet ikke implementeret endnu)");
+                        accountantMenu();
                     } else {
                         System.out.println("Ugyldig adgangskode. Prøv igen.");
                     }
@@ -111,17 +115,28 @@ public class UserInterface {
     private void showPaymentStatusSubMenu() {
         while (true) {
             System.out.println("""
-                Vis medlemmers betalingsstatus:
-                1. Vis alle medlemmer
-                2. Vis medlemmer, der har betalt
-                3. Vis medlemmer, der mangler at betale
-                4. Tilbage til kasser-menu
-                """);
+                    Vis medlemmers betalingsstatus:
+                    1. Vis alle medlemmer
+                    2. Vis medlemmer, der har betalt
+                    3. Vis medlemmer, der mangler at betale
+                    4. Tilbage til kasser-menu
+                    """);
             String input = sc.nextLine();
             switch (input) {
-                case "1" -> System.out.println("(Funktion til at vise alle medlemmer ikke implementeret endnu)");
-                case "2" -> System.out.println("(Funktion til at vise medlemmer, der har betalt, ikke implementeret endnu)");
-                case "3" -> System.out.println("(Funktion til at vise medlemmer, der mangler at betale, ikke implementeret endnu)");
+                case "1" -> {
+                    System.out.println("Alle medlemmers betalingsstatus:");
+                    controller.printMembers(controller.getAllMembers());
+                }
+
+                case "2" -> {
+                    System.out.println("Medlemmer, der har betalt:");
+                    controller.printMembers(controller.getFilteredMembers(true));
+                }
+
+                case "3" -> {
+                    System.out.println("Medlemmer, der mangler at betale:");
+                    controller.printMembers(controller.getFilteredMembers(false));
+                }
                 case "4" -> {
                     return;
                 }
@@ -129,10 +144,6 @@ public class UserInterface {
             }
         }
     }
-
-
-
-
 
     private void addMember() {
         System.out.println("Udfyld venligst følgende oplysninger for det nye medlem:");
