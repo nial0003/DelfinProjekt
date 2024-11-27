@@ -19,7 +19,7 @@ public class Accountant {
     private int determineMembershipFee(Member member) {
         if (member.getMembershipType() == null) {
             System.out.println("Fejl: Medlemstype mangler for medlem: " + member.getName());
-            return 0; // Default or error fee
+            return 0;
         }
         String membershipType = member.getMembershipType().toString();
         int age = member.calculateAge(member.getLd());
@@ -42,31 +42,19 @@ public class Accountant {
         return 0;
     }
 
-    //TODO
-    // Change method to only calculate annual fee, as details are printed out in other method calls
+
+    // Method to calculate the annual membership fees for all members combined
     public int calculateMembershipFees() {
         if (listOfMembers == null || listOfMembers.isEmpty()) {
-
+            return 0;
         }
-
-
         int totalFees = 0;
 
         for (Member member : listOfMembers) {
             int fee = determineMembershipFee(member);
             totalFees += fee;
         }
-
         return totalFees;
-
-    }
-
-    // Format membership fee details for display
-    private String formatFeeDetails(Member member, int fee) {
-        return "Navn: " + member.getName() +
-                ", Alder: " + member.calculateAge(member.getLd()) +
-                ", Medlemstype: " + member.getMembershipType() +
-                ", Kontigent: " + fee + " kr";
     }
 
     // Method to filter members by their payment status
@@ -80,7 +68,7 @@ public class Accountant {
         return filteredMembers;
     }
 
-    // Print members filtered or unfiltered
+    // Method to format members payment status to a string
     public String formatMembers(ArrayList<Member> members) {
         if (members == null || members.isEmpty()) {
             return "Ingen medlemmer fundet.";
@@ -100,7 +88,8 @@ public class Accountant {
         }
         return formattedMembers;
     }
-
+    
+    //Getter
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;
     }
