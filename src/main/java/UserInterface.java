@@ -105,7 +105,7 @@ public class UserInterface {
             switch (input) {
                 case "1" -> showPaymentStatusSubMenu();
                 case "2" -> System.out.println("(funktionalitet ikke implementeret endnu)");
-                case "3" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "3" -> System.out.println(controller.getCalculateMembershipFees());
                 case "4" -> System.out.println("(funktionalitet ikke implementeret endnu)");
                 case "5" -> {
                     return;
@@ -128,18 +128,15 @@ public class UserInterface {
             switch (input) {
                 case "1" -> {
                     System.out.println("Alle medlemmers betalingsstatus:");
-                    System.out.println(controller.formatMembers(controller.getAllMembers()));
+                    System.out.println(controller.getFormatMembers(controller.getAllMembers()));
                 }
-
                 case "2" -> {
                     System.out.println("Medlemmer, der har betalt:");
-                    System.out.println(controller.formatMembers(controller.getFilteredMembers(true)));
+                    System.out.println(controller.getFormatMembers(controller.getFilteredMembers(true)));
                 }
-
                 case "3" -> {
                     System.out.println("Medlemmer, der mangler at betale:");
-                    System.out.println(controller.formatMembers(controller.getFilteredMembers(false)));
-
+                    System.out.println(controller.getFormatMembers(controller.getFilteredMembers(false)));
                 }
                 case "4" -> {
                     return;

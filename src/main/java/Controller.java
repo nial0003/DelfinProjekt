@@ -19,9 +19,12 @@ public class Controller {
     }
 
 
-    public String formatMembers(ArrayList<Member> members) {
+    public String getFormatMembers(ArrayList<Member> members) {
        return accountant.formatMembers(members);
+    }
 
+    public int getCalculateMembershipFees() {
+        return accountant.calculateMembershipFees();
     }
 
 

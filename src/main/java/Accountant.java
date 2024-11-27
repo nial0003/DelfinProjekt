@@ -88,7 +88,7 @@ public class Accountant {
         }
         return formattedMembers;
     }
-    
+
     //Getter
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;
