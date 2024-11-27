@@ -10,13 +10,11 @@ public class UserInterface {
     private Chairman chairman;
     private FileHandler fh;
     private Scanner sc;
-    private Accountant accountant;
 
     public UserInterface() {
         this.chairman = new Chairman();
         this.fh = new FileHandler();
         this.sc = new Scanner(System.in);
-        this.accountant = new Accountant();
     }
 
     public void startProgram() {
@@ -105,7 +103,7 @@ public class UserInterface {
             switch (input) {
                 case "1" -> showPaymentStatusSubMenu();
                 case "2" -> System.out.println("(funktionalitet ikke implementeret endnu)");
-                case "3" -> System.out.println(controller.getCalculateMembershipFees());
+                case "3" -> System.out.println(controller.getFormattedTotalMembershipFees());
                 case "4" -> System.out.println("(funktionalitet ikke implementeret endnu)");
                 case "5" -> {
                     return;

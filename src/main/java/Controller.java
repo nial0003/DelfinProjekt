@@ -8,23 +8,20 @@ public class Controller {
         return chairman.getListOfMembers();
     }
 
-
     public ArrayList<Member> getAllMembers() {
         return accountant.getListOfMembers();
     }
-
 
     public ArrayList<Member> getFilteredMembers(boolean hasPaid) {
         return accountant.filterMembersByPaymentStatus(hasPaid);
     }
 
-
     public String getFormatMembers(ArrayList<Member> members) {
-       return accountant.formatMembers(members);
+       return accountant.formatMemberPaymentStatus(members);
     }
 
-    public int getCalculateMembershipFees() {
-        return accountant.calculateMembershipFees();
+    public String getFormattedTotalMembershipFees() {
+        return accountant.formatTotalMembershipFees();
     }
 
 

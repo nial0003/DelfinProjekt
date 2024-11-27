@@ -57,6 +57,12 @@ public class Accountant {
         return totalFees;
     }
 
+    // Method to format total membership fees as a string
+    public String formatTotalMembershipFees() {
+        int totalFees = calculateMembershipFees();
+        return "Samlede kontingentindbetalinger: " + totalFees + " kr.\n";
+    }
+
     // Method to filter members by their payment status
     public ArrayList<Member> filterMembersByPaymentStatus(boolean hasPaid) {
         ArrayList<Member> filteredMembers = new ArrayList<>();
@@ -69,7 +75,7 @@ public class Accountant {
     }
 
     // Method to format members payment status to a string
-    public String formatMembers(ArrayList<Member> members) {
+    public String formatMemberPaymentStatus(ArrayList<Member> members) {
         if (members == null || members.isEmpty()) {
             return "Ingen medlemmer fundet.";
         }
