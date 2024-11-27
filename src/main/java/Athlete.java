@@ -29,7 +29,7 @@ public class Athlete extends Member {
 
     public String toCSVStyle(String name) {
         StringBuilder disciplinTimeString = new StringBuilder();
-        disciplinTimeString.append(name).append(",");
+        disciplinTimeString.append(name).append(",").append(getAgeGroup()).append(",");
 
         for (var entry : disciplineTimes.entrySet()) {
             SwimmingDisciplines discipline = entry.getKey();

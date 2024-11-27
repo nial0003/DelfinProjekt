@@ -12,7 +12,7 @@ public class Trainer {
     }
 
     //Checks if a member is an Athlete and if it is, it'll add them to the special athletes ArrayList
-    public void addAthleteToList(ArrayList<Member> members) {
+    public void addAthletesToList(ArrayList<Member> members) {
         for (Member member : members) {
             if (member.getMembershipType() == MembershipType.ATLET) {
                 String[] name = member.getName().split(",\\s");
