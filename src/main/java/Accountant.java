@@ -17,6 +17,10 @@ public class Accountant {
 
     // Method to determine annual fee based on age group and membership type
     private int determineMembershipFee(Member member) {
+        if (member.getMembershipType() == null) {
+            System.out.println("Fejl: Medlemstype mangler for medlem: " + member.getName());
+            return 0; // Default or error fee
+        }
         String membershipType = member.getMembershipType().toString();
         int age = member.calculateAge(member.getLd());
 
@@ -38,21 +42,23 @@ public class Accountant {
         return 0;
     }
 
+    //TODO
+    // Change method to only calculate annual fee, as details are printed out in other method calls
+    public int calculateMembershipFees() {
+        if (listOfMembers == null || listOfMembers.isEmpty()) {
 
-    // Method to show members annual fee, as well as providing the accountant with a total fee amount for all members combined
-    public String calculateMembershipFees() {
-        String feeDetails = "";
+        }
+
+
         int totalFees = 0;
 
         for (Member member : listOfMembers) {
             int fee = determineMembershipFee(member);
-            feeDetails += formatFeeDetails(member, fee) + "\n";
             totalFees += fee;
         }
 
-        feeDetails += "\nSamlede konigentindtægter: " + totalFees + " kr";
+        return totalFees;
 
-        return feeDetails;
     }
 
     // Format membership fee details for display
@@ -63,21 +69,7 @@ public class Accountant {
                 ", Kontigent: " + fee + " kr";
     }
 
-    /*
-    // Method to show all members and their membership payment status
-    public String listMembershipPaymentStatus() {
-        String paymentDetails = "";
-
-        for (Member member : listOfMembers) {
-            paymentDetails += "Navn: " + member.getName() +
-                    ", Medlemsnummer: " + member.getMemberNumber() +
-                    ", Betalt: " + member.getHasPaid() + "\n";
-        }
-        return paymentDetails;
-    }
-
-     */
-
+    // Method to filter members by their payment status
     public ArrayList<Member> filterMembersByPaymentStatus(boolean hasPaid) {
         ArrayList<Member> filteredMembers = new ArrayList<>();
         for (Member member : listOfMembers) {
@@ -88,20 +80,25 @@ public class Accountant {
         return filteredMembers;
     }
 
-    // Print members
-    public void printMembers(ArrayList<Member> members) {
+    // Print members filtered or unfiltered
+    public String formatMembers(ArrayList<Member> members) {
         if (members == null || members.isEmpty()) {
-            System.out.println("Ingen medlemmer fundet.");
-            return;
+            return "Ingen medlemmer fundet.";
         }
-        System.out.println("Medlemsliste:");
-        System.out.println("-------------------------------------------------");
+
+        String header = "Medlemsliste:\n" +
+                "-------------------------------------------------\n";
+        String footer = "-------------------------------------------------\n";
+
+        String formattedMembers = header;
+
         for (Member member : members) {
-            System.out.println("Navn: " + member.getName());
-            System.out.println("Medlemsnummer: " + member.getMemberNumber());
-            System.out.println("Betalt: " + (member.getHasPaid() ? "Ja" : "Nej"));
-            System.out.println("-------------------------------------------------");
+            formattedMembers += "Navn: " + member.getName() + "\n" +
+                    "Medlemsnummer: " + member.getMemberNumber() + "\n" +
+                    "Betalt: " + (member.getHasPaid() ? "Ja" : "Nej") + "\n" +
+                    footer;
         }
+        return formattedMembers;
     }
 
     public ArrayList<Member> getListOfMembers() {

@@ -19,8 +19,9 @@ public class Controller {
     }
 
 
-    public void printMembers(ArrayList<Member> members) {
-        accountant.printMembers(members);
+    public String formatMembers(ArrayList<Member> members) {
+       return accountant.formatMembers(members);
+
     }
 
 
