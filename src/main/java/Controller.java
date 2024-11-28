@@ -24,6 +24,22 @@ public class Controller {
         return accountant.formatTotalMembershipFees();
     }
 
+    public String getFoundMembers(ArrayList<Member> members, String keyword) {
+        ArrayList<Member> foundMembers = accountant.findMembers(members, keyword);
+
+        if (foundMembers.isEmpty()) {
+            return "Ingen medlemmer fundet, der matcher søgeordet: " + keyword;
+        }
+
+        String formattedResult = "Medlemmer fundet:\n";
+        for (Member member : foundMembers) {
+            formattedResult += "Navn: " + member.getName() +
+                    ", ID: " + member.getMemberNumber() +
+                    ", Telefon: " + member.getPhoneNumber() + "\n";
+        }
+
+        return formattedResult;
+    }
 
 
 }
