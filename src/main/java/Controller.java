@@ -24,11 +24,11 @@ public class Controller {
         return accountant.formatTotalMembershipFees();
     }
 
-    public String getFoundMembers(ArrayList<Member> members, String keyword) {
-        ArrayList<Member> foundMembers = accountant.findMembers(members, keyword);
+    public String getFoundMembers(ArrayList<Member> members, String searchKeyword) {
+        ArrayList<Member> foundMembers = accountant.findMembers(members, searchKeyword);
 
         if (foundMembers.isEmpty()) {
-            return "Ingen medlemmer fundet, der matcher søgeordet: " + keyword;
+            return "Ingen medlemmer fundet, der matcher søgeordet: " + searchKeyword;
         }
 
         String formattedResult = "Medlemmer fundet:\n";

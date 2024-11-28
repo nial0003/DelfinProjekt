@@ -104,13 +104,21 @@ public class UserInterface {
                 case "1" -> showPaymentStatusSubMenu();
                 case "2" -> System.out.println("(funktionalitet ikke implementeret endnu)");
                 case "3" -> System.out.println(controller.getFormattedTotalMembershipFees());
-                case "4" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "4" -> searchForMember();
                 case "5" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
             }
         }
+    }
+
+    private void searchForMember() {
+        System.out.println("Indtast søgeord (navn, medlemsnummer eller telefonnummer): ");
+        String searchKeyword = sc.nextLine(); 
+        String result = controller.getFoundMembers(controller.getAllMembers(), searchKeyword);
+
+        System.out.println(result); 
     }
 
     private void showPaymentStatusSubMenu() {
