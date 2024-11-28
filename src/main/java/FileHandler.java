@@ -39,10 +39,8 @@ public class FileHandler {
         return listOfMembers;
     }
 
-
-
     //-------------------Saves list of members to the file, by converting member details to CSV-style string------------
-    public ArrayList<Member> saveToFile(ArrayList<Member> listOfMembers) {
+    public void saveToFile(ArrayList<Member> listOfMembers) {
         try (FileWriter fw = new FileWriter(file, true)) {
             for (Member member : listOfMembers) {
                 fw.write(member.toCSVStyle());
@@ -50,9 +48,7 @@ public class FileHandler {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return listOfMembers;
     }
-
 
     //-------------------Method to save athletes to athlete file--------------------------------------------------------
     public void saveToAthleteFile(ArrayList<Athlete> listOfAthletes) {

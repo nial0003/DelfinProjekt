@@ -6,7 +6,7 @@ public class Accountant {
 
     //-------------------Constructor------------------------------------------------------------------------------------
     public Accountant() {
-        fh=new FileHandler();
+        fh = new FileHandler();
         listOfMembers = fh.loadFromFile();
     }
 
@@ -86,9 +86,12 @@ public class Accountant {
     //-------------------Method to update members payment status--------------------------------------------------------
 
     public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
+        ArrayList<Member> updatedMember = new ArrayList<>();
         for (Member member : listOfMembers) {
             if (member.getMemberNumber() == memberNumber) {
                 member.setHasPaid(hasPaid);
+                updatedMember.add(member);
+                fh.saveToFile(updatedMember);
                 return true;
             }
         }
