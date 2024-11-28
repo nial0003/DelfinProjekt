@@ -4,10 +4,6 @@ public class Controller {
     Chairman chairman = new Chairman();
     Accountant accountant = new Accountant();
 
-    private ArrayList<Member> getListOfMembers() {
-        return chairman.getListOfMembers();
-    }
-
     public ArrayList<Member> getAllMembers() {
         return accountant.getListOfMembers();
     }
@@ -41,10 +37,10 @@ public class Controller {
         return result;
     }
 
-
-    public boolean updateMemberPaymentStatus(String memberNumber, boolean hasPaid) {
-        return accountant.updateMemberPaymentStatus(Integer.parseInt(memberNumber), hasPaid);
+    public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
+        return accountant.updateMemberPaymentStatus(memberNumber, hasPaid);
     }
+
     public ArrayList<Member> findMembers(String searchKeyword) {
         return accountant.findMembers(searchKeyword);
     }
