@@ -48,7 +48,7 @@ public class Member {
         return period.getYears();
     }
 
-//--------------------Method to determine the annual membership fee--------------------
+//--------------------Method to determine the annual membership fee-----------------------------------------------------
     public int determineMembershipFee() {
         int fee = 0;
         int age = calculateAge(ld);
@@ -75,19 +75,13 @@ public class Member {
 
 
 
-    //Converts the member details into a CSV-style string
+    //-------------------Converts the member details into a CSV-style string--------------------------------------------
     public String toCSVStyle() {
         return name + "," + ld.getYear() + "," + ld.getMonthValue() + "," + ld.getDayOfMonth() + "," + gender + "," + address + "," + phoneNumber +
                 "," + memberShipStatus + "," + membershipType + "," + ageGroup + "," + hasPaid + "," + memberNumber + "\n";
     }
 
-
-    //GETTERS
-    public LocalDate getLd() {
-        return ld;
-    }
-
-    // Formats the member details as a user-friendly string
+    //-------------------Formats the member details as a user-friendly string-------------------------------------------
     @Override
     public String toString() {
         return "Medlemsdetaljer:\n" +
@@ -106,7 +100,7 @@ public class Member {
                 "-----------------------------";
     }
 
-    //Getters
+    //-------------------Getters & Setters------------------------------------------------------------------------------
     public String getFirstName() {
         return firstName;
     }
@@ -143,6 +137,10 @@ public class Member {
 
     public Enum<MembershipType> getAgeGroup() {
         return ageGroup;
+    }
+
+    public LocalDate getLd() {
+        return ld;
     }
 
     public boolean getHasPaid() {
