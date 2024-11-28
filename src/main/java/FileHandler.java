@@ -6,7 +6,7 @@ public class FileHandler {
     private File file = new File("Members");
     private File atheleteFile = new File("Athletes");
 
-    //Loads the Members from the file and returns them in an ArrayList which can then be updated and used.
+    //-------------------Loads the Members from the file and returns them in an ArrayList-------------------------------
     public ArrayList<Member> loadFromFile() {
         ArrayList<Member> listOfMembers = new ArrayList<>();
 
@@ -40,8 +40,9 @@ public class FileHandler {
     }
 
 
-    //Saves list of members to the file, by converting member details to CSV-style string.
-    public void saveToFile(ArrayList<Member> listOfMembers) {
+
+    //-------------------Saves list of members to the file, by converting member details to CSV-style string------------
+    public ArrayList<Member> saveToFile(ArrayList<Member> listOfMembers) {
         try (FileWriter fw = new FileWriter(file, true)) {
             for (Member member : listOfMembers) {
                 fw.write(member.toCSVStyle());
@@ -49,8 +50,11 @@ public class FileHandler {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return listOfMembers;
     }
 
+
+    //-------------------Method to save athletes to athlete file--------------------------------------------------------
     public void saveToAthleteFile(ArrayList<Athlete> listOfAthletes) {
         try (FileWriter fw = new FileWriter(atheleteFile)) {
             for (Athlete athlete : listOfAthletes) {
@@ -62,6 +66,7 @@ public class FileHandler {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
     public String printFromAthleteFile() {
         String output = "";
         try (FileReader fr = new FileReader(atheleteFile)) {
