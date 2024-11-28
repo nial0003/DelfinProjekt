@@ -48,6 +48,32 @@ public class Member {
         return period.getYears();
     }
 
+//--------------------Method to determine the annual membership fee--------------------
+    public int determineMembershipFee() {
+        int fee = 0;
+        int age = calculateAge(ld);
+
+        if (getMemberShipStatus().equals(MembershipType.AKTIV)) {
+            if (getAgeGroup().equals(MembershipType.JUNIOR)) {
+                fee = 1000;
+            } else if (getAgeGroup().equals(MembershipType.SENIOR)) {
+                fee = 1600;
+            } else {
+                fee = 1200;
+            }
+
+        } else if (getMemberShipStatus().equals(MembershipType.PASSIV)) {
+            if (getAgeGroup().equals(MembershipType.PENSIONIST)) {
+                fee = 375;
+            } else {
+                fee = 500;
+            }
+
+        }
+        return fee;
+    }
+
+
 
     //Converts the member details into a CSV-style string
     public String toCSVStyle() {

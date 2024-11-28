@@ -2,12 +2,6 @@ import java.util.ArrayList;
 
 public class Accountant {
 
-    private static final int JUNIOR_FEE = 1000;
-    private static final int SENIOR_FEE = 1600;
-    private static final int ELDER_FEE = 1200;
-    private static final int PASSIVE_FEE = 500;
-    private static final int PASSIVE_ELDER_FEE = 375;
-
     private FileHandler fh = new FileHandler();
     private ArrayList<Member> listOfMembers;
 
@@ -15,32 +9,7 @@ public class Accountant {
         this.listOfMembers = fh.loadFromFile();
     }
 
-    // Method to determine annual fee based on age group and membership type
-    private int determineMembershipFee(Member member) {
-        if (member.getMembershipType() == null) {
-            System.out.println("Fejl: Medlemstype mangler for medlem: " + member.getName());
-            return 0;
-        }
-        String membershipType = member.getMembershipType().toString();
-        int age = member.calculateAge(member.getLd());
 
-        if (membershipType.equals("HOBBY") || membershipType.equals("ATLET")) {
-            if (age < 18) {
-                return JUNIOR_FEE;
-            } else if (age < 60) {
-                return SENIOR_FEE;
-            } else {
-                return ELDER_FEE;
-            }
-        } else if (membershipType.equals("PASSIV")) {
-            if (age < 60) {
-                return PASSIVE_FEE;
-            } else {
-                return PASSIVE_ELDER_FEE;
-            }
-        }
-        return 0;
-    }
 
 
     // Method to calculate the annual membership fees for all members combined
@@ -51,7 +20,7 @@ public class Accountant {
         int totalFees = 0;
 
         for (Member member : listOfMembers) {
-            int fee = determineMembershipFee(member);
+            int fee = member.determineMembershipFee();
             totalFees += fee;
         }
         return totalFees;
