@@ -95,6 +95,30 @@ public class Accountant {
         return formattedMembers;
     }
 
+
+    //TODO
+    //Method to find members
+
+    public ArrayList<Member> findMembers(ArrayList<Member> members, String searchKeyword) {
+        ArrayList<Member> matchingMembers = new ArrayList<>();
+
+        for (Member member : members) {
+            if (String.valueOf(member.getMemberNumber()).equals(searchKeyword) ||
+                    String.valueOf(member.getPhoneNumber()).equals(searchKeyword) ||
+                    member.getFirstName().toLowerCase().startsWith(searchKeyword.toLowerCase()) ||
+                    member.getLastName().toLowerCase().startsWith(searchKeyword.toLowerCase())) {
+                matchingMembers.add(member);
+            }
+        }
+
+        return matchingMembers;
+    }
+
+
+    //TODO
+    //Method to update members payment status
+
+
     //Getter
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;

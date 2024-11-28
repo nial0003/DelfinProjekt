@@ -25,6 +25,8 @@ public class Member {
 
     public Member(String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber,
                   String membershipStatus, String membershipType, boolean hasPaid) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.name = lastName + "," + firstName;
         this.age = calculateAge(birthday);
         this.gender = gender;
@@ -79,6 +81,12 @@ public class Member {
     }
 
     //Getters
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
     public String getName() {
         return name;
     }
