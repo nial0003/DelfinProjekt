@@ -1,18 +1,16 @@
 import java.util.ArrayList;
 
 public class Accountant {
-
-    private FileHandler fh = new FileHandler();
+    private FileHandler fh;
     private ArrayList<Member> listOfMembers;
 
+    //-------------------Constructor------------------------------------------------------------------------------------
     public Accountant() {
-        this.listOfMembers = fh.loadFromFile();
+        fh=new FileHandler();
+        listOfMembers = fh.loadFromFile();
     }
 
-
-
-
-    // Method to calculate the annual membership fees for all members combined
+    //--------------------Method to calculate the annual membership fees for all members combined-----------------------
     public int calculateMembershipFees() {
         if (listOfMembers == null || listOfMembers.isEmpty()) {
             return 0;
@@ -26,13 +24,13 @@ public class Accountant {
         return totalFees;
     }
 
-    // Method to format total membership fees as a string
+    //-------------------Method to format total membership fees as a string---------------------------------------------
     public String formatTotalMembershipFees() {
         int totalFees = calculateMembershipFees();
         return "Samlede kontingentindbetalinger: " + totalFees + " kr.\n";
     }
 
-    // Method to filter members by their payment status
+    //-------------------Method to filter members by their payment status-----------------------------------------------
     public ArrayList<Member> filterMembersByPaymentStatus(boolean hasPaid) {
         ArrayList<Member> filteredMembers = new ArrayList<>();
         for (Member member : listOfMembers) {
@@ -43,7 +41,7 @@ public class Accountant {
         return filteredMembers;
     }
 
-    // Method to format members payment status to a string
+    //-------------------Method to format members payment status to a string--------------------------------------------
     public String formatMemberPaymentStatus(ArrayList<Member> members) {
         if (members == null || members.isEmpty()) {
             return "Ingen medlemmer fundet.";
@@ -66,7 +64,7 @@ public class Accountant {
 
 
     //TODO
-    //Method to find members
+    //-------------------Method to find members-------------------------------------------------------------------------
 
     public ArrayList<Member> findMembers(String searchKeyword) {
         ArrayList<Member> matchingMembers = new ArrayList<>();
@@ -85,20 +83,19 @@ public class Accountant {
 
 
     //TODO
-    //Method to update members payment status
+    //-------------------Method to update members payment status--------------------------------------------------------
 
     public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
         for (Member member : listOfMembers) {
             if (member.getMemberNumber() == memberNumber) {
                 member.setHasPaid(hasPaid);
-                fh.saveToFile(listOfMembers);
                 return true;
             }
         }
         return false;
     }
 
-    //Getter
+    //-------------------Getter-----------------------------------------------------------------------------------------
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;
     }
