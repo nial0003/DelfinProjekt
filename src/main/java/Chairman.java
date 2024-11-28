@@ -21,13 +21,8 @@ public class Chairman {
 
         Member member = new Member(firstName, lastName, LocalDate.of(yearBorn, monthBorn, dayBorn), gender, address,
                 number,membershipStatus, membershipType,  hasPaid);
-        newMember.add(member);
         listOfMembers.add(member);
         fh.saveToFile(newMember);
-    }
-
-    public ArrayList<Member> getListOfMembers() {
-        return listOfMembers;
     }
 
     public Map<MembershipType, ArrayList<Member>> groupByMembershipStatus() {
