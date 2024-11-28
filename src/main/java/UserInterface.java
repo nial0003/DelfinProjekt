@@ -102,7 +102,7 @@ public class UserInterface {
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> showPaymentStatusSubMenu();
-                case "2" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "2" -> updatePaymentStatus();
                 case "3" -> System.out.println(controller.getFormattedTotalMembershipFees());
                 case "4" -> searchForMember();
                 case "5" -> {
@@ -115,10 +115,75 @@ public class UserInterface {
 
     private void searchForMember() {
         System.out.println("Indtast søgeord (navn, medlemsnummer eller telefonnummer): ");
-        String searchKeyword = sc.nextLine(); 
-        String result = controller.getFoundMembers(controller.getAllMembers(), searchKeyword);
+        String searchKeyword = sc.nextLine();
 
-        System.out.println(result); 
+        String result = controller.getFoundMembers(searchKeyword);
+
+        System.out.println(result);
+    }
+
+    private void updatePaymentStatus() {
+        System.out.println("Indtast søgeord (fornavn, efternavn, medlemsnummer eller telefonnummer) for at opdatere betalingsstatus: ");
+        String searchKeyword = sc.nextLine();
+
+        // Find all matching members
+        ArrayList<Member> foundMembers = controller.findMembers(searchKeyword);
+
+        if (foundMembers.isEmpty()) {
+            System.out.println("Ingen medlemmer fundet med søgeordet: " + searchKeyword);
+            return;
+        }
+
+        // Display all matching members
+        System.out.println("Fundne medlemmer:");
+        for (int i = 0; i < foundMembers.size(); i++) {
+            Member member = foundMembers.get(i);
+            System.out.println((i + 1) + ". Navn: " + member.getFirstName() + " " + member.getLastName() +
+                    ", ID: " + member.getMemberNumber() +
+                    ", Telefonnummer: " + member.getPhoneNumber());
+        }
+
+        // Let user select a member from the list
+        System.out.println("Vælg medlem ved at indtaste nummeret ud for navnet:");
+        int memberIndex;
+
+        try {
+            memberIndex = Integer.parseInt(sc.nextLine()) - 1;
+        } catch (NumberFormatException e) {
+            System.out.println("Ugyldigt valg. Prøv igen.");
+            return;
+        }
+
+        if (memberIndex < 0 || memberIndex >= foundMembers.size()) {
+            System.out.println("Ugyldigt valg. Prøv igen.");
+            return;
+        }
+
+        Member selectedMember = foundMembers.get(memberIndex);
+
+        // Display current payment status
+        System.out.println("Valgt medlem:");
+        System.out.println("Navn: " + selectedMember.getFirstName() + " " + selectedMember.getLastName());
+        System.out.println("Nuværende betalingsstatus: " + (selectedMember.getHasPaid() ? "Betalt" : "Ikke betalt"));
+
+        // Update payment status
+        System.out.println("Indtast ny betalingsstatus (true/false): ");
+        boolean hasPaid;
+
+        try {
+            hasPaid = Boolean.parseBoolean(sc.nextLine());
+        } catch (Exception e) {
+            System.out.println("Ugyldig indtastning. Betalingsstatus skal være 'true' eller 'false'.");
+            return;
+        }
+
+        boolean success = controller.updateMemberPaymentStatus(Integer.toString(selectedMember.getMemberNumber()), hasPaid);
+
+        if (success) {
+            System.out.println("Betalingsstatus opdateret for medlem: " + selectedMember.getFirstName() + " " + selectedMember.getLastName());
+        } else {
+            System.out.println("Kunne ikke opdatere betalingsstatus.");
+        }
     }
 
     private void showPaymentStatusSubMenu() {

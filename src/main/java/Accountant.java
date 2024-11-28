@@ -99,10 +99,10 @@ public class Accountant {
     //TODO
     //Method to find members
 
-    public ArrayList<Member> findMembers(ArrayList<Member> members, String searchKeyword) {
+    public ArrayList<Member> findMembers(String searchKeyword) {
         ArrayList<Member> matchingMembers = new ArrayList<>();
 
-        for (Member member : members) {
+        for (Member member : listOfMembers) {
             if (String.valueOf(member.getMemberNumber()).equals(searchKeyword) ||
                     String.valueOf(member.getPhoneNumber()).equals(searchKeyword) ||
                     member.getFirstName().toLowerCase().startsWith(searchKeyword.toLowerCase()) ||
@@ -118,6 +118,16 @@ public class Accountant {
     //TODO
     //Method to update members payment status
 
+    public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
+        for (Member member : listOfMembers) {
+            if (member.getMemberNumber() == memberNumber) {
+                member.setHasPaid(hasPaid);
+                fh.saveToFile(listOfMembers);
+                return true;
+            }
+        }
+        return false;
+    }
 
     //Getter
     public ArrayList<Member> getListOfMembers() {
