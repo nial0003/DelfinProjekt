@@ -23,7 +23,7 @@ public class Chairman {
                 number,membershipStatus, membershipType,  hasPaid);
         newMember.add(member);
         listOfMembers.add(member);
-        fh.saveToFile(newMember);
+        fh.saveToFile(newMember, true);
     }
 
     public ArrayList<Member> getListOfMembers() {
