@@ -60,12 +60,14 @@ public class UserInterface {
         }
     }
 
+    //-------------------Method to authenticate user role---------------------------------------------------------------
     private boolean authenticateRole(String role, String expectedCode) {
         System.out.println("Indtast adgangskode for " + role + ": ");
         String inputCode = sc.nextLine();
         return inputCode.equals(expectedCode);
     }
 
+    //-------------------Chairman menu----------------------------------------------------------------------------------
     private void chairmanMenu() {
         System.out.println("Velkommen Formand!");
         while (true) {
@@ -208,7 +210,6 @@ public class UserInterface {
             System.out.println("Indtast søgeord (fornavn, efternavn, medlemsnummer eller telefonnummer) for at opdatere betalingsstatus:");
             String searchKeyword = sc.nextLine();
 
-            // Find all matching members
             ArrayList<Member> foundMembers = controller.findMembers(searchKeyword);
 
             if (foundMembers.isEmpty()) {
@@ -221,7 +222,6 @@ public class UserInterface {
                 continue;
             }
 
-            // Display all matching members
             System.out.println("Fundne medlemmer:");
             for (int i = 0; i < foundMembers.size(); i++) {
                 Member member = foundMembers.get(i);
@@ -248,7 +248,6 @@ public class UserInterface {
                 }
             }
 
-            // Display current payment status
             System.out.println("Valgt medlem:");
             System.out.println("Navn: " + selectedMember.getFirstName() + " " + selectedMember.getLastName());
             System.out.println("Nuværende betalingsstatus: " + (selectedMember.getHasPaid() ? "Betalt" : "Ikke betalt"));
@@ -257,20 +256,19 @@ public class UserInterface {
             boolean hasPaid = false;
 
             while (!validStatus) {
-                System.out.println("Indtast ny betalingsstatus (ja/nej): ");
+                System.out.println("Indtast ny betalingsstatus (betalt/ikke betalt): ");
                 String statusInput = sc.nextLine();
-                if (statusInput.equalsIgnoreCase("ja")) {
+                if (statusInput.equalsIgnoreCase("betalt")) {
                     hasPaid = true;
                     validStatus = true;
-                } else if (statusInput.equalsIgnoreCase("nej")) {
+                } else if (statusInput.equalsIgnoreCase("ikke betalt")) {
                     hasPaid = false;
                     validStatus = true;
                 } else {
-                    System.out.println("Ugyldig indtastning. Skriv 'ja' eller 'nej'.");
+                    System.out.println("Ugyldig indtastning. Skriv 'betalt' eller 'ikke betalt'.");
                 }
             }
 
-            // Update payment status
             boolean success = controller.updateMemberPaymentStatus(selectedMember.getMemberNumber(), hasPaid);
 
             if (success) {
