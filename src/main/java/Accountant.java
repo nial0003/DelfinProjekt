@@ -81,17 +81,13 @@ public class Accountant {
         return matchingMembers;
     }
 
-
-    //TODO
     //-------------------Method to update members payment status--------------------------------------------------------
 
     public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
-        ArrayList<Member> updatedMember = new ArrayList<>();
         for (Member member : listOfMembers) {
             if (member.getMemberNumber() == memberNumber) {
                 member.setHasPaid(hasPaid);
-                updatedMember.add(member);
-                fh.saveToFile(updatedMember);
+                fh.saveToFile(listOfMembers, false);
                 return true;
             }
         }
@@ -102,6 +98,5 @@ public class Accountant {
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;
     }
-
 
 }
