@@ -11,12 +11,13 @@ public class FileHandler {
         ArrayList<Member> listOfMembers = new ArrayList<>();
 
         try (FileReader fr = new FileReader(file)) {
-
             BufferedReader br = new BufferedReader(fr);
 
             String line = br.readLine();
             while (line != null && !line.isEmpty()) {
                 String[] data = line.split(",");
+
+                // Parse fields in the same order as in the toCSVStyle method
                 String lastName = data[0];
                 String firstName = data[1];
                 int yearBorn = Integer.parseInt(data[2]);
@@ -24,13 +25,17 @@ public class FileHandler {
                 int dayBorn = Integer.parseInt(data[4]);
                 String gender = data[5];
                 String address = data[6];
-                int number = Integer.parseInt(data[7]);
+                int phoneNumber = Integer.parseInt(data[7]);
                 String membershipStatus = data[8];
                 String membershipType = data[9];
-                boolean hasPaid = Boolean.parseBoolean(data[10]);
+                String ageGroup = data[10]; // Ignored since it's recalculated
+                boolean hasPaid = Boolean.parseBoolean(data[11]);
+                int memberNumber = Integer.parseInt(data[12]);
 
+                // Use the constructor for file loading
                 listOfMembers.add(new Member(firstName, lastName, LocalDate.of(yearBorn, monthBorn, dayBorn), gender, address,
-                        number, membershipStatus, membershipType, hasPaid));
+                        phoneNumber, membershipStatus, membershipType, hasPaid, memberNumber));
+
                 line = br.readLine();
             }
         } catch (IOException e) {
@@ -40,8 +45,8 @@ public class FileHandler {
     }
 
     //-------------------Saves list of members to the file, by converting member details to CSV-style string------------
-    public void saveToFile(ArrayList<Member> listOfMembers) {
-        try (FileWriter fw = new FileWriter(file, true)) {
+    public void saveToFile(ArrayList<Member> listOfMembers, boolean appendFile) {
+        try (FileWriter fw = new FileWriter(file, appendFile)) {
             for (Member member : listOfMembers) {
                 fw.write(member.toCSVStyle());
             }
