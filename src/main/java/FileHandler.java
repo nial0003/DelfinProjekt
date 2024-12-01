@@ -1,10 +1,16 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class FileHandler {
     private File file = new File("Members");
-    private File atheleteFile = new File("Athletes");
+    private File athletesTrainingFile = new File("AthletesTrainingResults");
+    private File athleteCompetitionResults = new File("AthleteCompetitionResults");
 
     //Loads the Members from the file and returns them in an ArrayList which can then be updated and used.
     public ArrayList<Member> loadFromFile() {
@@ -54,20 +60,74 @@ public class FileHandler {
     }
 
     public void saveAthleteMembersToAthleteFile(ArrayList<Athlete> listOfAthletes) {
-        try (FileWriter fw = new FileWriter(atheleteFile)) {
+        try (FileWriter fw = new FileWriter(athletesTrainingFile)) {
             for (Athlete athlete : listOfAthletes) {
                 String name = athlete.getName();
-                fw.write(athlete.toCSVStyle(name));
+                fw.write(athlete.toCSVStyle(name, false));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void saveUpdatedAthletesToFile(ArrayList<String> updatedListOfAthletes){
-        try (FileWriter fw = new FileWriter(atheleteFile)){
-            for (String str : updatedListOfAthletes){
-                fw.write(str+"\n");
+    public void saveCompetitionResultsToFile(ArrayList<Athlete> listOfAthletes) {
+        try (FileWriter fw = new FileWriter(athleteCompetitionResults)) {
+            for (Athlete athlete : listOfAthletes) {
+                if (!athlete.getCompetitionTimes().isEmpty()) {
+                    String name = athlete.getName();
+                    fw.write(athlete.toCSVStyle(name, true));
+                }
+            }
+            fw.write("end");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addCompetitionToListFromFile(Trainer trainer) {
+        try (FileReader fr = new FileReader(athleteCompetitionResults)) {
+            BufferedReader br = new BufferedReader(fr);
+            ArrayList<String> athleteCompResults = new ArrayList<>();
+            ArrayList<String> listResult = new ArrayList<>();
+
+            String line = br.readLine();
+            while (!line.contentEquals("end")) {
+                if (!line.isBlank() && !line.equalsIgnoreCase("end")) {
+                    athleteCompResults.add(line);
+                }
+                line = br.readLine();
+            }
+            Pattern pattern = Pattern.compile("\\[(.*?)]");
+            String nameOfAthlete = "";
+            for (int i = 0; i < athleteCompResults.size(); i++) {
+
+                if (!athleteCompResults.get(i).contains("Stævne")) {
+                    if (!athleteCompResults.get(i).isBlank()){
+                        int lastCommaIndex = athleteCompResults.get(i).lastIndexOf(",");
+                        nameOfAthlete = athleteCompResults.get(i).substring(0, lastCommaIndex);
+                    }
+                    i++;
+                }
+                Matcher matcher = pattern.matcher(athleteCompResults.get(i));
+                while (matcher.find()){
+                    listResult.add(matcher.group(1));
+                }
+                String compName = listResult.get(0);
+                String disciplineName = listResult.get(1);
+                Double time = Double.valueOf(listResult.get(2));
+                int placement = Integer.parseInt(listResult.get(3));
+                trainer.addCompetitionToAthlete(nameOfAthlete, compName, disciplineName, time, placement);
+                listResult.clear();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void saveUpdatedAthletesToFile(ArrayList<String> updatedListOfAthletes) {
+        try (FileWriter fw = new FileWriter(athletesTrainingFile)) {
+            for (String str : updatedListOfAthletes) {
+                fw.write(str + "\n");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -76,13 +136,13 @@ public class FileHandler {
 
     //Returns an arrayList of Strings from the athleteFile. This is done so we can search through it and update the times
     //of a given member.
-    public ArrayList<String> getAthletesFromAthleteFile(){
-        try (FileReader fr = new FileReader(atheleteFile)) {
+    public ArrayList<String> getAthletesFromAthleteFile() {
+        try (FileReader fr = new FileReader(athletesTrainingFile)) {
             BufferedReader br = new BufferedReader(fr);
             ArrayList<String> result = new ArrayList<>();
 
             String line = br.readLine();
-            while (line != null && !line.isEmpty()){
+            while (line != null && !line.isEmpty()) {
                 result.add(line);
                 line = br.readLine();
             }
@@ -94,13 +154,13 @@ public class FileHandler {
 
     public String printFromAthleteFile() {
         String output = "";
-        try (FileReader fr = new FileReader(atheleteFile)) {
+        try (FileReader fr = new FileReader(athletesTrainingFile)) {
             BufferedReader br = new BufferedReader(fr);
 
             String line = br.readLine();
             while (line != null && !line.isEmpty()) {
                 String[] data = line.split(",");
-                for (int i = 0; i<data.length;i++){
+                for (int i = 0; i < data.length; i++) {
                     output += data[i] + " ";
                 }
                 output += "\n";

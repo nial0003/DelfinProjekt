@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 public class Trainer {
     String name;
     ArrayList<Athlete> athletes;
-    FileHandler fh = new FileHandler();
 
     public Trainer(String name) {
         this.name = name;
@@ -89,7 +88,20 @@ public class Trainer {
         return times.getFirst();
     }
 
-    public void saveAthleteMembersToAthleteFile() {
-        fh.saveAthleteMembersToAthleteFile(athletes);
+//    public void saveAthleteMembersToAthleteFile() {
+//        fh.saveAthleteMembersToAthleteFile(athletes);
+//    }
+
+     public void addCompetitionToAthlete(String name, String competitionName, String discipline,
+                                        double time, int placement){
+        for (Athlete athlete : athletes){
+            if (athlete.getName().contains(name)){
+                athlete.getCompetitionTimes().add(new Competition(competitionName,discipline,time,placement));
+            }
+        }
+    }
+
+    public void saveCompetitionResultsToFile(FileHandler fh){
+        fh.saveCompetitionResultsToFile(athletes);
     }
 }
