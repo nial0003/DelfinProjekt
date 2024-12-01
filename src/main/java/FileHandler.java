@@ -41,8 +41,10 @@ public class FileHandler {
 
 
     //Saves list of members to the file, by converting member details to CSV-style string.
-    public void saveToFile(ArrayList<Member> listOfMembers) {
-        try (FileWriter fw = new FileWriter(file, true)) {
+    //Write true if you want to add the information to the end of the file
+    //Write false if you want to create a new file with new information.
+    public void saveToFile(ArrayList<Member> listOfMembers, boolean appendFile) {
+        try (FileWriter fw = new FileWriter(file, appendFile)) {
             for (Member member : listOfMembers) {
                 fw.write(member.toCSVStyle());
             }
