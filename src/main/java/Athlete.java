@@ -18,8 +18,13 @@ public class Athlete extends Member {
         }
     }
 
-    public void setDisciplineTimes(SwimmingDisciplines discipline, Double time) {
-        disciplineTimes.get(discipline).add(time);
+    public void setDisciplineTrainingTime(String discipline, Double time) {
+        if (!disciplineTimes.get(SwimmingDisciplines.getSwimmingDiscipline(discipline)).isEmpty() &&
+                disciplineTimes.get(SwimmingDisciplines.getSwimmingDiscipline(discipline)).getFirst() > time){
+            disciplineTimes.get(SwimmingDisciplines.getSwimmingDiscipline(discipline)).set(0,time);
+        } else {
+            disciplineTimes.get(SwimmingDisciplines.getSwimmingDiscipline(discipline)).add(time);
+        }
     }
 
     public List<Double> getTimes(SwimmingDisciplines discipline) {
@@ -29,7 +34,11 @@ public class Athlete extends Member {
 
     public String toCSVStyle(String name) {
         StringBuilder disciplinTimeString = new StringBuilder();
-        disciplinTimeString.append(name).append(",").append(getAgeGroup()).append(",");
+        String team = "Juniorhold";
+        if (getAgeGroup() != MembershipType.JUNIOR) {
+            team = "Senirhold";
+        }
+        disciplinTimeString.append(name).append(",").append(team).append(",").append("træning{");
 
         for (var entry : disciplineTimes.entrySet()) {
             SwimmingDisciplines discipline = entry.getKey();
@@ -46,13 +55,15 @@ public class Athlete extends Member {
                     }
                 }
                 disciplinTimeString.append("],");
+            } else {
+                disciplinTimeString.append("[0.0]");
             }
 
         }
         if (disciplinTimeString.charAt(disciplinTimeString.length() - 1) == ',') {
             disciplinTimeString.deleteCharAt(disciplinTimeString.length() - 1);
         }
-        disciplinTimeString.append("\n");
+        disciplinTimeString.append("}\n");
         return disciplinTimeString.toString();
     }
 }

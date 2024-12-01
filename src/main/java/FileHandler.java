@@ -51,12 +51,40 @@ public class FileHandler {
         }
     }
 
-    public void saveToAthleteFile(ArrayList<Athlete> listOfAthletes) {
+    public void saveAthleteMembersToAthleteFile(ArrayList<Athlete> listOfAthletes) {
         try (FileWriter fw = new FileWriter(atheleteFile)) {
             for (Athlete athlete : listOfAthletes) {
                 String name = athlete.getName();
                 fw.write(athlete.toCSVStyle(name));
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void saveUpdatedAthletesToFile(ArrayList<String> updatedListOfAthletes){
+        try (FileWriter fw = new FileWriter(atheleteFile)){
+            for (String str : updatedListOfAthletes){
+                fw.write(str+"\n");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //Returns an arrayList of Strings from the athleteFile. This is done so we can search through it and update the times
+    //of a given member.
+    public ArrayList<String> getAthletesFromAthleteFile(){
+        try (FileReader fr = new FileReader(atheleteFile)) {
+            BufferedReader br = new BufferedReader(fr);
+            ArrayList<String> result = new ArrayList<>();
+
+            String line = br.readLine();
+            while (line != null && !line.isEmpty()){
+                result.add(line);
+                line = br.readLine();
+            }
+            return result;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
