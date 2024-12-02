@@ -62,6 +62,8 @@ public class FileHandler {
         }
     }
 
+
+    //-------------------Method to save athletes to athlete file--------------------------------------------------------
     public void saveAthleteMembersToAthleteFile(ArrayList<Athlete> listOfAthletes) {
         try (FileWriter fw = new FileWriter(athletesTrainingFile)) {
             for (Athlete athlete : listOfAthletes) {
@@ -73,6 +75,8 @@ public class FileHandler {
         }
     }
 
+
+    //-------------------Method to save competition result for athletes-------------------------------------------------
     public void saveCompetitionResultsToFile(ArrayList<Athlete> listOfAthletes) {
         try (FileWriter fw = new FileWriter(athleteCompetitionResults)) {
             for (Athlete athlete : listOfAthletes) {
@@ -86,6 +90,8 @@ public class FileHandler {
             throw new RuntimeException(e);
         }
     }
+
+    //-------------------Method to save competition results to results file---------------------------------------------
 
     // Goes through the file AthletecompetitionResults and checks if each line matches the pattern given
     // if it does it saves the specific information as a competition and adds it to the correct Athlete based
@@ -130,6 +136,7 @@ public class FileHandler {
         }
     }
 
+    //-------------------Method to save list of updated athletes--------------------------------------------------------
     public void saveUpdatedAthletesToFile(ArrayList<String> updatedListOfAthletes) {
         try (FileWriter fw = new FileWriter(athletesTrainingFile)) {
             for (String str : updatedListOfAthletes) {
@@ -158,6 +165,7 @@ public class FileHandler {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
     public String printFromAthleteFile() {
         String output = "";
         try (FileReader fr = new FileReader(athletesTrainingFile)) {

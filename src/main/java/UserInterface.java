@@ -46,7 +46,7 @@ public class UserInterface {
                 }
                 case "3" -> {
                     if (authenticateRole("Træner", "3333")) {
-                        System.out.println("Velkommen Træner! (Funktionalitet ikke implementeret endnu)");
+                        System.out.println("Velkommen træner");
                     } else {
                         System.out.println("Ugyldig adgangskode. Prøv igen.");
                     }
@@ -60,14 +60,12 @@ public class UserInterface {
         }
     }
 
-    //-------------------Method to authenticate user role---------------------------------------------------------------
     private boolean authenticateRole(String role, String expectedCode) {
         System.out.println("Indtast adgangskode for " + role + ": ");
         String inputCode = sc.nextLine();
         return inputCode.equals(expectedCode);
     }
 
-    //-------------------Chairman menu----------------------------------------------------------------------------------
     private void chairmanMenu() {
         System.out.println("Velkommen Formand!");
         while (true) {
