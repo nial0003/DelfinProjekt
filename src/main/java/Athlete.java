@@ -6,6 +6,7 @@ import java.util.List;
 public class Athlete extends Member {
 
     private EnumMap<SwimmingDisciplines, List<Double>> disciplineTimes;
+    private ArrayList<Competition> competitionTimes;
 
     public Athlete(String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber,
                    String membershipStatus, String membershipType, boolean hasPaid) {
@@ -16,43 +17,58 @@ public class Athlete extends Member {
         for (SwimmingDisciplines disciplines : SwimmingDisciplines.values()) {
             disciplineTimes.put(disciplines, new ArrayList<>());
         }
-    }
-
-    public void setDisciplineTimes(SwimmingDisciplines discipline, Double time) {
-        disciplineTimes.get(discipline).add(time);
+        competitionTimes = new ArrayList<>();
     }
 
     public List<Double> getTimes(SwimmingDisciplines discipline) {
         return new ArrayList<>(disciplineTimes.get(discipline));
     }
 
+    public ArrayList<Competition> getCompetitionTimes() {
+        return competitionTimes;
+    }
 
-    public String toCSVStyle(String name) {
-        StringBuilder disciplinTimeString = new StringBuilder();
-        disciplinTimeString.append(name).append(",");
-
-        for (var entry : disciplineTimes.entrySet()) {
-            SwimmingDisciplines discipline = entry.getKey();
-            List<Double> times = entry.getValue();
-
-            disciplinTimeString.append(discipline).append(",");
-
-            if (times != null && !times.isEmpty()) {
-                disciplinTimeString.append("[");
-                for (int i = 0; i < times.size(); i++) {
-                    disciplinTimeString.append(times.get(i));
-                    if (i < times.size() - 1) {
-                        disciplinTimeString.append(",");
-                    }
-                }
-                disciplinTimeString.append("],");
+    public String toCSVStyle(String name, boolean isCompetition) {
+        StringBuilder finalString = new StringBuilder();
+            String team = "Juniorhold";
+            if (getAgeGroup() != MembershipType.JUNIOR) {
+                team = "Seniorhold";
             }
 
+        if (!isCompetition) {
+            finalString.append(name).append(",").append(team).append(",").append("træning{");
+
+            for (var entry : disciplineTimes.entrySet()) {
+                SwimmingDisciplines discipline = entry.getKey();
+                List<Double> times = entry.getValue();
+
+                finalString.append(discipline).append(",");
+
+                if (times != null && !times.isEmpty()) {
+                    finalString.append("[");
+                    for (int i = 0; i < times.size(); i++) {
+                        finalString.append(times.get(i));
+                        if (i < times.size() - 1) {
+                            finalString.append(",");
+                        }
+                    }
+                    finalString.append("],");
+                } else {
+                    finalString.append("[0.0]");
+                }
+
+            }
+            if (finalString.charAt(finalString.length() - 1) == ',') {
+                finalString.deleteCharAt(finalString.length() - 1);
+            }
+            finalString.append("}\n");
+        } else {
+            finalString.append(name).append(",").append(team).append("\n");
+            for (Competition competition : competitionTimes){
+                finalString.append("Stævne").append(competition.toString()).append("\n");
+            }
+            finalString.append("\n");
         }
-        if (disciplinTimeString.charAt(disciplinTimeString.length() - 1) == ',') {
-            disciplinTimeString.deleteCharAt(disciplinTimeString.length() - 1);
-        }
-        disciplinTimeString.append("\n");
-        return disciplinTimeString.toString();
+        return finalString.toString();
     }
 }
