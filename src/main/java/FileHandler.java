@@ -10,7 +10,7 @@ public class FileHandler {
     private File athletesTrainingFile = new File("AthletesTrainingResults");
     private File athleteCompetitionResults = new File("AthleteCompetitionResults");
 
-    //Loads the Members from the file and returns them in an ArrayList which can then be updated and used.
+    //-------------------Loads the Members from the file and returns them in an ArrayList-------------------------------
     public ArrayList<Member> loadFromFile() {
         ArrayList<Member> listOfMembers = new ArrayList<>();
 
@@ -21,6 +21,8 @@ public class FileHandler {
             String line = br.readLine();
             while (line != null && !line.isEmpty()) {
                 String[] data = line.split(",");
+
+                // Parse fields in the same order as in the toCSVStyle method
                 String lastName = data[0];
                 String firstName = data[1];
                 int yearBorn = Integer.parseInt(data[2]);
@@ -28,14 +30,18 @@ public class FileHandler {
                 int dayBorn = Integer.parseInt(data[4]);
                 String gender = data[5];
                 String address = data[6];
-                int number = Integer.parseInt(data[7]);
+                int phoneNumber = Integer.parseInt(data[7]);
                 String membershipStatus = data[8];
                 String membershipType = data[9];
-                boolean hasPaid = Boolean.parseBoolean(data[10]);
+                String ageGroup = data[10]; // Ignored since it's recalculated
+                boolean hasPaid = Boolean.parseBoolean(data[11]);
+                int memberNumber = Integer.parseInt(data[12]);
                 boolean hasBeenAddedToAthletes = Boolean.parseBoolean(data[13]);
 
+                // Use the constructor for file loading
                 listOfMembers.add(new Member(firstName, lastName, LocalDate.of(yearBorn, monthBorn, dayBorn), gender, address,
-                        number, membershipStatus, membershipType, hasPaid, hasBeenAddedToAthletes));
+                        phoneNumber, membershipStatus, membershipType, hasPaid, memberNumber, hasBeenAddedToAthletes));
+
                 line = br.readLine();
             }
         } catch (IOException e) {
@@ -58,6 +64,8 @@ public class FileHandler {
         }
     }
 
+
+    //-------------------Method to save athletes to athlete file--------------------------------------------------------
     public void saveAthleteMembersToAthleteTrainingFile(ArrayList<Athlete> listOfAthletes) {
         try (FileWriter fw = new FileWriter(athletesTrainingFile)) {
             for (Athlete athlete : listOfAthletes) {
@@ -69,6 +77,8 @@ public class FileHandler {
         }
     }
 
+
+    //-------------------Method to save competition result for athletes-------------------------------------------------
     public void saveCompetitionResultsToFile(ArrayList<Athlete> listOfAthletes) {
         try (FileWriter fw = new FileWriter(athleteCompetitionResults)) {
             for (Athlete athlete : listOfAthletes) {
@@ -82,6 +92,8 @@ public class FileHandler {
             throw new RuntimeException(e);
         }
     }
+
+    //-------------------Method to save competition results to results file---------------------------------------------
 
     // Goes through the file AthletecompetitionResults and checks if each line matches the pattern given
     // if it does it saves the specific information as a competition and adds it to the correct Athlete based
@@ -126,6 +138,7 @@ public class FileHandler {
         }
     }
 
+    //-------------------Method to save list of updated athletes--------------------------------------------------------
     public void saveUpdatedAthletesToFile(ArrayList<String> updatedListOfAthletes) {
         try (FileWriter fw = new FileWriter(athletesTrainingFile)) {
             for (String str : updatedListOfAthletes) {
@@ -154,6 +167,7 @@ public class FileHandler {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
     public String printFromAthleteFile() {
         String output = "";
         try (FileReader fr = new FileReader(athletesTrainingFile)) {

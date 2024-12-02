@@ -13,6 +13,8 @@ public class Chairman {
         newMember = new ArrayList<>();
     }
 
+    //-------------------Method to add a new member---------------------------------------------------------------------
+
     //adds a new member to the newMember and listOfMembers Arraylist and then uploads the new Member to the file at the end of the file.
     //This is done so that other classes will have access to the new member via the listOfMembers arraylist before it's
     //reloaded from the file.
@@ -29,6 +31,8 @@ public class Chairman {
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;
     }
+
+    //-------------------Methods to group members by different parameters-----------------------------------------------
 
     public Map<MembershipType, ArrayList<Member>> groupByMembershipStatus() {
         return listOfMembers.stream()

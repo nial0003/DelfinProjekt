@@ -2,20 +2,22 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
+//TODO
+// Implement SRP for chairman
 
 public class UserInterface {
-    Controller controller = new Controller();
-
+    private Controller controller;
     private Chairman chairman;
-    private FileHandler fh;
     private Scanner sc;
 
+    //--------------------Constructor-----------------------------------------------------------------------------------
     public UserInterface() {
-        this.chairman = new Chairman();
-        this.fh = new FileHandler();
-        this.sc = new Scanner(System.in);
+        chairman = new Chairman();
+        sc = new Scanner(System.in);
+        controller = new Controller();
     }
 
+    //--------------------Start of program------------------------------------------------------------------------------
     public void startProgram() {
         System.out.println("Velkommen til Svømmeklubben Delfinen!");
         while (true) {
@@ -87,31 +89,6 @@ public class UserInterface {
         }
     }
 
-    private void accountantMenu() {
-        System.out.println("Velkommen Kassér!");
-        while (true) {
-            System.out.println("""
-                    Vælg en funktion:
-                    1. Vis medlemmers betalingsstatus
-                    2. Opdater betalingsstatus for medlem
-                    3. Vis samlede kontigent indtægter
-                    4. Søg efter medlem
-                    5. Tilbage til hovedmenu
-                    """);
-            String input = sc.nextLine();
-            switch (input) {
-                case "1" -> showPaymentStatusSubMenu();
-                case "2" -> System.out.println("(funktionalitet ikke implementeret endnu)");
-                case "3" -> System.out.println(controller.getFormattedTotalMembershipFees());
-                case "4" -> System.out.println("(funktionalitet ikke implementeret endnu)");
-                case "5" -> {
-                    return;
-                }
-                default -> System.out.println("Ugyldigt valg. Prøv igen.");
-            }
-        }
-    }
-
     private void trainerMenu() {
         System.out.println("Velkommen Træner!");
         controller.addAthletesToList();
@@ -137,37 +114,7 @@ public class UserInterface {
         }
     }
 
-    private void showPaymentStatusSubMenu() {
-        while (true) {
-            System.out.println("""
-                    Vis medlemmers betalingsstatus:
-                    1. Vis alle medlemmer
-                    2. Vis medlemmer, der har betalt
-                    3. Vis medlemmer, der mangler at betale
-                    4. Tilbage til kasser-menu
-                    """);
-            String input = sc.nextLine();
-            switch (input) {
-                case "1" -> {
-                    System.out.println("Alle medlemmers betalingsstatus:");
-                    System.out.println(controller.getFormatMembers(controller.getAllMembers()));
-                }
-                case "2" -> {
-                    System.out.println("Medlemmer, der har betalt:");
-                    System.out.println(controller.getFormatMembers(controller.getFilteredMembers(true)));
-                }
-                case "3" -> {
-                    System.out.println("Medlemmer, der mangler at betale:");
-                    System.out.println(controller.getFormatMembers(controller.getFilteredMembers(false)));
-                }
-                case "4" -> {
-                    return;
-                }
-                default -> System.out.println("Ugyldigt valg. Prøv igen.");
-            }
-        }
-    }
-
+    //--------------------Method to add member--------------------------------------------------------------------------
     private void addMember() {
         System.out.println("Udfyld venligst følgende oplysninger for det nye medlem:");
         System.out.print("Fornavn: ");
@@ -193,10 +140,12 @@ public class UserInterface {
         System.out.print("Har betalt (true/false): "); // TODO ja nej yallah
         boolean hasPaid = Boolean.parseBoolean(sc.nextLine());
 
-        chairman.addMember(firstName, lastName, year, month, day, gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
+        chairman.addMember(firstName, lastName, year, month, day, gender,
+                address, phoneNumber, membershipStatus, membershipType, hasPaid);
         System.out.println("Medlem tilføjet!");
     }
 
+    //--------------------Member list sub menu--------------------------------------------------------------------------
     private void displayMemberList() {
         while (true) {
             System.out.println("""
@@ -229,6 +178,7 @@ public class UserInterface {
         }
     }
 
+    //--------------------Method to display grouped members-------------------------------------------------------------
     private void displayGroupedMembers(Map<MembershipType, ArrayList<Member>> groupedMembers) {
         for (Map.Entry<MembershipType, ArrayList<Member>> entry : groupedMembers.entrySet()) {
             System.out.println(entry.getKey());
@@ -262,5 +212,151 @@ public class UserInterface {
         System.out.println("Hvad blev deres placering?");
         int placement = sc.nextInt();
         controller.addCompetitionToAthlete(name, competitionName, discipline, swimmingResult, placement);
+    }
+
+    //--------------------Accountant menu-------------------------------------------------------------------------------
+    private void accountantMenu() {
+        System.out.println("Velkommen Kassér!");
+        while (true) {
+            System.out.println("""
+                    Vælg en funktion:
+                    1. Vis medlemmers betalingsstatus
+                    2. Opdater betalingsstatus for medlem
+                    3. Vis samlede kontigent indtægter
+                    4. Søg efter medlem
+                    5. Tilbage til hovedmenu
+                    """);
+            String input = sc.nextLine();
+            switch (input) {
+                case "1" -> showPaymentStatusSubMenu();
+                case "2" -> updatePaymentStatus();
+                case "3" -> System.out.println(controller.getFormattedTotalMembershipFees());
+                case "4" -> searchForMember();
+                case "5" -> {
+                    return;
+                }
+                default -> System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
+    }
+
+    //--------------------Method to search for members------------------------------------------------------------------
+    private void searchForMember() {
+        System.out.println("Indtast søgeord (navn, medlemsnummer eller telefonnummer): ");
+        String searchKeyword = sc.nextLine();
+
+        String result = controller.getFoundMembers(searchKeyword);
+
+        System.out.println(result);
+    }
+
+    //--------------------Method to update payment status for members---------------------------------------------------
+    private void updatePaymentStatus() {
+        boolean searching = true;
+
+        while (searching) {
+            System.out.println("Indtast søgeord (fornavn, efternavn, medlemsnummer eller telefonnummer) for at opdatere betalingsstatus:");
+            String searchKeyword = sc.nextLine();
+
+            ArrayList<Member> foundMembers = controller.findMembers(searchKeyword);
+
+            if (foundMembers.isEmpty()) {
+                System.out.println("Ingen medlemmer fundet med søgeordet: " + searchKeyword);
+                System.out.println("Vil du prøve igen? (ja/nej): ");
+                String tryAgain = sc.nextLine();
+                if (!tryAgain.equalsIgnoreCase("ja")) {
+                    return;
+                }
+                continue;
+            }
+
+            System.out.println("Fundne medlemmer:");
+            for (int i = 0; i < foundMembers.size(); i++) {
+                Member member = foundMembers.get(i);
+                System.out.println((i + 1) + ". Navn: " + member.getFirstName() + " " + member.getLastName() +
+                        ", ID: " + member.getMemberNumber() +
+                        ", Telefonnummer: " + member.getPhoneNumber());
+            }
+
+            boolean validSelection = false;
+            Member selectedMember = null;
+
+            while (!validSelection) {
+                System.out.println("Vælg medlem ved at indtaste nummeret ud for navnet:");
+                try {
+                    int memberIndex = Integer.parseInt(sc.nextLine()) - 1;
+                    if (memberIndex >= 0 && memberIndex < foundMembers.size()) {
+                        selectedMember = foundMembers.get(memberIndex);
+                        validSelection = true;
+                    } else {
+                        System.out.println("Ugyldigt valg. Prøv igen.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Ugyldigt valg. Indtast et nummer.");
+                }
+            }
+
+            System.out.println("Valgt medlem:");
+            System.out.println("Navn: " + selectedMember.getFirstName() + " " + selectedMember.getLastName());
+            System.out.println("Nuværende betalingsstatus: " + (selectedMember.getHasPaid() ? "Betalt" : "Ikke betalt"));
+
+            boolean validStatus = false;
+            boolean hasPaid = false;
+
+            while (!validStatus) {
+                System.out.println("Indtast ny betalingsstatus (betalt/ikke betalt): ");
+                String statusInput = sc.nextLine();
+                if (statusInput.equalsIgnoreCase("betalt")) {
+                    hasPaid = true;
+                    validStatus = true;
+                } else if (statusInput.equalsIgnoreCase("ikke betalt")) {
+                    hasPaid = false;
+                    validStatus = true;
+                } else {
+                    System.out.println("Ugyldig indtastning. Skriv 'betalt' eller 'ikke betalt'.");
+                }
+            }
+
+            boolean success = controller.updateMemberPaymentStatus(selectedMember.getMemberNumber(), hasPaid);
+
+            if (success) {
+                System.out.println("Betalingsstatus opdateret for medlem: " + selectedMember.getFirstName() + " " + selectedMember.getLastName());
+                searching = false;
+            } else {
+                System.out.println("Kunne ikke opdatere betalingsstatus.");
+            }
+        }
+    }
+
+    //--------------------Payment status sub menu-----------------------------------------------------------------------
+    private void showPaymentStatusSubMenu() {
+        while (true) {
+            System.out.println("""
+                    Vis medlemmers betalingsstatus:
+                    1. Vis alle medlemmer
+                    2. Vis medlemmer, der har betalt
+                    3. Vis medlemmer, der mangler at betale
+                    4. Tilbage til kasser-menu
+                    """);
+            String input = sc.nextLine();
+            switch (input) {
+                case "1" -> {
+                    System.out.println("Alle medlemmers betalingsstatus:");
+                    System.out.println(controller.getFormatMembers(controller.getAllMembers()));
+                }
+                case "2" -> {
+                    System.out.println("Medlemmer, der har betalt:");
+                    System.out.println(controller.getFormatMembers(controller.getFilteredMembers(true)));
+                }
+                case "3" -> {
+                    System.out.println("Medlemmer, der mangler at betale:");
+                    System.out.println(controller.getFormatMembers(controller.getFilteredMembers(false)));
+                }
+                case "4" -> {
+                    return;
+                }
+                default -> System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
     }
 }

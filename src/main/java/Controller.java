@@ -6,10 +6,6 @@ public class Controller {
     Trainer trainer = new Trainer();
     FileHandler fh = new FileHandler();
 
-    private ArrayList<Member> getListOfMembers() {
-        return chairman.getListOfMembers();
-    }
-
     public ArrayList<Member> getAllMembers() {
         return accountant.getListOfMembers();
     }
@@ -32,6 +28,30 @@ public class Controller {
 
     public void saveAthleteMembersToAthleteTrainingFile(){
         fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
+    }
+    public String getFoundMembers(String searchKeyword) {
+        ArrayList<Member> foundMembers = accountant.findMembers(searchKeyword);
+
+        if (foundMembers.isEmpty()) {
+            return "Ingen medlemmer fundet.";
+        }
+
+        String result = "Fundne medlemmer:\n";
+        for (Member member : foundMembers) {
+            result += "Navn: " + member.getName() +
+                    ", ID: " + member.getMemberNumber() +
+                    ", Telefonnummer: " + member.getPhoneNumber() + "\n";
+        }
+
+        return result;
+    }
+
+    public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
+        return accountant.updateMemberPaymentStatus(memberNumber, hasPaid);
+    }
+
+    public ArrayList<Member> findMembers(String searchKeyword) {
+        return accountant.findMembers(searchKeyword);
     }
 
     public void setAthleteTrainingTime(String name, String discipline, double newTime){
