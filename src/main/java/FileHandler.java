@@ -84,6 +84,9 @@ public class FileHandler {
         }
     }
 
+    // Goes through the file AthletecompetitionResults and checks if each line matches the pattern given
+    // if it does it saves the specific information as a competition and adds it to the correct Athlete based
+    // on the name of the Athlete in the file.
     public void addCompetitionToListFromFile(Trainer trainer) {
         try (FileReader fr = new FileReader(athleteCompetitionResults)) {
             BufferedReader br = new BufferedReader(fr);

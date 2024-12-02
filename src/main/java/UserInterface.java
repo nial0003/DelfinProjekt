@@ -3,7 +3,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 
-
 public class UserInterface {
     Controller controller = new Controller();
 
@@ -45,7 +44,7 @@ public class UserInterface {
                 }
                 case "3" -> {
                     if (authenticateRole("Træner", "3333")) {
-                        System.out.println("Velkommen Træner! (Funktionalitet ikke implementeret endnu)");
+                        trainerMenu();
                     } else {
                         System.out.println("Ugyldig adgangskode. Prøv igen.");
                     }
@@ -113,6 +112,10 @@ public class UserInterface {
         }
     }
 
+    private void trainerMenu() {
+        System.out.println("Velkommen Træner!");
+    }
+
     private void showPaymentStatusSubMenu() {
         while (true) {
             System.out.println("""
@@ -176,12 +179,12 @@ public class UserInterface {
     private void displayMemberList() {
         while (true) {
             System.out.println("""
-                Vælg hvorledes du ønsker at sortere medlemmerne ved at indtaste tilhørende nummer:
-                1. Medlemsstatus (AKTIV/PASSIV)
-                2. Medlemstype (HOBBY/ATLET)
-                3. Aldersgruppe (JUNIOR/SENIOR/PENSIONIST)
-                4. Tilbage til formandsmenu
-                """);
+                    Vælg hvorledes du ønsker at sortere medlemmerne ved at indtaste tilhørende nummer:
+                    1. Medlemsstatus (AKTIV/PASSIV)
+                    2. Medlemstype (HOBBY/ATLET)
+                    3. Aldersgruppe (JUNIOR/SENIOR/PENSIONIST)
+                    4. Tilbage til formandsmenu
+                    """);
             String input = sc.nextLine();
 
             switch (input) {
