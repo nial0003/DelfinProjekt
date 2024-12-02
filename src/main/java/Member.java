@@ -18,13 +18,14 @@ public class Member {
     private Enum<MembershipType> memberShipStatus;
     private Enum<MembershipType> membershipType;
     private Enum<MembershipType> ageGroup;
+    private boolean hasBeenAddedToAthletes;
 
     private boolean hasPaid;
     private LocalDate ld;
 
 
     public Member(String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber,
-                  String membershipStatus, String membershipType, boolean hasPaid) {
+                  String membershipStatus, String membershipType, boolean hasPaid, boolean hasBeenAddedToAthletes) {
         this.name = lastName + "," + firstName;
         this.age = calculateAge(birthday);
         this.gender = gender;
@@ -36,6 +37,7 @@ public class Member {
         this.hasPaid = hasPaid;
         this.memberNumber = ++memberCounter;
         this.ld = birthday;
+        this.hasBeenAddedToAthletes = hasBeenAddedToAthletes;
     }
 
     //Calculates the age based on the birthday provided and subtracts it from the current date.
@@ -50,7 +52,7 @@ public class Member {
     //Converts the member details into a CSV-style string
     public String toCSVStyle() {
         return name + "," + ld.getYear() + "," + ld.getMonthValue() + "," + ld.getDayOfMonth() + "," + gender + "," + address + "," + phoneNumber +
-                "," + memberShipStatus + "," + membershipType + "," + ageGroup + "," + hasPaid + "," + memberNumber + "\n";
+                "," + memberShipStatus + "," + membershipType + "," + ageGroup + "," + hasPaid + "," + memberNumber + "," + hasBeenAddedToAthletes +"\n" ;
     }
 
 
@@ -113,5 +115,13 @@ public class Member {
 
     public boolean getHasPaid() {
         return hasPaid;
+    }
+
+    public boolean getHasBeenAddedToAthletes(){
+        return this.hasBeenAddedToAthletes;
+    }
+
+    public void setHasBeenAddedToAthletes(boolean hasBeenAddedToAthletes) {
+        this.hasBeenAddedToAthletes = hasBeenAddedToAthletes;
     }
 }

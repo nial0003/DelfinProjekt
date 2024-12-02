@@ -34,9 +34,10 @@ public class FileHandler {
                 String membershipStatus = data[8];
                 String membershipType = data[9];
                 boolean hasPaid = Boolean.parseBoolean(data[10]);
+                boolean hasBeenAddedToAthletes = Boolean.parseBoolean(data[12]);
 
                 listOfMembers.add(new Member(firstName, lastName, LocalDate.of(yearBorn, monthBorn, dayBorn), gender, address,
-                        number, membershipStatus, membershipType, hasPaid));
+                        number, membershipStatus, membershipType, hasPaid, hasBeenAddedToAthletes));
                 line = br.readLine();
             }
         } catch (IOException e) {

@@ -20,7 +20,7 @@ public class Chairman {
                           String address, int number, String membershipStatus, String membershipType, boolean hasPaid){
 
         Member member = new Member(firstName, lastName, LocalDate.of(yearBorn, monthBorn, dayBorn), gender, address,
-                number,membershipStatus, membershipType,  hasPaid);
+                number,membershipStatus, membershipType,  hasPaid, false);
         newMember.add(member);
         listOfMembers.add(member);
         fh.saveToFile(newMember, true);
