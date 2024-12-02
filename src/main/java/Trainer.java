@@ -14,7 +14,7 @@ public class Trainer {
     //Checks if a member is an Athlete and if it is, it'll add them to the special athletes ArrayList
     public void addAthletesToList(ArrayList<Member> members) {
         for (Member member : members) {
-            if (member.getMembershipType() == MembershipType.ATLET && !member.getHasBeenAddedToAthletes()) {
+            if (!member.getHasBeenAddedToAthletes() && member.getMembershipType() == MembershipType.ATLET) {
                 String[] name = member.getName().split(",");
                 athletes.add(new Athlete(name[1], name[0], member.getLd(), member.getGender(),
                         member.getAddress(), member.getPhoneNumber(), member.getMemberShipStatus().toString(), member.getMembershipType().toString(),
@@ -121,9 +121,5 @@ public class Trainer {
                 athlete.getCompetitionTimes().add(new Competition(competitionName,discipline,time,placement));
             }
         }
-    }
-
-    public void saveCompetitionResultsToFile(FileHandler fh){
-        fh.saveCompetitionResultsToFile(athletes);
     }
 }

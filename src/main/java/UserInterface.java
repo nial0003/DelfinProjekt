@@ -115,9 +115,25 @@ public class UserInterface {
     private void trainerMenu() {
         System.out.println("Velkommen Træner!");
         controller.addAthletesToList();
-        while (true){
+        controller.saveAthleteMembersToAthleteTrainingFile();
+        controller.rewriteFileWithNewData();
+        while (true) {
             System.out.println("""
-                    1. """);
+                    Vælg en funktion:
+                    1. Opdater medlems trænings resultat
+                    2. Tilføj konkurence resultat til atlet
+                    3. Se bedste svømmer i disciplin
+                    9. Tilbage til hovedmenuen""");
+
+            String input = sc.nextLine();
+            switch (input) {
+                case "1" -> updateTrainingResult();
+                case "2" -> addCompetitionToAthlete();
+                case "3" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "9" -> {
+                    return;
+                }
+            }
         }
     }
 
@@ -221,5 +237,30 @@ public class UserInterface {
             }
             System.out.println();
         }
+    }
+
+    private void updateTrainingResult() {
+        System.out.println("Navn på atlet:");
+        String name = sc.nextLine();
+        System.out.println("Navn på disciplin {Crawl, Butterfly, Rygcrawl, Brystsvømning}:");
+        String discipline = sc.nextLine();
+        System.out.println("Ny trænings tid:");
+        double newTime = sc.nextDouble();
+        controller.setAthleteTrainingTime(name, discipline, newTime);
+        System.out.println(discipline + " for " + name + " er blevet ændret til: " + newTime);
+    }
+
+    private void addCompetitionToAthlete() {
+        System.out.println("Navn på atlet:");
+        String name = sc.nextLine();
+        System.out.println("Navn på stævne:");
+        String competitionName = sc.nextLine();
+        System.out.println("Hvilken disciplin deltog han i? {Crawl, Rygcrawl, Butterfly, Brystsvømning");
+        String discipline = sc.nextLine();
+        System.out.println("Hvad var deres svømmetid?");
+        double swimmingResult = sc.nextDouble();
+        System.out.println("Hvad blev deres placering?");
+        int placement = sc.nextInt();
+        controller.addCompetitionToAthlete(name, competitionName, discipline, swimmingResult, placement);
     }
 }

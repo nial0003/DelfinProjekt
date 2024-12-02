@@ -30,11 +30,22 @@ public class Controller {
         trainer.addAthletesToList(chairman.getListOfMembers());
     }
 
-    public void saveAthleteMembersToAthleteFile(){
-        fh.saveAthleteMembersToAthleteFile(trainer.getAthletes());
+    public void saveAthleteMembersToAthleteTrainingFile(){
+        fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
     }
 
-    public void saveCompetitionResultsToFile(){
+    public void setAthleteTrainingTime(String name, String discipline, double newTime){
+        ArrayList<String> updatedTrainingTimes = trainer.setAthleteTrainingTime(name, fh.getAthletesFromAthleteTrainingFile(), discipline, newTime);
+        fh.saveUpdatedAthletesToFile(updatedTrainingTimes);
+    }
+
+    public void addCompetitionToAthlete(String name, String competitionName, String discipline, double time, int placement){
+        fh.addCompetitionToListFromFile(trainer);
+        trainer.addCompetitionToAthlete(name, competitionName, discipline, time, placement);
         fh.saveCompetitionResultsToFile(trainer.getAthletes());
+    }
+
+    public void rewriteFileWithNewData(){
+        fh.saveToFile(chairman.getListOfMembers(), false);
     }
 }

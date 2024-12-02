@@ -28,6 +28,7 @@ public class Athlete extends Member {
         return competitionTimes;
     }
 
+    //ToDo check if it can be moved to the fileHandler class.
     public String toCSVStyle(String name, boolean isCompetition) {
         StringBuilder finalString = new StringBuilder();
             String team = "Juniorhold";

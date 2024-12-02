@@ -1,8 +1,6 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,7 +32,7 @@ public class FileHandler {
                 String membershipStatus = data[8];
                 String membershipType = data[9];
                 boolean hasPaid = Boolean.parseBoolean(data[10]);
-                boolean hasBeenAddedToAthletes = Boolean.parseBoolean(data[12]);
+                boolean hasBeenAddedToAthletes = Boolean.parseBoolean(data[13]);
 
                 listOfMembers.add(new Member(firstName, lastName, LocalDate.of(yearBorn, monthBorn, dayBorn), gender, address,
                         number, membershipStatus, membershipType, hasPaid, hasBeenAddedToAthletes));
@@ -60,7 +58,7 @@ public class FileHandler {
         }
     }
 
-    public void saveAthleteMembersToAthleteFile(ArrayList<Athlete> listOfAthletes) {
+    public void saveAthleteMembersToAthleteTrainingFile(ArrayList<Athlete> listOfAthletes) {
         try (FileWriter fw = new FileWriter(athletesTrainingFile)) {
             for (Athlete athlete : listOfAthletes) {
                 String name = athlete.getName();
@@ -138,9 +136,9 @@ public class FileHandler {
         }
     }
 
-    //Returns an arrayList of Strings from the athleteFile. This is done so we can search through it and update the times
+    //Returns an arrayList of Strings from the athleteTrainingFile. This is done so we can search through it and update the times
     //of a given member.
-    public ArrayList<String> getAthletesFromAthleteFile() {
+    public ArrayList<String> getAthletesFromAthleteTrainingFile() {
         try (FileReader fr = new FileReader(athletesTrainingFile)) {
             BufferedReader br = new BufferedReader(fr);
             ArrayList<String> result = new ArrayList<>();
