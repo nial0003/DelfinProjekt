@@ -9,8 +9,8 @@ public class Athlete extends Member {
     private ArrayList<Competition> competitionTimes;
 
     public Athlete(String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber,
-                   String membershipStatus, String membershipType, boolean hasPaid) {
-        super(firstName, lastName, birthday, gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
+                   String membershipStatus, String membershipType, boolean hasPaid, boolean hasBeenAddedToAthletes) {
+        super(firstName, lastName, birthday, gender, address, phoneNumber, membershipStatus, membershipType, hasPaid, hasBeenAddedToAthletes);
 
         this.disciplineTimes = new EnumMap<>(SwimmingDisciplines.class);
 

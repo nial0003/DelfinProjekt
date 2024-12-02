@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class Controller {
     Chairman chairman = new Chairman();
     Accountant accountant = new Accountant();
+    Trainer trainer = new Trainer();
+    FileHandler fh = new FileHandler();
 
     private ArrayList<Member> getListOfMembers() {
         return chairman.getListOfMembers();
@@ -24,6 +26,15 @@ public class Controller {
         return accountant.formatTotalMembershipFees();
     }
 
+    public void addAthletesToList(){
+        trainer.addAthletesToList(chairman.getListOfMembers());
+    }
 
+    public void saveAthleteMembersToAthleteFile(){
+        fh.saveAthleteMembersToAthleteFile(trainer.getAthletes());
+    }
 
+    public void saveCompetitionResultsToFile(){
+        fh.saveCompetitionResultsToFile(trainer.getAthletes());
+    }
 }

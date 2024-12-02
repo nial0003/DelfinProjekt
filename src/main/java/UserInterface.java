@@ -114,6 +114,11 @@ public class UserInterface {
 
     private void trainerMenu() {
         System.out.println("Velkommen Træner!");
+        controller.addAthletesToList();
+        while (true){
+            System.out.println("""
+                    1. """);
+        }
     }
 
     private void showPaymentStatusSubMenu() {

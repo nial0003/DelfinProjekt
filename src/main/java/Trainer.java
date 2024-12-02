@@ -5,11 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Trainer {
-    String name;
     ArrayList<Athlete> athletes;
 
-    public Trainer(String name) {
-        this.name = name;
+    public Trainer() {
         athletes = new ArrayList<>();
     }
 
@@ -20,7 +18,7 @@ public class Trainer {
                 String[] name = member.getName().split(",");
                 athletes.add(new Athlete(name[1], name[0], member.getLd(), member.getGender(),
                         member.getAddress(), member.getPhoneNumber(), member.getMemberShipStatus().toString(), member.getMembershipType().toString(),
-                        member.getHasPaid()));
+                        member.getHasPaid(), member.getHasBeenAddedToAthletes()));
                 member.setHasBeenAddedToAthletes(true);
             }
         }
@@ -111,9 +109,9 @@ public class Trainer {
         return times.getFirst();
     }
 
-//    public void saveAthleteMembersToAthleteFile() {
-//        fh.saveAthleteMembersToAthleteFile(athletes);
-//    }
+    public ArrayList<Athlete> getAthletes(){
+        return athletes;
+    }
 
     //adds a competition to a given Athlete at the end
      public void addCompetitionToAthlete(String name, String competitionName, String discipline,
