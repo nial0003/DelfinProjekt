@@ -11,6 +11,7 @@ public class FileHandler {
         ArrayList<Member> listOfMembers = new ArrayList<>();
 
         try (FileReader fr = new FileReader(file)) {
+
             BufferedReader br = new BufferedReader(fr);
 
             String line = br.readLine();
