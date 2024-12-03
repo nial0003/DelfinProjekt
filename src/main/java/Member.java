@@ -1,10 +1,6 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-//TODO fixed!!!!!!!!
-//Fix it so that the memberNumber increments correctly.
-
-
 public class Member {
     private String firstName;
     private String lastName;
@@ -15,21 +11,20 @@ public class Member {
     private int phoneNumber;
     private int memberNumber;
     static int memberCounter = 0;
-    private Enum<MembershipType> memberShipStatus;
-    private Enum<MembershipType> membershipType;
-    private Enum<MembershipType> ageGroup;
+    private Enum memberShipStatus;
+    private Enum membershipType;
+    private Enum ageGroup;
     private boolean hasBeenAddedToAthletes;
     private boolean hasPaid;
     private LocalDate ld;
-
 
     //-------------------Constructor for new members--------------------------------------------------------------------
     public Member(String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber,
                   String membershipStatus, String membershipType, boolean hasPaid, boolean hasBeenAddedToAthletes) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.name = lastName + "," + firstName;
-        this.age = calculateAge(birthday);
+        name = lastName + "," + firstName;
+        age = calculateAge(birthday);
         this.gender = gender;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -47,8 +42,8 @@ public class Member {
                   String membershipStatus, String membershipType, boolean hasPaid, int memberNumber, boolean hasBeenAddedToAthletes) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.name = lastName + "," + firstName;
-        this.age = calculateAge(birthday);
+        name = lastName + "," + firstName;
+        age = calculateAge(birthday);
         this.gender = gender;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -75,7 +70,7 @@ public class Member {
         return period.getYears();
     }
 
-    //--------------------Method to determine the annual membership fee-----------------------------------------------------
+    //--------------------Method to determine the annual membership fee-------------------------------------------------
     public int determineMembershipFee() {
         int fee = 0;
         int age = calculateAge(ld);
