@@ -1,10 +1,15 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.util.Scanner;
 
 public class FileHandler {
+
     private File file = new File("Members");
     private File atheleteFile = new File("Athletes");
+
+
 
     //Loads the Members from the file and returns them in an ArrayList which can then be updated and used.
     public ArrayList<Member> loadFromFile() {
@@ -80,6 +85,13 @@ public class FileHandler {
         }
         return output;
     }
+
+
+
+
+
+
+
 }
 
 

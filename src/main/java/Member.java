@@ -23,6 +23,9 @@ public class Member {
     private LocalDate ld;
 
 
+
+
+
     public Member(String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber,
                   String membershipStatus, String membershipType, boolean hasPaid) {
         this.name = lastName + ", " + firstName;
@@ -83,6 +86,14 @@ public class Member {
         return name;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     public String getGender() {
         return gender;
     }
@@ -114,4 +125,41 @@ public class Member {
     public boolean getHasPaid() {
         return hasPaid;
     }
+
+
+    //Setters
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAgeGroup (Enum<MembershipType> ageGroup){
+        this.ageGroup = ageGroup;
+    }
+
+    public void setMembershipStatus(Enum<MembershipType> memberShipStatus) {
+        this.memberShipStatus = memberShipStatus;
+    }
+
+    public void setMembershipType(Enum<MembershipType> membershipType) {
+        this.membershipType = membershipType;
+    }
+
+
 }
