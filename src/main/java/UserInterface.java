@@ -60,12 +60,14 @@ public class UserInterface {
         }
     }
 
+    //--------------------Method to authenticate user role--------------------------------------------------------------
     private boolean authenticateRole(String role, String expectedCode) {
         System.out.println("Indtast adgangskode for " + role + ": ");
         String inputCode = sc.nextLine();
         return inputCode.equals(expectedCode);
     }
 
+    //--------------------Chairman menu---------------------------------------------------------------------------------
     private void chairmanMenu() {
         System.out.println("Velkommen Formand!");
         while (true) {
@@ -85,31 +87,6 @@ public class UserInterface {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
-            }
-        }
-    }
-
-    private void trainerMenu() {
-        System.out.println("Velkommen Træner!");
-        controller.addAthletesToList();
-        controller.saveAthleteMembersToAthleteTrainingFile();
-        controller.rewriteFileWithNewData();
-        while (true) {
-            System.out.println("""
-                    Vælg en funktion:
-                    1. Opdater medlems trænings resultat
-                    2. Tilføj konkurence resultat til atlet
-                    3. Se bedste svømmer i disciplin
-                    9. Tilbage til hovedmenuen""");
-
-            String input = sc.nextLine();
-            switch (input) {
-                case "1" -> updateTrainingResult();
-                case "2" -> addCompetitionToAthlete();
-                case "3" -> System.out.println("(funktionalitet ikke implementeret endnu)");
-                case "9" -> {
-                    return;
-                }
             }
         }
     }
@@ -189,6 +166,33 @@ public class UserInterface {
         }
     }
 
+    //--------------------Trainer menu----------------------------------------------------------------------------------
+    private void trainerMenu() {
+        System.out.println("Velkommen Træner!");
+        controller.addAthletesToList();
+        controller.saveAthleteMembersToAthleteTrainingFile();
+        controller.rewriteFileWithNewData();
+        while (true) {
+            System.out.println("""
+                    Vælg en funktion:
+                    1. Opdater medlems trænings resultat
+                    2. Tilføj konkurence resultat til atlet
+                    3. Se bedste svømmer i disciplin
+                    9. Tilbage til hovedmenuen""");
+
+            String input = sc.nextLine();
+            switch (input) {
+                case "1" -> updateTrainingResult();
+                case "2" -> addCompetitionToAthlete();
+                case "3" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "9" -> {
+                    return;
+                }
+            }
+        }
+    }
+
+    //--------------------Method to update training results-------------------------------------------------------------
     private void updateTrainingResult() {
         System.out.println("Navn på atlet:");
         String name = sc.nextLine();
@@ -200,6 +204,7 @@ public class UserInterface {
         System.out.println(discipline + " for " + name + " er blevet ændret til: " + newTime);
     }
 
+    //--------------------Method to add a competition type to an athlete------------------------------------------------
     private void addCompetitionToAthlete() {
         System.out.println("Navn på atlet:");
         String name = sc.nextLine();
