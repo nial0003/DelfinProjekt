@@ -73,7 +73,6 @@ public class Member {
     //--------------------Method to determine the annual membership fee-------------------------------------------------
     public int determineMembershipFee() {
         int fee = 0;
-        int age = calculateAge(ld);
 
         if (getMemberShipStatus().equals(MembershipType.AKTIV)) {
             if (getAgeGroup().equals(MembershipType.JUNIOR)) {
