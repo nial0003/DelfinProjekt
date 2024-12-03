@@ -196,6 +196,7 @@ public class UserInterface {
         String discipline = sc.nextLine();
         System.out.println("Ny trænings tid:");
         double newTime = sc.nextDouble();
+        sc.nextLine();
         controller.setAthleteTrainingTime(name, discipline, newTime);
         System.out.println(discipline + " for " + name + " er blevet ændret til: " + newTime);
     }

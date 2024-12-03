@@ -67,7 +67,7 @@ public class FileHandler {
 
     //-------------------Method to save athletes to athlete file--------------------------------------------------------
     public void saveAthleteMembersToAthleteTrainingFile(ArrayList<Athlete> listOfAthletes) {
-        try (FileWriter fw = new FileWriter(athletesTrainingFile)) {
+        try (FileWriter fw = new FileWriter(athletesTrainingFile, true)) {
             for (Athlete athlete : listOfAthletes) {
                 String name = athlete.getName();
                 fw.write(athlete.toCSVStyle(name, false));
