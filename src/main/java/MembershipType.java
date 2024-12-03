@@ -40,4 +40,41 @@ public enum MembershipType {
             return null;
         }
     }
+
+    //Method that returns the agegroup - used in editMember
+    public static Enum<MembershipType> membershipAgeGroup(String ageGroup){
+        return switch (ageGroup) {
+            case "JUNIOR" -> {
+                yield JUNIOR;
+            }
+            case "SENIOR" -> {
+                yield SENIOR;
+            }
+            case "PENSIONIST" -> {
+                yield PENSIONIST;
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + ageGroup);
+        };
+    }
+
+    //Method that returns active or passive for a member - Used in editMember
+    public static Enum<MembershipType> activePassiveMember(String membershipStatus) {
+        if (membershipStatus.toUpperCase() == "AKTIV") {
+            return AKTIV;
+        } else {
+            return PASSIV;
+        }
+
+    }
+
+    //Method that returns if the member is an athlete or hobby - Used in editMember
+    public static Enum<MembershipType> memberHobbyAthlete(String membershipType) {
+        if (membershipType.toUpperCase() == "HOBBY") {
+            return HOBBY;
+        } else {
+            return ATLET;
+        }
+    }
+
+
 }

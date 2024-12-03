@@ -82,6 +82,7 @@ public class Member {
     }
 
     //Getters
+
     public String getName() {
         return name;
     }

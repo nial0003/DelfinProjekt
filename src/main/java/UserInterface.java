@@ -14,6 +14,7 @@ public class UserInterface {
         this.fh = new FileHandler();
         this.sc = new Scanner(System.in);
         this.accountant = new Accountant();
+        this.cont = new Controller();
     }
 
     public void startProgram() {
