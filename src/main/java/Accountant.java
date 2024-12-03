@@ -1,78 +1,102 @@
 import java.util.ArrayList;
 
 public class Accountant {
-
-    private static final int JUNIOR_FEE = 1000;
-    private static final int SENIOR_FEE = 1600;
-    private static final int ELDER_FEE = 1200;
-    private static final int PASSIVE_FEE = 500;
-    private static final int PASSIVE_ELDER_FEE = 375;
-
-    private FileHandler fh = new FileHandler();
+    private FileHandler fh;
     private ArrayList<Member> listOfMembers;
 
+    //-------------------Constructor------------------------------------------------------------------------------------
     public Accountant() {
-        this.listOfMembers = fh.loadFromFile();
+        fh = new FileHandler();
+        listOfMembers = fh.loadFromFile();
     }
 
-    // Method to determine annual fee based on age group and membership type
-    private int determineMembershipFee(Member member) {
-        String membershipType = member.getMembershipType().toString();
-        int age = member.calculateAge(member.getLd());
-
-        if (membershipType.equals("HOBBY") || membershipType.equals("ATLET")) {
-            if (age < 18) {
-                return JUNIOR_FEE;
-            } else if (age < 60) {
-                return SENIOR_FEE;
-            } else {
-                return ELDER_FEE;
-            }
-        } else if (membershipType.equals("PASSIV")) {
-            if (age < 60) {
-                return PASSIVE_FEE;
-            } else {
-                return PASSIVE_ELDER_FEE;
-            }
+    //--------------------Method to calculate the annual membership fees for all members combined-----------------------
+    public int calculateMembershipFees() {
+        if (listOfMembers == null || listOfMembers.isEmpty()) {
+            return 0;
         }
-        return 0;
-    }
-
-
-    // Method to show members annual fee, as well as providing the accountant with a total fee amount for all members combined
-    public String calculateMembershipFees() {
-        String feeDetails = "";
         int totalFees = 0;
 
         for (Member member : listOfMembers) {
-            int fee = determineMembershipFee(member);
-            feeDetails += formatFeeDetails(member, fee) + "\n";
+            int fee = member.determineMembershipFee();
             totalFees += fee;
         }
-
-        feeDetails += "\nSamlede konigentindtægter: " + totalFees + " kr";
-
-        return feeDetails;
+        return totalFees;
     }
 
-    // Format membership fee details for display
-    private String formatFeeDetails(Member member, int fee) {
-        return "Navn: " + member.getName() +
-                ", Alder: " + member.calculateAge(member.getLd()) +
-                ", Medlemstype: " + member.getMembershipType() +
-                ", Kontigent: " + fee + " kr";
+    //-------------------Method to format total membership fees as a string---------------------------------------------
+    public String formatTotalMembershipFees() {
+        int totalFees = calculateMembershipFees();
+        return "Samlede kontingentindbetalinger: " + totalFees + " kr.\n";
     }
 
-    // Method to show if members have paid for their membership yet
-    public String listMembershipPaymentStatus() {
-        String paymentDetails = "";
+    //-------------------Method to filter members by their payment status-----------------------------------------------
+    public ArrayList<Member> filterMembersByPaymentStatus(boolean hasPaid) {
+        ArrayList<Member> filteredMembers = new ArrayList<>();
+        for (Member member : listOfMembers) {
+            if (member.getHasPaid() == hasPaid) {
+                filteredMembers.add(member);
+            }
+        }
+        return filteredMembers;
+    }
+
+    //-------------------Method to format members payment status to a string--------------------------------------------
+    public String formatMemberPaymentStatus(ArrayList<Member> members) {
+        if (members == null || members.isEmpty()) {
+            return "Ingen medlemmer fundet.";
+        }
+
+        String header = "Medlemsliste:\n" +
+                "-------------------------------------------------\n";
+        String footer = "-------------------------------------------------\n";
+
+        String formattedMembers = header;
+
+        for (Member member : members) {
+            formattedMembers += "Navn: " + member.getName() + "\n" +
+                    "Medlemsnummer: " + member.getMemberNumber() + "\n" +
+                    "Betalt: " + (member.getHasPaid() ? "Ja" : "Nej") + "\n" +
+                    footer;
+        }
+        return formattedMembers;
+    }
+
+
+    //TODO
+    //-------------------Method to find members-------------------------------------------------------------------------
+
+    public ArrayList<Member> findMembers(String searchKeyword) {
+        ArrayList<Member> matchingMembers = new ArrayList<>();
 
         for (Member member : listOfMembers) {
-            paymentDetails += "Navn: " + member.getName() +
-                    ", Medlemsnummer: " + member.getMemberNumber() +
-                    ", Betalt: " + member.getHasPaid()+"\n";
+            if (String.valueOf(member.getMemberNumber()).equals(searchKeyword) ||
+                    String.valueOf(member.getPhoneNumber()).equals(searchKeyword) ||
+                    member.getFirstName().toLowerCase().startsWith(searchKeyword.toLowerCase()) ||
+                    member.getLastName().toLowerCase().startsWith(searchKeyword.toLowerCase())) {
+                matchingMembers.add(member);
+            }
         }
-        return paymentDetails;
+
+        return matchingMembers;
+    }
+
+    //-------------------Method to update members payment status--------------------------------------------------------
+
+    public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
+        for (Member member : listOfMembers) {
+            if (member.getMemberNumber() == memberNumber) {
+                member.setHasPaid(hasPaid);
+                fh.saveToFile(listOfMembers, false);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //-------------------Getter-----------------------------------------------------------------------------------------
+    public ArrayList<Member> getListOfMembers() {
+        return listOfMembers;
     }
 
 }

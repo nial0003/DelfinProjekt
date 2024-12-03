@@ -1,4 +1,4 @@
-Albrektsen,Nikolaj,1996,10,01,Mand,Borupvej 15 4300 Holbæk,22712123,AKTIV,HOBBY,true,1
-Tvorup,Nana,1999,02,03,Kvinde,Siciliensgade 5 2300 København S,22596757,PASSIV,ATLET,true,2
-Rosenbek,Morkel,2001,07,03,Quinde,Thujavangen 21 4622 Havdrup,61731040,PASSIV,HOBBY,false,3
-Sørensen,Frida,1900,10,28,kvinde,Gulberbsgade 28 2650 København,55668855,AKTIV,ATLET,ELDER,false,4
+Albrektsen,Nikolaj,1996,10,1,Mand,Borupvej 15 4300 Holbæk,22712123,AKTIV,HOBBY,SENIOR,true,5
+Tvorup,Nana,1999,2,3,Kvinde,Siciliensgade 5 2300 København S,22596757,PASSIV,ATLET,SENIOR,true,6
+Rosenbek,Morkel,2001,7,3,Quinde,Thujavangen 21 4622 Havdrup,61731040,PASSIV,HOBBY,SENIOR,false,7
+Frandsen,Frida,1900,10,28,kvinde,Gulberbsgade 28 2650 København,55668855,AKTIV,ATLET,PENSIONIST,false,8

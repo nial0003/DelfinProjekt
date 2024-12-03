@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.Scanner;
 
 public class Chairman {
@@ -14,6 +16,8 @@ public class Chairman {
         newMember = new ArrayList<>();
     }
 
+    //-------------------Method to add a new member---------------------------------------------------------------------
+
     //adds a new member to the newMember and listOfMembers Arraylist and then uploads the new Member to the file at the end of the file.
     //This is done so that other classes will have access to the new member via the listOfMembers arraylist before it's
     //reloaded from the file.
@@ -21,14 +25,34 @@ public class Chairman {
                           String address, int number, String membershipStatus, String membershipType, boolean hasPaid){
 
         Member member = new Member(firstName, lastName, LocalDate.of(yearBorn, monthBorn, dayBorn), gender, address,
-                number,membershipStatus, membershipType,  hasPaid);
+                number,membershipStatus, membershipType,  hasPaid, false);
         newMember.add(member);
         listOfMembers.add(member);
-        fh.saveToFile(newMember);
+        fh.saveToFile(newMember, true);
     }
 
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;
+    }
+
+    //-------------------Methods to group members by different parameters-----------------------------------------------
+
+    public Map<MembershipType, ArrayList<Member>> groupByMembershipStatus() {
+        return listOfMembers.stream()
+                .collect(Collectors.groupingBy(member -> (MembershipType) member.getMemberShipStatus(),
+                        Collectors.toCollection(ArrayList::new)));
+    }
+
+    public Map<MembershipType, ArrayList<Member>> groupByMembershipType() {
+        return listOfMembers.stream()
+                .collect(Collectors.groupingBy(member -> (MembershipType) member.getMembershipType(),
+                        Collectors.toCollection(ArrayList::new)));
+    }
+
+    public Map<MembershipType, ArrayList<Member>> groupByAgeGroup() {
+        return listOfMembers.stream()
+                .collect(Collectors.groupingBy(member -> (MembershipType) member.getAgeGroup(),
+                        Collectors.toCollection(ArrayList::new)));
     }
 
     //Takes a member from an indexpoint in the ArrayList
