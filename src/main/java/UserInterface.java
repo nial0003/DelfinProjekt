@@ -26,7 +26,7 @@ public class UserInterface {
                     1. Formand
                     2. Kassér
                     3. Træner
-                    4. Afslut
+                    9. Afslut
                     """);
             String input = sc.nextLine();
             switch (input) {
@@ -51,7 +51,7 @@ public class UserInterface {
                         System.out.println("Ugyldig adgangskode. Prøv igen.");
                     }
                 }
-                case "4" -> {
+                case "9" -> {
                     System.out.println("Tak for nu!");
                     return;
                 }
@@ -74,14 +74,14 @@ public class UserInterface {
                     1. Tilføj et nyt medlem
                     2. Opdater medlemsoplysninger
                     3. Medlemsliste
-                    4. Tilbage til hovedmenu
+                    9. Tilbage til hovedmenu
                     """);
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> addMember();
                 case "2" -> System.out.println("Opdater medlemsoplysninger (funktionalitet ikke implementeret endnu)");
                 case "3" -> displayMemberList();
-                case "4" -> {
+                case "9" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
@@ -153,7 +153,7 @@ public class UserInterface {
                     1. Medlemsstatus (AKTIV/PASSIV)
                     2. Medlemstype (HOBBY/ATLET)
                     3. Aldersgruppe (JUNIOR/SENIOR/PENSIONIST)
-                    4. Tilbage til formandsmenu
+                    9. Tilbage til formandsmenu
                     """);
             String input = sc.nextLine();
 
@@ -170,7 +170,7 @@ public class UserInterface {
                     Map<MembershipType, ArrayList<Member>> groupedByAge = chairman.groupByAgeGroup();
                     displayGroupedMembers(groupedByAge);
                 }
-                case "4" -> {
+                case "9" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
@@ -224,7 +224,7 @@ public class UserInterface {
                     2. Opdater betalingsstatus for medlem
                     3. Vis samlede kontigent indtægter
                     4. Søg efter medlem
-                    5. Tilbage til hovedmenu
+                    9. Tilbage til hovedmenu
                     """);
             String input = sc.nextLine();
             switch (input) {
@@ -232,7 +232,7 @@ public class UserInterface {
                 case "2" -> updatePaymentStatus();
                 case "3" -> System.out.println(controller.getFormattedTotalMembershipFees());
                 case "4" -> searchForMember();
-                case "5" -> {
+                case "9" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
@@ -313,7 +313,7 @@ public class UserInterface {
                     hasPaid = false;
                     validStatus = true;
                 } else {
-                    System.out.println("Ugyldig indtastning. Skriv 'betalt' eller 'ikke betalt'.");
+                    System.out.println("Ugyldigt valg. Skriv 'betalt' eller 'ikke betalt' for at angive betalingsstatus.");
                 }
             }
 
@@ -336,7 +336,7 @@ public class UserInterface {
                     1. Vis alle medlemmer
                     2. Vis medlemmer, der har betalt
                     3. Vis medlemmer, der mangler at betale
-                    4. Tilbage til kasser-menu
+                    9. Tilbage til kasser-menu
                     """);
             String input = sc.nextLine();
             switch (input) {
@@ -352,7 +352,7 @@ public class UserInterface {
                     System.out.println("Medlemmer, der mangler at betale:");
                     System.out.println(controller.getFormatMembers(controller.getFilteredMembers(false)));
                 }
-                case "4" -> {
+                case "9" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
