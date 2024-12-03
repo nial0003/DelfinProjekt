@@ -12,20 +12,29 @@ public class Trainer {
     }
 
     //Checks if a member is an Athlete and if it is, it'll add them to the special athletes ArrayList
-    public void addAthletesToList(ArrayList<Member> members) {
+    public void addAthletesToList(ArrayList<Member> members, boolean isItForTraining) {
         for (Member member : members) {
-            if (!member.getHasBeenAddedToAthletes() && member.getMembershipType() == MembershipType.ATLET) {
-                String[] name = member.getName().split(",");
-                athletes.add(new Athlete(name[1], name[0], member.getLd(), member.getGender(),
-                        member.getAddress(), member.getPhoneNumber(), member.getMemberShipStatus().toString(), member.getMembershipType().toString(),
-                        member.getHasPaid(), member.getHasBeenAddedToAthletes()));
-                member.setHasBeenAddedToAthletes(true);
+            if (isItForTraining) {
+                if (!member.getHasBeenAddedToAthletes() && member.getMembershipType() == MembershipType.ATLET) {
+                    String[] name = member.getName().split(",");
+                    athletes.add(new Athlete(name[1], name[0], member.getLd(), member.getGender(),
+                            member.getAddress(), member.getPhoneNumber(), member.getMemberShipStatus().toString(), member.getMembershipType().toString(),
+                            member.getHasPaid(), member.getHasBeenAddedToAthletes()));
+                    member.setHasBeenAddedToAthletes(true);
+                } else {
+                    if (member.getMembershipType() == MembershipType.ATLET) {
+                        String[] name = member.getName().split(",");
+                        athletes.add(new Athlete(name[1], name[0], member.getLd(), member.getGender(),
+                                member.getAddress(), member.getPhoneNumber(), member.getMemberShipStatus().toString(), member.getMembershipType().toString(),
+                                member.getHasPaid(), member.getHasBeenAddedToAthletes()));
+                    }
+                }
             }
         }
     }
 
     /*Takes the name of the person you wish to find from the AthletesTrainingResults. If said person exists in the
-    * file it will isolate the discipline you wish to update from said athlete so that you can update it using the newTime.*/
+     * file it will isolate the discipline you wish to update from said athlete so that you can update it using the newTime.*/
     public ArrayList<String> setAthleteTrainingTime(String name, ArrayList<String> athletesFromFile, String discipline, Double newTime) {
         // ([\p{L}]+) : This part isolates the Discipline of the Athlete so we can run it against the Discipline names
         //              in the file of the correct person and update the training time
@@ -43,14 +52,14 @@ public class Trainer {
         //List. It then gives us the index in which it was found so we can replace it with the correct data later
         //and it gives us the athlete from the File as a String
         for (int i = 0; i < athletesFromFile.size(); i++) {
-            if (athletesFromFile.get(i).contains(name)){
+            if (athletesFromFile.get(i).contains(name)) {
                 athleteIndex = i;
                 athlete = athletesFromFile.get(i);
                 break;
             }
         }
 
-        if (athleteIndex == -1 || athlete == null){
+        if (athleteIndex == -1 || athlete == null) {
             throw new NullPointerException("Atlet ikke fundet i filen");
         }
 
@@ -59,7 +68,7 @@ public class Trainer {
         //the first indexOf "træning{" and lastiIndexOf '}'. We also isolate the name and training team of the
         //Athlete in the prefix String.
         int trainingStart = athlete.indexOf("træning{");
-        if (trainingStart == -1){
+        if (trainingStart == -1) {
             throw new IllegalArgumentException("Træningstider ikke fundet i atletens data");
         }
 
@@ -89,7 +98,7 @@ public class Trainer {
         //Adds the date to show when the trainingTime was updated.
         LocalDate dateOfTraining = LocalDate.now();
 
-        String updatedAthlete = prefix + updatedString +"},DayOfTraining[" + dateOfTraining +"]";
+        String updatedAthlete = prefix + updatedString + "},DayOfTraining[" + dateOfTraining + "]";
 
         //Replaces the Athlete we have updated at the place where we got the original Athlete.
         athletesFromFile.set(athleteIndex, updatedAthlete);
@@ -109,16 +118,16 @@ public class Trainer {
         return times.getFirst();
     }
 
-    public ArrayList<Athlete> getAthletes(){
+    public ArrayList<Athlete> getAthletes() {
         return athletes;
     }
 
     //adds a competition to a given Athlete at the end
-     public void addCompetitionToAthlete(String name, String competitionName, String discipline,
-                                        double time, int placement){
-        for (Athlete athlete : athletes){
-            if (athlete.getName().contains(name)){
-                athlete.getCompetitionTimes().add(new Competition(competitionName,discipline,time,placement));
+    public void addCompetitionToAthlete(String name, String competitionName, String discipline,
+                                        double time, int placement) {
+        for (Athlete athlete : athletes) {
+            if (athlete.getName().contains(name)) {
+                athlete.getCompetitionTimes().add(new Competition(competitionName, discipline, time, placement));
             }
         }
     }

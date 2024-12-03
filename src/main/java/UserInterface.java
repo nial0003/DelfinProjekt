@@ -210,8 +210,10 @@ public class UserInterface {
         String discipline = sc.nextLine();
         System.out.println("Hvad var deres svømmetid?");
         double swimmingResult = sc.nextDouble();
+        sc.nextLine();
         System.out.println("Hvad blev deres placering?");
         int placement = sc.nextInt();
+        sc.nextLine();
         controller.addCompetitionToAthlete(name, competitionName, discipline, swimmingResult, placement);
     }
 

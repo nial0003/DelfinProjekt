@@ -1,8 +1,9 @@
 Tvorup,Nana,Seniorhold
-Stævne{[gfdsgfdgs]Disciplin[CRAWL]Tid[100000.0]Placering[2]}
-Stævne{[gfdsgfdgs]Disciplin[CRAWL]Tid[100000.0]Placering[2]}
-Stævne{[gfasfas]Disciplin[CRAWL]Tid[456.0]Placering[3]}
-Stævne{[gfdsgfdgs]Disciplin[CRAWL]Tid[100000.0]Placering[2]}
-Stævne{[gs]Disciplin[CRAWL]Tid[2.0]Placering[2]}
+Stævne{[DM i rygcrawl]Disciplin[RYGCRAWL]Tid[55.4]Placering[2]}
+Stævne{[DM i butterfly]Disciplin[BUTTERFLY]Tid[44.2]Placering[1]}
+Stævne{[DM i crawl]Disciplin[CRAWL]Tid[22.4]Placering[1]}
+
+Frandsen,Frida,Seniorhold
+Stævne{[DM i rygcrawl]Disciplin[CRAWL]Tid[66.4]Placering[5]}
 
 end
