@@ -17,7 +17,7 @@ public class Controller {
 
     public String formatMemberPaymentStatus(ArrayList<Member> members) {
         if (members == null || members.isEmpty()) {
-            return "Ingen medlemmer fundet.";
+            return "\nIngen medlemmer fundet.\n";
         }
 
         String header = "-------------------------------------------------\n";

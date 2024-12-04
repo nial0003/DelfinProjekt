@@ -396,10 +396,10 @@ public class UserInterface {
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> {
-                    System.out.println("Finansielt overblik:");
-                    System.out.println(controller.getCalculateTotalMembershipFees());
-                    System.out.println(controller.getCalculateReceivedPayments());
-                    System.out.println(controller.getCalculateOutstandingPayments() + "\n");
+                    System.out.println("Finansielt overblik:\n" +
+                            controller.getCalculateTotalMembershipFees() + "\n" +
+                            controller.getCalculateReceivedPayments()+"\n" +
+                            controller.getCalculateOutstandingPayments() + "\n");
                 }
                 case "2" -> {
                     System.out.println("Antal medlemmer: " + controller.getAllMembers().size() + "\n");
