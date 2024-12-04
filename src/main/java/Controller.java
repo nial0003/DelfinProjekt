@@ -18,8 +18,19 @@ public class Controller {
        return accountant.formatMemberPaymentStatus(members);
     }
 
-    public String getFormattedTotalMembershipFees() {
-        return accountant.formatTotalMembershipFees();
+    public String getCalculateTotalMembershipFees() {
+        double totalFees = accountant.calculateTotalMembershipFees();
+        return "Samlede kontingentindbetalinger: " + totalFees + " kr.";
+    }
+
+    public String getCalculateReceivedPayments (){
+        double totalReceived = accountant.calculateReceivedPayments();
+        return "Modtagene betalinger: " + totalReceived + "kr.";
+    }
+
+    public String getCalculateOutstandingPayments (){
+        double totalOutstanding = accountant.calculateOutstandingPayments();
+        return "Udestående betalinger: " + totalOutstanding + "kr.";
     }
 
     public void addAthletesToList(){
