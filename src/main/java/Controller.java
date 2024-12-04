@@ -6,6 +6,7 @@ public class Controller {
     Trainer trainer = new Trainer();
     FileHandler fh = new FileHandler();
 
+    //-------------------Methods for Accountant class-------------------------------------------------------------------
     public ArrayList<Member> getAllMembers() {
         return accountant.getListOfMembers();
     }
@@ -14,8 +15,25 @@ public class Controller {
         return accountant.filterMembersByPaymentStatus(hasPaid);
     }
 
-    public String getFormatMembers(ArrayList<Member> members) {
-       return accountant.formatMemberPaymentStatus(members);
+    public String formatMemberPaymentStatus(ArrayList<Member> members) {
+        if (members == null || members.isEmpty()) {
+            return "Ingen medlemmer fundet.";
+        }
+
+        String header = "Medlemsliste:\n" +
+                "-------------------------------------------------\n";
+        String footer = "-------------------------------------------------\n";
+
+        String formattedMembers = header;
+
+        for (Member member : members) {
+            formattedMembers += "Navn: " + member.getName() + "\n" +
+                    "Medlemsnummer: " + member.getMemberNumber() + "\n" +
+                    "Betalt: " + (member.getHasPaid() ? "Ja" : "Nej") + "\n" +
+                    "Kontingentgebyr: " + member.determineMembershipFee() + " DKK\n" +
+                    footer;
+        }
+        return formattedMembers;
     }
 
     public String getCalculateTotalMembershipFees() {
@@ -43,13 +61,6 @@ public class Controller {
         return String.format("Procentdel af ubetalte kontingentgebyrer: %.2f%%",outstandingPercentage);
     }
 
-    public void addAthletesToList(){
-        trainer.addAthletesToList(chairman.getListOfMembers());
-    }
-
-    public void saveAthleteMembersToAthleteTrainingFile(){
-        fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
-    }
     public String getFoundMembers(String searchKeyword) {
         ArrayList<Member> foundMembers = accountant.findMembers(searchKeyword);
 
@@ -75,6 +86,12 @@ public class Controller {
         return accountant.findMembers(searchKeyword);
     }
 
+
+    //-------------------Methods for Trainer class----------------------------------------------------------------------
+    public void saveAthleteMembersToAthleteTrainingFile(){
+        fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
+    }
+
     public void setAthleteTrainingTime(String name, String discipline, double newTime){
         ArrayList<String> updatedTrainingTimes = trainer.setAthleteTrainingTime(name, fh.getAthletesFromAthleteTrainingFile(), discipline, newTime);
         fh.saveUpdatedAthletesToFile(updatedTrainingTimes);
@@ -86,7 +103,14 @@ public class Controller {
         fh.saveCompetitionResultsToFile(trainer.getAthletes());
     }
 
+    
+    //-------------------Methods for Chairman class---------------------------------------------------------------------
     public void rewriteFileWithNewData(){
         fh.saveToFile(chairman.getListOfMembers(), false);
     }
+
+    public void addAthletesToList(){
+        trainer.addAthletesToList(chairman.getListOfMembers());
+    }
+
 }

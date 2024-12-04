@@ -376,15 +376,15 @@ public class UserInterface {
             switch (input) {
                 case "1" -> {
                     System.out.println("Alle medlemmers betalingsstatus:");
-                    System.out.println(controller.getFormatMembers(controller.getAllMembers()));
+                    System.out.println(controller.formatMemberPaymentStatus(controller.getAllMembers()));
                 }
                 case "2" -> {
                     System.out.println("Medlemmer, der har betalt:");
-                    System.out.println(controller.getFormatMembers(controller.getFilteredMembers(true)));
+                    System.out.println(controller.formatMemberPaymentStatus(controller.getFilteredMembers(true)));
                 }
                 case "3" -> {
                     System.out.println("Medlemmer, der mangler at betale:");
-                    System.out.println(controller.getFormatMembers(controller.getFilteredMembers(false)));
+                    System.out.println(controller.formatMemberPaymentStatus(controller.getFilteredMembers(false)));
                 }
                 case "9" -> {
                     return;

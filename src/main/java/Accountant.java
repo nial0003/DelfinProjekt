@@ -88,27 +88,6 @@ public class Accountant {
         return filteredMembers;
     }
 
-    //-------------------Method to format members payment status to a string--------------------------------------------
-    public String formatMemberPaymentStatus(ArrayList<Member> members) {
-        if (members == null || members.isEmpty()) {
-            return "Ingen medlemmer fundet.";
-        }
-
-        String header = "Medlemsliste:\n" +
-                "-------------------------------------------------\n";
-        String footer = "-------------------------------------------------\n";
-
-        String formattedMembers = header;
-
-        for (Member member : members) {
-            formattedMembers += "Navn: " + member.getName() + "\n" +
-                    "Medlemsnummer: " + member.getMemberNumber() + "\n" +
-                    "Betalt: " + (member.getHasPaid() ? "Ja" : "Nej") + "\n" +
-                    footer;
-        }
-        return formattedMembers;
-    }
-
     //-------------------Method to find members-------------------------------------------------------------------------
 
     public ArrayList<Member> findMembers(String searchKeyword) {
