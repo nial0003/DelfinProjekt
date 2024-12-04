@@ -21,13 +21,14 @@ public class Trainer {
                             member.getAddress(), member.getPhoneNumber(), member.getMemberShipStatus().toString(), member.getMembershipType().toString(),
                             member.getHasPaid(), member.getHasBeenAddedToAthletes()));
                     member.setHasBeenAddedToAthletes(true);
-                } else {
-                    if (member.getMembershipType() == MembershipType.ATLET) {
-                        String[] name = member.getName().split(",");
-                        athletes.add(new Athlete(name[1], name[0], member.getLd(), member.getGender(),
-                                member.getAddress(), member.getPhoneNumber(), member.getMemberShipStatus().toString(), member.getMembershipType().toString(),
-                                member.getHasPaid(), member.getHasBeenAddedToAthletes()));
-                    }
+                }
+
+            } else {
+                if (member.getMembershipType() == MembershipType.ATLET) {
+                    String[] name = member.getName().split(",");
+                    athletes.add(new Athlete(name[1], name[0], member.getLd(), member.getGender(),
+                            member.getAddress(), member.getPhoneNumber(), member.getMemberShipStatus().toString(), member.getMembershipType().toString(),
+                            member.getHasPaid(), member.getHasBeenAddedToAthletes()));
                 }
             }
         }
@@ -35,7 +36,8 @@ public class Trainer {
 
     /*Takes the name of the person you wish to find from the AthletesTrainingResults. If said person exists in the
      * file it will isolate the discipline you wish to update from said athlete so that you can update it using the newTime.*/
-    public ArrayList<String> setAthleteTrainingTime(String name, ArrayList<String> athletesFromFile, String discipline, Double newTime) {
+    public ArrayList<String> setAthleteTrainingTime(String name, ArrayList<String> athletesFromFile, String
+            discipline, Double newTime) {
         // ([\p{L}]+) : This part isolates the Discipline of the Athlete so we can run it against the Discipline names
         //              in the file of the correct person and update the training time
         // (,\[(\d+\.\d+)]) : Isolates the value of the correct discipline so we can update it to the newTime that we've given.

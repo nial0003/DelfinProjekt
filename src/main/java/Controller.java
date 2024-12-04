@@ -22,8 +22,12 @@ public class Controller {
         return accountant.formatTotalMembershipFees();
     }
 
-    public void addAthletesToList(){
+    public void addAthletesToListForTraining(){
         trainer.addAthletesToList(chairman.getListOfMembers(), true);
+    }
+
+    public void addAthletesToListForCompetition(){
+        trainer.addAthletesToList(chairman.getListOfMembers(), false);
     }
 
     public void saveAthleteMembersToAthleteTrainingFile(){
@@ -60,7 +64,6 @@ public class Controller {
     }
 
     public void addCompetitionToAthlete(String name, String competitionName, String discipline, double time, int placement){
-        trainer.addAthletesToList(chairman.getListOfMembers(), false);
         fh.addCompetitionToListFromFile(trainer);
         trainer.addCompetitionToAthlete(name, competitionName, discipline, time, placement);
         fh.saveCompetitionResultsToFile(trainer.getAthletes());
