@@ -68,6 +68,16 @@ public class Accountant {
 
 
     //-------------------Method to calculate outstanding percentage------------------------------------------------------------
+    public double calculateOutstandingPercentage() {
+        int totalFees = calculateTotalMembershipFees();
+        if (totalFees == 0) {
+            return 0.0;
+        }
+
+        int receivedPayments = calculateReceivedPayments();
+        return 100 - ((double) receivedPayments / totalFees * 100);
+    }
+
 
 
     //-------------------Method to filter members by their payment status-----------------------------------------------

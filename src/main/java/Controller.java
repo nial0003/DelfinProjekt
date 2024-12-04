@@ -35,7 +35,12 @@ public class Controller {
 
     public String getCalculatePaidPercentage (){
         double paidPercentage = accountant.calculatePaidPercentage();
-        return String.format("Procentdel af medlemmer, der har betalt: %.2f%%",paidPercentage);
+        return String.format("Procentdel af betalte kontingentgebyrer: %.2f%%",paidPercentage);
+    }
+
+    public String getCalculateOutstandingPercentage (){
+        double outstandingPercentage = accountant.calculateOutstandingPercentage();
+        return String.format("Procentdel af ubetalte kontingentgebyrer: %.2f%%",outstandingPercentage);
     }
 
     public void addAthletesToList(){

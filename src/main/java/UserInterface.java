@@ -410,17 +410,17 @@ public class UserInterface {
                     System.out.println("Finansielt overblik:");
                     System.out.println(controller.getCalculateTotalMembershipFees());
                     System.out.println(controller.getCalculateReceivedPayments());
-                    System.out.println(controller.getCalculateOutstandingPayments()+"\n");
+                    System.out.println(controller.getCalculateOutstandingPayments() + "\n");
                 }
                 case "2" -> {
                     System.out.println("Antal medlemmer:");
-                    System.out.println(controller.getAllMembers().size()+"\n");
+                    System.out.println(controller.getAllMembers().size() + "\n");
                 }
                 case "3" -> {
-                    System.out.println(controller.getCalculatePaidPercentage()+"\n");
+                    System.out.println(controller.getCalculatePaidPercentage() + "\n");
                 }
                 case "4" -> {
-                    System.out.println("Procentdel af ubetalte medlemmer");
+                    System.out.println(controller.getCalculateOutstandingPercentage() + "\n");
                 }
                 case "9" -> {
                     return;
