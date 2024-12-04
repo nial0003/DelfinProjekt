@@ -41,8 +41,8 @@ public class Accountant {
         return totalReceived;
     }
 
-    //-------------------Method to calculate outstanding payments----------------------------------------------------------
-    public int calculateOutstandingPayments(){
+    //-------------------Method to calculate outstanding payments-------------------------------------------------------
+    public int calculateOutstandingPayments() {
         if (isMemberListEmpty()) {
             return 0;
         }
@@ -54,6 +54,21 @@ public class Accountant {
         }
         return totalOutstanding;
     }
+
+    //-------------------Method to calculate paid percentage------------------------------------------------------------
+    public double calculatePaidPercentage() {
+        int totalFees = calculateTotalMembershipFees();
+        if (totalFees == 0) {
+            return 0.0;
+        }
+
+        int receivedPayments = calculateReceivedPayments();
+        return (double) receivedPayments / totalFees * 100;
+    }
+
+
+    //-------------------Method to calculate outstanding percentage------------------------------------------------------------
+
 
     //-------------------Method to filter members by their payment status-----------------------------------------------
     public ArrayList<Member> filterMembersByPaymentStatus(boolean hasPaid) {

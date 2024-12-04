@@ -33,6 +33,11 @@ public class Controller {
         return "Udestående betalinger: " + totalOutstanding + " DKK";
     }
 
+    public String getCalculatePaidPercentage (){
+        double paidPercentage = accountant.calculatePaidPercentage();
+        return String.format("Procentdel af medlemmer, der har betalt: %.2f%%",paidPercentage);
+    }
+
     public void addAthletesToList(){
         trainer.addAthletesToList(chairman.getListOfMembers());
     }

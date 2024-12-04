@@ -417,7 +417,7 @@ public class UserInterface {
                     System.out.println(controller.getAllMembers().size()+"\n");
                 }
                 case "3" -> {
-                    System.out.println("Procentdel af betalte medlemmer");
+                    System.out.println(controller.getCalculatePaidPercentage()+"\n");
                 }
                 case "4" -> {
                     System.out.println("Procentdel af ubetalte medlemmer");
