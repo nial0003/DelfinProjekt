@@ -19,18 +19,18 @@ public class Controller {
     }
 
     public String getCalculateTotalMembershipFees() {
-        double totalFees = accountant.calculateTotalMembershipFees();
-        return "Samlede kontingentindbetalinger: " + totalFees + " kr.";
+        int totalFees = accountant.calculateTotalMembershipFees();
+        return "Samlede kontingentindbetalinger: " + totalFees + " DKK";
     }
 
     public String getCalculateReceivedPayments (){
-        double totalReceived = accountant.calculateReceivedPayments();
-        return "Modtagene betalinger: " + totalReceived + "kr.";
+        int totalReceived = accountant.calculateReceivedPayments();
+        return "Modtagene betalinger: " + totalReceived + " DKK";
     }
 
     public String getCalculateOutstandingPayments (){
-        double totalOutstanding = accountant.calculateOutstandingPayments();
-        return "Udestående betalinger: " + totalOutstanding + "kr.";
+        int totalOutstanding = accountant.calculateOutstandingPayments();
+        return "Udestående betalinger: " + totalOutstanding + " DKK";
     }
 
     public void addAthletesToList(){

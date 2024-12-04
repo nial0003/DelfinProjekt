@@ -16,11 +16,11 @@ public class Accountant {
     }
 
     //--------------------Method to calculate the annual membership fees for all members combined-----------------------
-    public double calculateTotalMembershipFees() {
+    public int calculateTotalMembershipFees() {
         if (isMemberListEmpty()) {
-            return 0.0;
+            return 0;
         }
-        double totalFees = 0.0;
+        int totalFees = 0;
         for (Member member : listOfMembers) {
             totalFees += member.determineMembershipFee();
         }
@@ -28,11 +28,11 @@ public class Accountant {
     }
 
     //-------------------Method to calculate received payments----------------------------------------------------------
-    public double calculateReceivedPayments() {
+    public int calculateReceivedPayments() {
         if (isMemberListEmpty()) {
-            return 0.0;
+            return 0;
         }
-        double totalReceived = 0.0;
+        int totalReceived = 0;
         for (Member member : listOfMembers) {
             if (member.getHasPaid()) {
                 totalReceived += member.determineMembershipFee();
@@ -42,11 +42,11 @@ public class Accountant {
     }
 
     //-------------------Method to calculate outstanding payments----------------------------------------------------------
-    public double calculateOutstandingPayments(){
+    public int calculateOutstandingPayments(){
         if (isMemberListEmpty()) {
-            return 0.0;
+            return 0;
         }
-        double totalOutstanding = 0.0;
+        int totalOutstanding = 0;
         for (Member member : listOfMembers) {
             if (!member.getHasPaid()) {
                 totalOutstanding += member.determineMembershipFee();
