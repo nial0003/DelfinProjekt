@@ -256,7 +256,7 @@ public class UserInterface {
                     Vælg en funktion:
                     1. Vis medlemmers betalingsstatus
                     2. Opdater betalingsstatus for medlem
-                    3. Vis samlede kontigent indtægter
+                    3. Vis statistik
                     4. Søg efter medlem
                     9. Tilbage til hovedmenu
                     """);
@@ -264,7 +264,7 @@ public class UserInterface {
             switch (input) {
                 case "1" -> showPaymentStatusSubMenu();
                 case "2" -> updatePaymentStatus();
-                case "3" -> System.out.println(controller.getFormattedTotalMembershipFees());
+                case "3" -> showStatisticsSubMenu();
                 case "4" -> searchForMember();
                 case "9" -> {
                     return;
@@ -391,6 +391,43 @@ public class UserInterface {
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
             }
+        }
+    }
+
+    private void showStatisticsSubMenu() {
+        while (true) {
+            System.out.println("""
+                    Vis statistik:
+                    1. Samlede kontingent indtægter
+                    2. Antal medlemmer
+                    3. Procentdel af betalte medlemmer
+                    4. Procentdel af ubetalte medlemmer
+                    9. Tilbage til kasser-menu
+                    """);
+            String input = sc.nextLine();
+            switch (input) {
+                case "1" -> {
+                    System.out.println("Finansielt overblik:");
+                    System.out.println(controller.getCalculateTotalMembershipFees());
+                    System.out.println(controller.getCalculateReceivedPayments());
+                    System.out.println(controller.getCalculateOutstandingPayments());
+                }
+                case "2" -> {
+                    System.out.println("Antal medlemmer:");
+                    System.out.println(controller.getAllMembers().size());
+                }
+                case "3" -> {
+                    System.out.println("Procentdel af betalte medlemmer");
+                }
+                case "4" -> {
+                    System.out.println("Procentdel af ubetalte medlemmer");
+                }
+                case "9" -> {
+                    return;
+                }
+                default -> System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+
         }
     }
 }
