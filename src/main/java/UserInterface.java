@@ -400,8 +400,8 @@ public class UserInterface {
                     Vis statistik:
                     1. Samlede kontingent indtægter
                     2. Antal medlemmer
-                    3. Procentdel af betalte medlemmer
-                    4. Procentdel af ubetalte medlemmer
+                    3. Procentdel af betalte kontingentgebyrer
+                    4. Procentdel af ubetalte kontingentgebyrer
                     9. Tilbage til kasser-menu
                     """);
             String input = sc.nextLine();
@@ -413,8 +413,7 @@ public class UserInterface {
                     System.out.println(controller.getCalculateOutstandingPayments() + "\n");
                 }
                 case "2" -> {
-                    System.out.println("Antal medlemmer:");
-                    System.out.println(controller.getAllMembers().size() + "\n");
+                    System.out.println("Antal medlemmer: " + controller.getAllMembers().size() + "\n");
                 }
                 case "3" -> {
                     System.out.println(controller.getCalculatePaidPercentage() + "\n");

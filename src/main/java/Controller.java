@@ -20,8 +20,7 @@ public class Controller {
             return "Ingen medlemmer fundet.";
         }
 
-        String header = "Medlemsliste:\n" +
-                "-------------------------------------------------\n";
+        String header = "-------------------------------------------------\n";
         String footer = "-------------------------------------------------\n";
 
         String formattedMembers = header;
@@ -38,7 +37,7 @@ public class Controller {
 
     public String getCalculateTotalMembershipFees() {
         int totalFees = accountant.calculateTotalMembershipFees();
-        return "Samlede kontingentindbetalinger: " + totalFees + " DKK";
+        return "Samlede kontingent indtægter: " + totalFees + " DKK";
     }
 
     public String getCalculateReceivedPayments (){
@@ -103,7 +102,7 @@ public class Controller {
         fh.saveCompetitionResultsToFile(trainer.getAthletes());
     }
 
-    
+
     //-------------------Methods for Chairman class---------------------------------------------------------------------
     public void rewriteFileWithNewData(){
         fh.saveToFile(chairman.getListOfMembers(), false);
