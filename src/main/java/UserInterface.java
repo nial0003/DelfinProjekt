@@ -1,4 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -98,27 +101,53 @@ public class UserInterface {
         String firstName = sc.nextLine();
         System.out.print("Efternavn: ");
         String lastName = sc.nextLine();
-        System.out.print("Fødselsår: ");
-        int year = Integer.parseInt(sc.nextLine());
-        System.out.print("Fødselsmåned: ");
-        int month = Integer.parseInt(sc.nextLine());
-        System.out.print("Fødselsdag: ");
-        int day = Integer.parseInt(sc.nextLine());// TODO try-catch
+        System.out.println("Fødselsdato: (format: YYYY-MM-DD)");
+        LocalDate birthDate = null;
+        while (true) {
+            try {
+                String input = sc.nextLine();
+                birthDate = LocalDate.parse(input);
+                int currentYear = java.time.Year.now().getValue();
+                if (birthDate.getYear() < 1900 || birthDate.getYear() > currentYear) {
+                    throw new IllegalArgumentException("Årstallet skal være mellem 1900 og " + currentYear + ".");
+                }
+                break;
+            } catch (DateTimeParseException e) {
+                System.out.println("Fejl: Indtast venligst en gyldig dato i formatet YYYY-MM-DD.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.print("Køn: ");
         String gender = sc.nextLine();
-        System.out.print("Adresse: ");
+        System.out.print("Adresse: (format: gadenavn husnummer postnummer by)");
         String address = sc.nextLine();
         System.out.print("Telefonnummer: ");
-        int phoneNumber = Integer.parseInt(sc.nextLine()); // TODO try-catch
-        System.out.print("Medlemsstatus (AKTIV/PASSIV): "); // TODO try-catch
+        int phoneNumber = 0;
+        while (true) {
+            try {
+                System.out.print("(8 cifre) ");
+                String input = sc.nextLine();
+                if (input.length() != 8 || !input.matches("\\d+")) {
+                    throw new IllegalArgumentException("Telefonnummer skal være præcis 8 cifre.");
+                }
+                phoneNumber = Integer.parseInt(input);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Fejl: Telefonnummeret skal kun indeholde tal.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.print("Medlemsstatus (AKTIV/PASSIV): ");
         String membershipStatus = sc.nextLine();
         System.out.print("Medlemstype (HOBBY/ATLET): ");
         String membershipType = sc.nextLine();
-        System.out.print("Har betalt (true/false): "); // TODO ja nej yallah
+        System.out.print("Har betalt (ja/nej): ");
         boolean hasPaid = Boolean.parseBoolean(sc.nextLine());
 
-        chairman.addMember(firstName, lastName, year, month, day, gender,
-                address, phoneNumber, membershipStatus, membershipType, hasPaid);
+        chairman.addMember(firstName, lastName, birthDate.getYear(), birthDate.getMonthValue(),
+                birthDate.getDayOfMonth(), gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
         System.out.println("Medlem tilføjet!");
     }
 
@@ -176,7 +205,7 @@ public class UserInterface {
             System.out.println("""
                     Vælg en funktion:
                     1. Opdater medlems trænings resultat
-                    2. Tilføj konkurence resultat til atlet
+                    2. Tilføj konkurrence resultat til atlet
                     3. Se bedste svømmer i disciplin
                     9. Tilbage til hovedmenuen""");
 
