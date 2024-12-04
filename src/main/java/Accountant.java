@@ -66,7 +66,6 @@ public class Accountant {
         return (double) receivedPayments / totalFees * 100;
     }
 
-
     //-------------------Method to calculate outstanding percentage------------------------------------------------------------
     public double calculateOutstandingPercentage() {
         int totalFees = calculateTotalMembershipFees();
@@ -77,8 +76,6 @@ public class Accountant {
         int receivedPayments = calculateReceivedPayments();
         return 100 - ((double) receivedPayments / totalFees * 100);
     }
-
-
 
     //-------------------Method to filter members by their payment status-----------------------------------------------
     public ArrayList<Member> filterMembersByPaymentStatus(boolean hasPaid) {
