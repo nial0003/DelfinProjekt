@@ -10,24 +10,49 @@ public class Accountant {
         listOfMembers = fh.loadFromFile();
     }
 
-    //--------------------Method to calculate the annual membership fees for all members combined-----------------------
-    public int calculateMembershipFees() {
-        if (listOfMembers == null || listOfMembers.isEmpty()) {
-            return 0;
-        }
-        int totalFees = 0;
+    //--------------------Helper method to check for an empty member list-----------------------------------------------
+    private boolean isMemberListEmpty() {
+        return listOfMembers == null || listOfMembers.isEmpty();
+    }
 
+    //--------------------Method to calculate the annual membership fees for all members combined-----------------------
+    public double calculateTotalMembershipFees() {
+        if (isMemberListEmpty()) {
+            return 0.0;
+        }
+        double totalFees = 0.0;
         for (Member member : listOfMembers) {
-            int fee = member.determineMembershipFee();
-            totalFees += fee;
+            totalFees += member.determineMembershipFee();
         }
         return totalFees;
     }
 
-    //-------------------Method to format total membership fees as a string---------------------------------------------
-    public String formatTotalMembershipFees() {
-        int totalFees = calculateMembershipFees();
-        return "Samlede kontingentindbetalinger: " + totalFees + " kr.\n";
+    //-------------------Method to calculate received payments----------------------------------------------------------
+    public double calculateReceivedPayments() {
+        if (isMemberListEmpty()) {
+            return 0.0;
+        }
+        double totalReceived = 0.0;
+        for (Member member : listOfMembers) {
+            if (member.getHasPaid()) {
+                totalReceived += member.determineMembershipFee();
+            }
+        }
+        return totalReceived;
+    }
+
+    //-------------------Method to calculate outstanding payments----------------------------------------------------------
+    public double calculateOutstandingPayments(){
+        if (isMemberListEmpty()) {
+            return 0.0;
+        }
+        double totalOutstanding = 0.0;
+        for (Member member : listOfMembers) {
+            if (!member.getHasPaid()) {
+                totalOutstanding += member.determineMembershipFee();
+            }
+        }
+        return totalOutstanding;
     }
 
     //-------------------Method to filter members by their payment status-----------------------------------------------
@@ -62,8 +87,6 @@ public class Accountant {
         return formattedMembers;
     }
 
-
-    //TODO
     //-------------------Method to find members-------------------------------------------------------------------------
 
     public ArrayList<Member> findMembers(String searchKeyword) {
