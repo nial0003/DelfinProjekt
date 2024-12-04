@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 //TODO
 // Implement SRP for chairman
+//TODO remove case 4 - Søg efter medlem in accountant menu
 
 public class UserInterface {
     private Controller controller;
@@ -257,7 +258,6 @@ public class UserInterface {
                     1. Vis medlemmers betalingsstatus
                     2. Opdater betalingsstatus for medlem
                     3. Vis statistik
-                    4. Søg efter medlem
                     9. Tilbage til hovedmenu
                     """);
             String input = sc.nextLine();
@@ -265,23 +265,12 @@ public class UserInterface {
                 case "1" -> showPaymentStatusSubMenu();
                 case "2" -> updatePaymentStatus();
                 case "3" -> showStatisticsSubMenu();
-                case "4" -> searchForMember();
                 case "9" -> {
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
             }
         }
-    }
-
-    //--------------------Method to search for members------------------------------------------------------------------
-    private void searchForMember() {
-        System.out.println("Indtast søgeord (navn, medlemsnummer eller telefonnummer): ");
-        String searchKeyword = sc.nextLine();
-
-        String result = controller.getFoundMembers(searchKeyword);
-
-        System.out.println(result);
     }
 
     //--------------------Method to update payment status for members---------------------------------------------------
@@ -426,7 +415,6 @@ public class UserInterface {
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
             }
-
         }
     }
 }

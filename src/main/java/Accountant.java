@@ -89,7 +89,6 @@ public class Accountant {
     }
 
     //-------------------Method to find members-------------------------------------------------------------------------
-
     public ArrayList<Member> findMembers(String searchKeyword) {
         ArrayList<Member> matchingMembers = new ArrayList<>();
 

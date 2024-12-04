@@ -60,23 +60,6 @@ public class Controller {
         return String.format("Procentdel af ubetalte kontingentgebyrer: %.2f%%",outstandingPercentage);
     }
 
-    public String getFoundMembers(String searchKeyword) {
-        ArrayList<Member> foundMembers = accountant.findMembers(searchKeyword);
-
-        if (foundMembers.isEmpty()) {
-            return "Ingen medlemmer fundet.";
-        }
-
-        String result = "Fundne medlemmer:\n";
-        for (Member member : foundMembers) {
-            result += "Navn: " + member.getName() +
-                    ", ID: " + member.getMemberNumber() +
-                    ", Telefonnummer: " + member.getPhoneNumber() + "\n";
-        }
-
-        return result;
-    }
-
     public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
         return accountant.updateMemberPaymentStatus(memberNumber, hasPaid);
     }
