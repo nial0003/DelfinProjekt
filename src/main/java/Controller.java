@@ -6,6 +6,7 @@ public class Controller {
     Trainer trainer = new Trainer();
     FileHandler fh = new FileHandler();
 
+    //-------------------Methods for Accountant class-------------------------------------------------------------------
     public ArrayList<Member> getAllMembers() {
         return accountant.getListOfMembers();
     }
@@ -14,36 +15,49 @@ public class Controller {
         return accountant.filterMembersByPaymentStatus(hasPaid);
     }
 
-    public String getFormatMembers(ArrayList<Member> members) {
-       return accountant.formatMemberPaymentStatus(members);
-    }
-
-    public String getFormattedTotalMembershipFees() {
-        return accountant.formatTotalMembershipFees();
-    }
-
-    public void addAthletesToList(){
-        trainer.addAthletesToList(chairman.getListOfMembers());
-    }
-
-    public void saveAthleteMembersToAthleteTrainingFile(){
-        fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
-    }
-    public String getFoundMembers(String searchKeyword) {
-        ArrayList<Member> foundMembers = accountant.findMembers(searchKeyword);
-
-        if (foundMembers.isEmpty()) {
-            return "Ingen medlemmer fundet.";
+    public String formatMemberPaymentStatus(ArrayList<Member> members) {
+        if (members == null || members.isEmpty()) {
+            return "\nIngen medlemmer fundet.\n";
         }
 
-        String result = "Fundne medlemmer:\n";
-        for (Member member : foundMembers) {
-            result += "Navn: " + member.getName() +
-                    ", ID: " + member.getMemberNumber() +
-                    ", Telefonnummer: " + member.getPhoneNumber() + "\n";
-        }
+        String header = "-------------------------------------------------\n";
+        String footer = "-------------------------------------------------\n";
 
-        return result;
+        String formattedMembers = header;
+
+        for (Member member : members) {
+            formattedMembers += "Navn: " + member.getName() + "\n" +
+                    "Medlemsnummer: " + member.getMemberNumber() + "\n" +
+                    "Betalt: " + (member.getHasPaid() ? "Ja" : "Nej") + "\n" +
+                    "Kontingentgebyr: " + member.determineMembershipFee() + " DKK\n" +
+                    footer;
+        }
+        return formattedMembers;
+    }
+
+    public String getCalculateTotalMembershipFees() {
+        int totalFees = accountant.calculateTotalMembershipFees();
+        return "Samlede kontingent indtægter: " + totalFees + " DKK";
+    }
+
+    public String getCalculateReceivedPayments (){
+        int totalReceived = accountant.calculateReceivedPayments();
+        return "Modtagene betalinger: " + totalReceived + " DKK";
+    }
+
+    public String getCalculateOutstandingPayments (){
+        int totalOutstanding = accountant.calculateOutstandingPayments();
+        return "Udestående betalinger: " + totalOutstanding + " DKK";
+    }
+
+    public String getCalculatePaidPercentage (){
+        double paidPercentage = accountant.calculatePaidPercentage();
+        return String.format("Procentdel af betalte kontingentgebyrer: %.2f%%",paidPercentage);
+    }
+
+    public String getCalculateOutstandingPercentage (){
+        double outstandingPercentage = accountant.calculateOutstandingPercentage();
+        return String.format("Procentdel af ubetalte kontingentgebyrer: %.2f%%",outstandingPercentage);
     }
 
     public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
@@ -52,6 +66,12 @@ public class Controller {
 
     public ArrayList<Member> findMembers(String searchKeyword) {
         return accountant.findMembers(searchKeyword);
+    }
+
+
+    //-------------------Methods for Trainer class----------------------------------------------------------------------
+    public void saveAthleteMembersToAthleteTrainingFile(){
+        fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
     }
 
     public void setAthleteTrainingTime(String name, String discipline, double newTime){
@@ -65,6 +85,8 @@ public class Controller {
         fh.saveCompetitionResultsToFile(trainer.getAthletes());
     }
 
+
+    //-------------------Methods for Chairman class---------------------------------------------------------------------
     public void rewriteFileWithNewData(){
         fh.saveToFile(chairman.getListOfMembers(), false);
     }
@@ -84,6 +106,12 @@ public class Controller {
     public void setAdress(int index, String adress) {
         chairman.setAdressForMemberAtIndex(index,adress);
     }
+
+    public void addAthletesToList(){
+        trainer.addAthletesToList(chairman.getListOfMembers());
+    }
+
+
 
     public void setPhonenumber(int index, int number) {
         chairman.setPhonenumberForMemberAtIndex(index, number);
