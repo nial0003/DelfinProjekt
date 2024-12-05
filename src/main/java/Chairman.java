@@ -11,6 +11,7 @@ public class Chairman {
     Scanner sc = new Scanner(System.in);
 
 
+
     public Chairman(){
         listOfMembers = fh.loadFromFile();
         newMember = new ArrayList<>();
@@ -29,6 +30,64 @@ public class Chairman {
         newMember.add(member);
         listOfMembers.add(member);
         fh.saveToFile(newMember, true);
+    }
+
+    public void addMember(Member member, int indexInList){
+        listOfMembers.set(indexInList, member);
+    }
+
+    public int getMemberIndex(String memberName) {
+        int index = 0;
+        for (int i = 0; i < listOfMembers.size(); i++) {
+            if (listOfMembers.get(i).getName().equalsIgnoreCase(memberName)){
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public void setNameForMemberAtIndex(int index, String newName){
+        listOfMembers.get(index).setFirstName(newName);
+    }
+
+    public void setLastNameForMemberAtIndex(int index, String newName) {
+        listOfMembers.get(index).setLastName(newName);
+    }
+
+    public void setGenderForMemberAtIndex(int index, String newGender) {
+        listOfMembers.get(index).setGender(newGender);
+    }
+
+    public void setAdressForMemberAtIndex(int index, String newAdress) {
+        listOfMembers.get(index).setAddress(newAdress);
+    }
+
+    public void setPhonenumberForMemberAtIndex(int index, int number) {
+            listOfMembers.get(index).setPhoneNumber(number);
+    }
+
+    public void setActivePassiveForMemberAtIndex(int index) {
+        if (listOfMembers.get(index).getMemberShipStatus() == MembershipType.AKTIV) {
+            listOfMembers.get(index).setMembershipStatus(MembershipType.PASSIV);
+        } else {
+            listOfMembers.get(index).setMembershipStatus(MembershipType.AKTIV);
+        }
+    }
+
+    public void setHobbyAthleteForMemberAtIndex(int index) {
+        if (listOfMembers.get(index).getMembershipType() == MembershipType.HOBBY) {
+            listOfMembers.get(index).setMembershipType(MembershipType.ATLET);
+        } else {
+            listOfMembers.get(index).setMembershipType(MembershipType.HOBBY);
+        }
+    }
+
+    public Enum<MembershipType> getMembershipStatus(int index) {
+        return listOfMembers.get(index).getMemberShipStatus();
+    }
+
+    public Enum<MembershipType> getMembershipType(int index) {
+        return listOfMembers.get(index).getMembershipType();
     }
 
     public ArrayList<Member> getListOfMembers() {
@@ -55,6 +114,8 @@ public class Chairman {
                         Collectors.toCollection(ArrayList::new)));
     }
 
+
+    //------------------Used for editMember ----------------------------------------------------------------------------
     //Takes a member from an indexpoint in the ArrayList
     public Member getMemberFromIndex(int choice, ArrayList<Member> listOfMembers) {
         Member selectedMember = null;
@@ -76,17 +137,15 @@ public class Chairman {
     }
 
     //Takes an integer userinput to use when needed an integer with a minimum and a maximum value
-    public int takeIntUserInput(int minimumValue, int maximumValue) {
+    private int takeIntUserInput(int minimumValue, int maximumValue) {
         String input = sc.next();
         int inputInt;
-
         try {
             inputInt = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             System.out.println("Ugyldigt input. Indsæt et tal");
             inputInt = takeIntUserInput(minimumValue,maximumValue);
         }
-
         while (!(inputInt >= minimumValue && inputInt <= maximumValue )) {
             System.out.println("Ugyldigt telefonnummer. Prøv igen");
             inputInt = takeIntUserInput(minimumValue,maximumValue);
@@ -105,9 +164,10 @@ public class Chairman {
     }
 
     //Sets if a member is hobby or athlete
-    public void setHobbyAthleteForMember(Enum<MembershipType> memmberType, Member selectedMember) {
-        selectedMember.setMembershipType(memmberType);
+    public void setHobbyAthleteForMember(Enum<MembershipType> memberType, Member selectedMember) {
+        selectedMember.setMembershipType(memberType);
     }
+
 
 
 

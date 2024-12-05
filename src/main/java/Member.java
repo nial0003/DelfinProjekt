@@ -18,6 +18,7 @@ public class Member {
     private boolean hasPaid;
     private LocalDate ld;
 
+
     //-------------------Constructor for new members--------------------------------------------------------------------
     public Member(String firstName, String lastName, LocalDate birthday, String gender, String address, int phoneNumber,
                   String membershipStatus, String membershipType, boolean hasPaid, boolean hasBeenAddedToAthletes) {
@@ -35,6 +36,7 @@ public class Member {
         this.memberNumber = ++memberCounter; // Increment for new members
         this.ld = birthday;
         this.hasBeenAddedToAthletes = hasBeenAddedToAthletes;
+
     }
 
     //-------------------Constructor for members loaded from file-------------------------------------------------------
@@ -54,6 +56,7 @@ public class Member {
         this.memberNumber = memberNumber; // Use the number from the file
         this.ld = birthday;
         this.hasBeenAddedToAthletes = hasBeenAddedToAthletes;
+
 
         // Update memberCounter to ensure it stays ahead
         if (memberNumber > memberCounter) {
@@ -143,14 +146,6 @@ public class Member {
         return name;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -187,14 +182,12 @@ public class Member {
         return hasPaid;
     }
 
-    
-
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.name = this.lastName + "," + firstName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.name = lastName + ", " + this.firstName;
     }
 
     public void setGender(String gender) {
@@ -217,11 +210,10 @@ public class Member {
         this.memberShipStatus = memberShipStatus;
     }
 
+
     public void setMembershipType(Enum<MembershipType> membershipType) {
         this.membershipType = membershipType;
     }
-
-
 
     public void setHasPaid(boolean hasPaid) {
         this.hasPaid = hasPaid;

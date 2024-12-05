@@ -6,12 +6,14 @@ import java.util.Scanner;
 // Implement SRP for chairman
 
 public class UserInterface {
-    private Controller controller;
+    private final Controller controller;
     private Chairman chairman;
     private Scanner sc;
-    private Accountant accountant;
-    private Member member;
-    private Controller cont;
+    private final Accountant accountant;
+    private final Controller cont;
+    private final FileHandler fh;
+
+
 
     //--------------------Constructor-----------------------------------------------------------------------------------
     public UserInterface() {
@@ -88,8 +90,6 @@ public class UserInterface {
             switch (input) {
                 case "1" -> addMember();
                 case "2" -> editMember();
-                case "3" -> {
-                case "2" -> System.out.println("Opdater medlemsoplysninger (funktionalitet ikke implementeret endnu)");
                 case "3" -> displayMemberList();
                 case "9" -> {
                     return;
@@ -156,86 +156,11 @@ public class UserInterface {
     }
 
 
-    private boolean nameIsValid(String stringToTest) {
-        return stringToTest.matches("^[^0-9]+$");
-    }
 
-    //Create a new firstname for a member. If the firstname is not a string it will be invalid
-    private String createFirstName() {
-        System.out.println("Indtast fornavn");
-        String firstName = sc.nextLine();
-        while (!nameIsValid(firstName)) {
-            System.out.println("Ugyldigt fornavn. Prøv igen");
-            firstName = sc.nextLine();
-        }
-        return firstName;
-    }
-    //Creates a new lastname for a member. If the lastname is not a string it will be invalid
-    private String createLastName() {
-        System.out.println("indtast efternavn");
-        String lastName = sc.nextLine();
-        while (!nameIsValid(lastName)) {
-            System.out.println("Ugyldigt efternavn. Prøv igen");
-            lastName = sc.nextLine();
-        }
-        return lastName;
-    }
-
-    //Makes it possible to change the gender of a member in case they change their gender
-    private String createGender() {
-        System.out.println("""
-                Vælg køn:
-                1) Kvinde
-                2) Mand""");
-        if (chairman.takeIntUserInput(1, 2) == 1) {
-            return "Kvinde";
-        } else {
-            return "Mand";
-        }
-    }
-
-    //Makes it possible to change address
-    private String createAdress() {
-        System.out.println("Indtast den nye adresse (Vej Nr PostNr By");
-        return sc.nextLine();
-    }
-
-    //Makes it possible to change a phonenumber
-    private int createPhoneNumber(){
-        System.out.println("Indtast telefonnummer");
-        return chairman.takeIntUserInput(10000000,99999999);
-    }
-
-    //Makes it possible to change the agegroup for a member
-    private void changeAgeGroupForMember (Member selectedMember){
-        System.out.println("Skriv ny aldersgruppe {JUNIOR, SENIOR, PENSIONIST}");
-        String ageGroup = sc.nextLine();
-                    cont.setAgeGroupForMember(MembershipType.membershipAgeGroup(ageGroup.toUpperCase()), selectedMember);
-            System.out.println("Medlems aldergruppe er blevet ændret til: " + MembershipType.membershipAgeGroup(ageGroup.toUpperCase()));
-    }
-
-    //Makes it possible to change if the member is active or passive
-    private void changeActivePassiveForMember(Member selectedMember) {
-        System.out.println("Er medlemmet AKTIV eller PASSIV");
-        String aktivPassiv = sc.nextLine();
-        cont.setActivePassiveForMember(MembershipType.activePassiveMember(aktivPassiv.toUpperCase()), selectedMember);
-        System.out.println("Medlemmets status er ændret til: " + MembershipType.activePassiveMember(aktivPassiv.toUpperCase()));
-    }
-
-    //Makes it possible to change if the member is swimming as an athlete or hobby
-    private void changeHobbyAthleteForMember (Member selectedMember) {
-        System.out.println("Skal medlemmet være HOBBY eller ATLET");
-        String hobbyAtlet = sc.nextLine();
-        cont.setHobbyAthleteForMember(MembershipType.memberHobbyAthlete(hobbyAtlet.toUpperCase()), selectedMember);
-        System.out.println("Medlemstypen for medlemmet er ændret til: " + MembershipType.memberHobbyAthlete(hobbyAtlet.toUpperCase()));
-    }
-
-    //Method to edit the data of a member
+    //--------------------Method to edit member--------------------------------------------------------------------------
     public void editMember() {
-    Member selectedMember = findMember();
-
-    if (selectedMember != null) {
-        System.out.println("""
+        int index = findMemberIndex();
+            System.out.println("""
                 Hvad vil du gerne ændre?
                 1) Fornavn
                 2) Efternavn
@@ -243,54 +168,66 @@ public class UserInterface {
                 4) Adresse
                 5) Telefonnummer
                 6) Aktiv/Passiv
-                7) Medlemstype
-                8) Atlet/Hobby
+                7) Atlet/Hobby
                 """);
-        switch (takeIntUserInput()) {
-            case 1 -> {
-                selectedMember.setFirstName(createFirstName());
-                System.out.println("Fornavn er ændret til " + selectedMember.getFirstName());
+            switch (takeIntUserInput()) {
+                case 1 -> {
+                    System.out.println("Indtast nyt fornavn");
+                    String newName = sc.nextLine();
+                    controller.setFirstNameForMemberAtIndex(index, newName);
+                    System.out.println("Fornavn er ændret til " + newName + "\n");
+                }
+                case 2 -> {
+                    System.out.println("Indtast nyt efternavn");
+                    String newName = sc.nextLine();
+                    controller.setLastNameForMemberAtIndex(index, newName);
+                    System.out.println("Efternavn er ændret til " + newName + "\n");
+                }
+                case 3 -> {
+                    System.out.println("Vælg køn: Kvinde/Mand\n");
+                    String newGender = sc.nextLine();
+                    controller.setGender(index,newGender);
+                    }
+                case 4 -> {
+                    System.out.println("Indtast ny adresse (Vej Nr PostNr By\n");
+                    String newAdress = sc.nextLine();
+                    controller.setAdress(index,newAdress);
+                }
+                case 5 -> {
+                    System.out.println("Indtast nyt telefonnummer\n");
+                    int newNumber = sc.nextInt();
+                    controller.setPhonenumber(index,newNumber);
+                }
+                case 6 -> {
+                    controller.setActivePassive(index);
+                    if (controller.getMembershipStatus(index) == MembershipType.AKTIV) {
+                        System.out.println("Medlemsstatus sat til AKTIV\n");
+                    } else {
+                        System.out.println("Medlemsstatus sat til PASSIV\n");
+                    }
+                }
+                case 7 -> {
+                    controller.setHobbyAthlete(index);
+                    if (controller.getMembershipType(index) == MembershipType.HOBBY) {
+                        System.out.println("Medlemstype sat til HOBBY\n");
+                    } else {
+                        System.out.println("Medlemstype sat til ATLET\n");
+                    }
+                }
+                default -> System.out.println("Ugyldigt valg");
             }
-            case 2 -> {
-                selectedMember.setLastName(createLastName());
-                System.out.println("Efternavn er ændret til " + selectedMember.getLastName());
-            }
-            case 3 -> {
-                selectedMember.setGender(createGender());
-                System.out.println("Køn ere ændret til " + selectedMember.getGender());
-            }
-            case 4 -> {
-                selectedMember.setAddress(createAdress());
-                System.out.println("Adresse er ændret til " + selectedMember.getAddress());
-            }
-            case 5 -> {
-                selectedMember.setPhoneNumber(createPhoneNumber());
-                System.out.println("Telefonnummer er ændret til " + selectedMember.getPhoneNumber());
-            }
-            case 6 -> {
-                changeActivePassiveForMember(selectedMember);
-            }
-            case 7 -> {
-                changeAgeGroupForMember(selectedMember);
-            }
-            case 8 -> {
-            changeHobbyAthleteForMember(selectedMember);
-            }
-            default -> System.out.println("Ugyldigt valg");
-        }
-
-    }
+            controller.rewriteFileWithNewData();
     }
 
     //Finds a member by taking a string input from the chairman and checks if the input matches a name in the arrayList
-    public Member findMember() {
+    public int findMemberIndex() {
         System.out.println("Vælg navnet på det medlem du gerne vil ændre");
-        Member selectedMember;
         ArrayList<Member> foundMembers = new ArrayList<>();
+        boolean indexIsFound = false;
 
-        while (foundMembers.isEmpty()) {
-            String search = sc.nextLine();
-            foundMembers = chairman.findMembers(search);
+        while (!indexIsFound) {
+            String nameOfMemberToFind = sc.nextLine();
+            foundMembers = chairman.findMembers(nameOfMemberToFind);
             if (!foundMembers.isEmpty()) {
                 int index = 1;
                 for (Member member : foundMembers) {
@@ -299,7 +236,8 @@ public class UserInterface {
                     } else {
                         System.out.println("Fejl. Ukendt medlem"  );
                     }
-                    index ++;
+                    index++;
+                    indexIsFound = true;
                 }
             } else {
                 System.out.println("Der blev ikke fundet nogle medlemmer med dette navn. Prøv igen");
@@ -308,17 +246,15 @@ public class UserInterface {
         System.out.println("Vælg venligst et medlem");
         int choice = takeIntUserInput();
 
-        selectedMember = cont.getMemberFromIndex(choice, foundMembers);
+        Member selectedMember = cont.getMemberFromIndex(choice, foundMembers);
         System.out.println("Du har valgt " + selectedMember);
-        return selectedMember;
-
+        return controller.getMemberIndex(selectedMember.getName());
     }
 
     //Takes an integer input from the user and throws an exception if the input is not an integer
     public int takeIntUserInput() {
         String input = sc.nextLine();
         int inputInt;
-
         try {
             inputInt = Integer.parseInt(input);
         } catch (NumberFormatException nfe) {

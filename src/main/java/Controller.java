@@ -17,10 +17,6 @@ public class Controller {
     public String getFormatMembers(ArrayList<Member> members) {
        return accountant.formatMemberPaymentStatus(members);
     }
-    private Member member;
-    private FileHandler fh;
-
-
 
     public String getFormattedTotalMembershipFees() {
         return accountant.formatTotalMembershipFees();
@@ -73,16 +69,49 @@ public class Controller {
         fh.saveToFile(chairman.getListOfMembers(), false);
     }
 
-    public void setAgeGroupForMember (Enum<MembershipType> ageGroup, Member selectedMember){
-        chairman.setAgeGroupForMember(ageGroup, selectedMember);
+    public void setFirstNameForMemberAtIndex(int index, String newName){
+        chairman.setNameForMemberAtIndex(index, newName);
     }
 
-    public void setActivePassiveForMember(Enum<MembershipType> memberStatus, Member selectedMember) {
-        chairman.setActivePassiveForMember(memberStatus, selectedMember);
+    public void setLastNameForMemberAtIndex(int index, String newName) {
+        chairman.setLastNameForMemberAtIndex(index, newName);
     }
 
-    public void setHobbyAthleteForMember (Enum<MembershipType> memberType, Member selectedMember) {
-        chairman.setHobbyAthleteForMember(memberType, selectedMember);
+    public void setGender(int index, String gender) {
+        chairman.setGenderForMemberAtIndex(index, gender);
+    }
+
+    public void setAdress(int index, String adress) {
+        chairman.setAdressForMemberAtIndex(index,adress);
+    }
+
+    public void setPhonenumber(int index, int number) {
+        chairman.setPhonenumberForMemberAtIndex(index, number);
+    }
+
+    public void setActivePassive(int index) {
+        chairman.setActivePassiveForMemberAtIndex(index);
+    }
+
+    public void setHobbyAthlete(int index) {
+        chairman.setHobbyAthleteForMemberAtIndex(index);
+    }
+
+    public Enum<MembershipType> getMembershipStatus(int index) {
+        return chairman.getMembershipStatus(index);
+    }
+
+    public Enum<MembershipType> getMembershipType(int index) {
+        return chairman.getMembershipType(index);
+    }
+
+    public int getMemberIndex(String memberName){
+        return chairman.getMemberIndex(memberName);
+    }
+
+
+    public void addMember(Member member, int indexInList){
+        chairman.addMember(member, indexInList);
     }
 
     public String getName(Member member) {
