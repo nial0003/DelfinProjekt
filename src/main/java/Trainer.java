@@ -56,13 +56,6 @@ public class Trainer {
         String[] athleteNameSplitted = name.split(",");
         athleteIndex = Integer.parseInt(athleteNameSplitted[0]);
         athlete = athletesFromFile.get(athleteIndex);
-//        for (int i = 0; i < athletesFromFile.size(); i++) {
-//            if (athletesFromFile.get(i).toLowerCase().contains(name)) {
-//                athleteIndex = i;
-//                athlete = athletesFromFile.get(i);
-//                break;
-//            }
-//        }
 
         if (athleteIndex == -1 || athlete == null) {
             throw new NullPointerException("Atlet ikke fundet i filen");
@@ -135,5 +128,9 @@ public class Trainer {
                 athlete.getCompetitionTimes().add(new Competition(competitionName, discipline, time, placement));
             }
         }
+    }
+
+    public void clearAthleteList(){
+        athletes.clear();
     }
 }

@@ -26,7 +26,7 @@ public class Controller {
         trainer.addAthletesToList(chairman.getListOfMembers(), true);
     }
 
-    public void addAthletesToListForCompetition(){
+    private void addAthletesToListForCompetition(){
         trainer.addAthletesToList(chairman.getListOfMembers(), false);
     }
 
@@ -64,9 +64,11 @@ public class Controller {
     }
 
     public void addCompetitionToAthlete(String name, String competitionName, String discipline, double time, int placement){
+        addAthletesToListForCompetition();
         fh.addCompetitionToListFromFile(trainer);
         trainer.addCompetitionToAthlete(name, competitionName, discipline, time, placement);
         fh.saveCompetitionResultsToFile(trainer.getAthletes());
+        trainer.clearAthleteList();
     }
 
     public void rewriteFileWithNewData(){
