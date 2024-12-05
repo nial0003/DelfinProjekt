@@ -203,7 +203,7 @@ public class UserInterface {
     }
 
     private String findCorrectAthlete(String name){
-        ArrayList<String> oneOrMoreAthletes = controller.findCorrectAthlete(name);
+        ArrayList<String> oneOrMoreAthletes = controller.findCorrectAthlete(name.toLowerCase());
         int index = 1;
         if (oneOrMoreAthletes.size() == 1){
             return oneOrMoreAthletes.getFirst();
@@ -226,6 +226,7 @@ public class UserInterface {
     private void addCompetitionToAthlete() {
         System.out.println("Navn på atlet:");
         String name = sc.nextLine();
+        name = findCorrectAthlete(name);
         System.out.println("Navn på stævne:");
         String competitionName = sc.nextLine();
         System.out.println("Hvilken disciplin deltog han i? {Crawl, Rygcrawl, Butterfly, Brystsvømning");

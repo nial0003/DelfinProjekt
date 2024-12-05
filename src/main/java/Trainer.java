@@ -122,15 +122,24 @@ public class Trainer {
 
     //adds a competition to a given Athlete at the end
     public void addCompetitionToAthlete(String name, String competitionName, String discipline,
-                                        double time, int placement) {
-        for (Athlete athlete : athletes) {
-            if (athlete.getName().contains(name)) {
-                athlete.getCompetitionTimes().add(new Competition(competitionName, discipline, time, placement));
+                                        double time, int placement, boolean alreadyOnList) {
+        if (alreadyOnList) {
+            for (Athlete athlete : athletes) {
+                if (athlete.getName().contains(name)) {
+                    athlete.getCompetitionTimes().add(new Competition(competitionName, discipline, time, placement));
+                }
+            }
+        } else {
+            String[] athleteToAddCompetition = name.split(",");
+            name = athleteToAddCompetition[1] + "," + athleteToAddCompetition[2];
+            for (Athlete athlete : athletes) {
+                if (athlete.getName().contains(name)) {
+                    athlete.getCompetitionTimes().add(new Competition(competitionName, discipline, time, placement));
+                }
             }
         }
     }
-
-    public void clearAthleteList(){
+    public void clearAthleteList() {
         athletes.clear();
     }
 }

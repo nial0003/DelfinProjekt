@@ -114,7 +114,6 @@ public class FileHandler {
             Pattern pattern = Pattern.compile("\\[(.*?)]");
             String nameOfAthlete = "";
             for (int i = 0; i < athleteCompResults.size(); i++) {
-
                 if (!athleteCompResults.get(i).contains("Stævne")) {
                     if (!athleteCompResults.get(i).isBlank()){
                         int lastCommaIndex = athleteCompResults.get(i).lastIndexOf(",");
@@ -130,7 +129,7 @@ public class FileHandler {
                 String disciplineName = listResult.get(1);
                 Double time = Double.valueOf(listResult.get(2));
                 int placement = Integer.parseInt(listResult.get(3));
-                trainer.addCompetitionToAthlete(nameOfAthlete, compName, disciplineName, time, placement);
+                trainer.addCompetitionToAthlete(nameOfAthlete, compName, disciplineName, time, placement,true);
                 listResult.clear();
             }
         } catch (IOException e) {
