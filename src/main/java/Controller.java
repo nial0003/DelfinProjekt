@@ -72,4 +72,15 @@ public class Controller {
     public void rewriteFileWithNewData(){
         fh.saveToFile(chairman.getListOfMembers(), false);
     }
+
+    public ArrayList<String> findCorrectAthlete(String name){
+        ArrayList<String> athletes = fh.getAthletesFromAthleteTrainingFile();
+        ArrayList<String> moreThanOneAthlete = new ArrayList<>();
+        for (String athlete : athletes){
+            if (athlete.toLowerCase().contains(name)){
+                moreThanOneAthlete.add(athletes.indexOf(athlete) + "," +athlete);
+            }
+        }
+        return moreThanOneAthlete;
+    }
 }

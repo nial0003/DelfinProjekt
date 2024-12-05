@@ -192,13 +192,35 @@ public class UserInterface {
     private void updateTrainingResult() {
         System.out.println("Navn på atlet:");
         String name = sc.nextLine();
+        name = findCorrectAthlete(name);
         System.out.println("Navn på disciplin {Crawl, Butterfly, Rygcrawl, Brystsvømning}:");
         String discipline = sc.nextLine();
         System.out.println("Ny trænings tid:");
         double newTime = sc.nextDouble();
         sc.nextLine();
-        controller.setAthleteTrainingTime(name, discipline, newTime);
+        controller.setAthleteTrainingTime(name.toLowerCase(), discipline, newTime);
         System.out.println(discipline + " for " + name + " er blevet ændret til: " + newTime);
+    }
+
+    private String findCorrectAthlete(String name){
+        ArrayList<String> oneOrMoreAthletes = controller.findCorrectAthlete(name);
+        int index = 1;
+        if (oneOrMoreAthletes.size() == 1){
+            return oneOrMoreAthletes.getFirst();
+        } else {
+            System.out.println("More than one Athlete of that name exists, please pick correct Athlete: ");
+            for (int i = 0; i < oneOrMoreAthletes.size(); i++) {
+                if (oneOrMoreAthletes.get(i) != null){
+                    String[] athleteString = oneOrMoreAthletes.get(i).split(",");
+                    String athleteName = athleteString[1] + ", " + athleteString[2];
+                    System.out.println(index + ") " + athleteName);
+                    index++;
+                }
+            }
+            int choice = sc.nextInt() - 1;
+            sc.nextLine();
+            return oneOrMoreAthletes.get(choice);
+        }
     }
 
     private void addCompetitionToAthlete() {

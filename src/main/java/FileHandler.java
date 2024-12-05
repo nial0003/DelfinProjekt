@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class FileHandler {
     private File file = new File("Members");
-    private File athletesTrainingFile = new File("AthletesTrainingResults");
+    private File AthletesTrainingResults = new File("AthletesTrainingResults");
     private File athleteCompetitionResults = new File("AthleteCompetitionResults");
 
     //-------------------Loads the Members from the file and returns them in an ArrayList-------------------------------
@@ -67,7 +67,7 @@ public class FileHandler {
 
     //-------------------Method to save athletes to athlete file--------------------------------------------------------
     public void saveAthleteMembersToAthleteTrainingFile(ArrayList<Athlete> listOfAthletes) {
-        try (FileWriter fw = new FileWriter(athletesTrainingFile, true)) {
+        try (FileWriter fw = new FileWriter(AthletesTrainingResults, true)) {
             for (Athlete athlete : listOfAthletes) {
                 String name = athlete.getName();
                 fw.write(athlete.toCSVStyle(name, false));
@@ -140,7 +140,7 @@ public class FileHandler {
 
     //-------------------Method to save list of updated athletes--------------------------------------------------------
     public void saveUpdatedAthletesToFile(ArrayList<String> updatedListOfAthletes) {
-        try (FileWriter fw = new FileWriter(athletesTrainingFile)) {
+        try (FileWriter fw = new FileWriter(AthletesTrainingResults)) {
             for (String str : updatedListOfAthletes) {
                 fw.write(str + "\n");
             }
@@ -152,7 +152,7 @@ public class FileHandler {
     //Returns an arrayList of Strings from the athleteTrainingFile. This is done so we can search through it and update the times
     //of a given member.
     public ArrayList<String> getAthletesFromAthleteTrainingFile() {
-        try (FileReader fr = new FileReader(athletesTrainingFile)) {
+        try (FileReader fr = new FileReader(AthletesTrainingResults)) {
             BufferedReader br = new BufferedReader(fr);
             ArrayList<String> result = new ArrayList<>();
 
@@ -170,7 +170,7 @@ public class FileHandler {
     //------------------------------------------------------------------------------------------------------------------
     public String printFromAthleteFile() {
         String output = "";
-        try (FileReader fr = new FileReader(athletesTrainingFile)) {
+        try (FileReader fr = new FileReader(AthletesTrainingResults)) {
             BufferedReader br = new BufferedReader(fr);
 
             String line = br.readLine();

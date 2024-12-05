@@ -53,13 +53,16 @@ public class Trainer {
         //Finds the athlete from the ArrayList athletesFromFile by comparing the name we've given to the Strings in the
         //List. It then gives us the index in which it was found so we can replace it with the correct data later
         //and it gives us the athlete from the File as a String
-        for (int i = 0; i < athletesFromFile.size(); i++) {
-            if (athletesFromFile.get(i).contains(name)) {
-                athleteIndex = i;
-                athlete = athletesFromFile.get(i);
-                break;
-            }
-        }
+        String[] athleteNameSplitted = name.split(",");
+        athleteIndex = Integer.parseInt(athleteNameSplitted[0]);
+        athlete = athletesFromFile.get(athleteIndex);
+//        for (int i = 0; i < athletesFromFile.size(); i++) {
+//            if (athletesFromFile.get(i).toLowerCase().contains(name)) {
+//                athleteIndex = i;
+//                athlete = athletesFromFile.get(i);
+//                break;
+//            }
+//        }
 
         if (athleteIndex == -1 || athlete == null) {
             throw new NullPointerException("Atlet ikke fundet i filen");
