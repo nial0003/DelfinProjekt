@@ -105,7 +105,6 @@ public class Accountant {
     }
 
     //-------------------Method to update members payment status--------------------------------------------------------
-
     public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
         for (Member member : listOfMembers) {
             if (member.getMemberNumber() == memberNumber) {
@@ -121,5 +120,4 @@ public class Accountant {
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;
     }
-
 }

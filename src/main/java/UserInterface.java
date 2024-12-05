@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 //TODO
 // Implement SRP for chairman
-//TODO remove case 4 - Søg efter medlem in accountant menu
 
 public class UserInterface {
     private Controller controller;
