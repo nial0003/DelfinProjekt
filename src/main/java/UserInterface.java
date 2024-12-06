@@ -4,28 +4,14 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
-//TODO
-// Implement SRP for chairman
-
 public class UserInterface {
     private final Controller controller;
-    private Chairman chairman;
-    private Scanner sc;
-    private final Accountant accountant;
-    private final FileHandler fh;
-
-
+    private final Scanner sc;
 
     //--------------------Constructor-----------------------------------------------------------------------------------
     public UserInterface() {
-        this.chairman = new Chairman();
-        this.fh = new FileHandler();
-        this.sc = new Scanner(System.in);
-        this.accountant = new Accountant();
-        this.controller = new Controller();
-        chairman = new Chairman();
+        controller = new Controller();
         sc = new Scanner(System.in);
-
     }
 
     //--------------------Start of program------------------------------------------------------------------------------
@@ -74,7 +60,6 @@ public class UserInterface {
             }
         }
     }
-
 
     //--------------------Method to authenticate user role--------------------------------------------------------------
     private boolean authenticateRole(String role, String expectedCode) {
@@ -171,8 +156,7 @@ public class UserInterface {
         System.out.println("         Medlem tilføjet!        ");
         System.out.println("=================================");
         System.out.println("  Returnerer til Formandsmenuen  ");
-        chairman.addMember(firstName, lastName, birthDate.getYear(), birthDate.getMonthValue(), birthDate.getDayOfMonth(), gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
-        System.out.println("Medlem tilføjet!");
+
     }
 
     //--------------------Method to edit member--------------------------------------------------------------------------
@@ -281,7 +265,6 @@ public class UserInterface {
         }
         return inputInt;
     }
-
 
     //--------------------Member list sub menu--------------------------------------------------------------------------
     private void displayMemberList() {
@@ -522,7 +505,8 @@ public class UserInterface {
             System.out.println("Fundne medlemmer:");
             for (int i = 0; i < foundMembers.size(); i++) {
                 Member member = foundMembers.get(i);
-                System.out.println((i + 1) + ". Navn: " + member.getFirstName() + " " + member.getLastName() + ", ID: " + member.getMemberNumber() + ", Telefonnummer: " + member.getPhoneNumber());
+                System.out.println((i + 1) + ". Navn: " + member.getFirstName() + " " + member.getLastName() + ", ID: "
+                        + member.getMemberNumber() + ", Telefonnummer: " + member.getPhoneNumber());
             }
 
             boolean validSelection = false;
@@ -557,7 +541,6 @@ public class UserInterface {
                     hasPaid = true;
                     validStatus = true;
                 } else if (statusInput.equalsIgnoreCase("ikke betalt")) {
-                    hasPaid = false;
                     validStatus = true;
                 } else {
                     System.out.println("Ugyldigt valg. Skriv 'betalt' eller 'ikke betalt' for at angive betalingsstatus.");
