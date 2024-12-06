@@ -169,26 +169,6 @@ public class FileHandler {
         }
     }
 
-    //------------------------------------------------------------------------------------------------------------------
-    public String printFromAthleteFile() {
-        String output = "";
-        try (FileReader fr = new FileReader(AthletesTrainingResults)) {
-            BufferedReader br = new BufferedReader(fr);
-
-            String line = br.readLine();
-            while (line != null && !line.isEmpty()) {
-                String[] data = line.split(",");
-                for (int i = 0; i < data.length; i++) {
-                    output += data[i] + " ";
-                }
-                output += "\n";
-                line = br.readLine();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return output;
-    }
 
     public ArrayList<String> junOrSen(String trainOrComp, String seniorOrJunior) {
         ArrayList<String> junOrSen = new ArrayList<>();
