@@ -170,11 +170,6 @@ public class Controller {
         return chairman.getMemberIndex(memberName);
     }
 
-
-    public void addMember(Member member, int indexInList) {
-        chairman.addMember(member, indexInList);
-    }
-
     public String getName(Member member) {
         return member.getName();
     }

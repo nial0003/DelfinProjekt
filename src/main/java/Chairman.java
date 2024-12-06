@@ -129,43 +129,11 @@ public class Chairman {
     public ArrayList<Member> findMembers(String search) {
     ArrayList<Member> foundMembers = new ArrayList<>();
     for (Member member : listOfMembers) {
-        if (member.getName().toLowerCase().contains(search.toLowerCase())) {
+        if (member.getName().toLowerCase().startsWith(search.toLowerCase())) {
             foundMembers.add(member);
         }
     }
     return foundMembers;
-    }
-
-    //Takes an integer userinput to use when needed an integer with a minimum and a maximum value
-    private int takeIntUserInput(int minimumValue, int maximumValue) {
-        String input = sc.next();
-        int inputInt;
-        try {
-            inputInt = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Ugyldigt input. Indsæt et tal");
-            inputInt = takeIntUserInput(minimumValue,maximumValue);
-        }
-        while (!(inputInt >= minimumValue && inputInt <= maximumValue )) {
-            System.out.println("Ugyldigt telefonnummer. Prøv igen");
-            inputInt = takeIntUserInput(minimumValue,maximumValue);
-        }
-            return inputInt;
-    }
-
-    //Sets which agegroup a member belongs to
-    public void setAgeGroupForMember (Enum<MembershipType> ageGroup, Member selectedMember){
-        selectedMember.setAgeGroup(ageGroup);
-    }
-
-    //Sets active or passive for a member
-    public void setActivePassiveForMember(Enum<MembershipType> memberStatus, Member selectedMember) {
-        selectedMember.setMembershipStatus(memberStatus);
-    }
-
-    //Sets if a member is hobby or athlete
-    public void setHobbyAthleteForMember(Enum<MembershipType> memberType, Member selectedMember) {
-        selectedMember.setMembershipType(memberType);
     }
 
 

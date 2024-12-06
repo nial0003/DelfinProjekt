@@ -201,10 +201,6 @@ public class Member {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setAgeGroup (Enum<MembershipType> ageGroup){
-        this.ageGroup = ageGroup;
-    }
-
     public void setMembershipStatus(Enum<MembershipType> memberShipStatus) {
         this.memberShipStatus = memberShipStatus;
     }
