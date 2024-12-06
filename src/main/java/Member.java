@@ -1,10 +1,6 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-//TODO fixed!!!!!!!!
-//Fix it so that the memberNumber increments correctly.
-
-
 public class Member {
     private String firstName;
     private String lastName;
@@ -15,9 +11,9 @@ public class Member {
     private int phoneNumber;
     private int memberNumber;
     static int memberCounter = 0;
-    private Enum<MembershipType> memberShipStatus;
-    private Enum<MembershipType> membershipType;
-    private Enum<MembershipType> ageGroup;
+    private Enum memberShipStatus;
+    private Enum membershipType;
+    private Enum ageGroup;
     private boolean hasBeenAddedToAthletes;
     private boolean hasPaid;
     private LocalDate ld;
@@ -28,8 +24,8 @@ public class Member {
                   String membershipStatus, String membershipType, boolean hasPaid, boolean hasBeenAddedToAthletes) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.name = lastName + "," + firstName;
-        this.age = calculateAge(birthday);
+        name = lastName + "," + firstName;
+        age = calculateAge(birthday);
         this.gender = gender;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -40,6 +36,7 @@ public class Member {
         this.memberNumber = ++memberCounter; // Increment for new members
         this.ld = birthday;
         this.hasBeenAddedToAthletes = hasBeenAddedToAthletes;
+
     }
 
     //-------------------Constructor for members loaded from file-------------------------------------------------------
@@ -47,8 +44,8 @@ public class Member {
                   String membershipStatus, String membershipType, boolean hasPaid, int memberNumber, boolean hasBeenAddedToAthletes) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.name = lastName + "," + firstName;
-        this.age = calculateAge(birthday);
+        name = lastName + "," + firstName;
+        age = calculateAge(birthday);
         this.gender = gender;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -59,6 +56,7 @@ public class Member {
         this.memberNumber = memberNumber; // Use the number from the file
         this.ld = birthday;
         this.hasBeenAddedToAthletes = hasBeenAddedToAthletes;
+
 
         // Update memberCounter to ensure it stays ahead
         if (memberNumber > memberCounter) {
@@ -75,10 +73,9 @@ public class Member {
         return period.getYears();
     }
 
-    //--------------------Method to determine the annual membership fee-----------------------------------------------------
+    //--------------------Method to determine the annual membership fee-------------------------------------------------
     public int determineMembershipFee() {
         int fee = 0;
-        int age = calculateAge(ld);
 
         if (getMemberShipStatus().equals(MembershipType.AKTIV)) {
             if (getAgeGroup().equals(MembershipType.JUNIOR)) {
@@ -182,6 +179,39 @@ public class Member {
 
     public boolean getHasPaid() {
         return hasPaid;
+    }
+
+    public void setFirstName(String firstName) {
+        this.name = this.lastName + "," + firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.name = lastName + ", " + this.firstName;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAgeGroup (Enum<MembershipType> ageGroup){
+        this.ageGroup = ageGroup;
+    }
+
+    public void setMembershipStatus(Enum<MembershipType> memberShipStatus) {
+        this.memberShipStatus = memberShipStatus;
+    }
+
+
+    public void setMembershipType(Enum<MembershipType> membershipType) {
+        this.membershipType = membershipType;
     }
 
     public void setHasPaid(boolean hasPaid) {

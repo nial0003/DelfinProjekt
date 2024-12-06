@@ -10,24 +10,71 @@ public class Accountant {
         listOfMembers = fh.loadFromFile();
     }
 
+    //--------------------Helper method to check for an empty member list-----------------------------------------------
+    private boolean isMemberListEmpty() {
+        return listOfMembers == null || listOfMembers.isEmpty();
+    }
+
     //--------------------Method to calculate the annual membership fees for all members combined-----------------------
-    public int calculateMembershipFees() {
-        if (listOfMembers == null || listOfMembers.isEmpty()) {
+    public int calculateTotalMembershipFees() {
+        if (isMemberListEmpty()) {
             return 0;
         }
         int totalFees = 0;
-
         for (Member member : listOfMembers) {
-            int fee = member.determineMembershipFee();
-            totalFees += fee;
+            totalFees += member.determineMembershipFee();
         }
         return totalFees;
     }
 
-    //-------------------Method to format total membership fees as a string---------------------------------------------
-    public String formatTotalMembershipFees() {
-        int totalFees = calculateMembershipFees();
-        return "Samlede kontingentindbetalinger: " + totalFees + " kr.\n";
+    //-------------------Method to calculate received payments----------------------------------------------------------
+    public int calculateReceivedPayments() {
+        if (isMemberListEmpty()) {
+            return 0;
+        }
+        int totalReceived = 0;
+        for (Member member : listOfMembers) {
+            if (member.getHasPaid()) {
+                totalReceived += member.determineMembershipFee();
+            }
+        }
+        return totalReceived;
+    }
+
+    //-------------------Method to calculate outstanding payments-------------------------------------------------------
+    public int calculateOutstandingPayments() {
+        if (isMemberListEmpty()) {
+            return 0;
+        }
+        int totalOutstanding = 0;
+        for (Member member : listOfMembers) {
+            if (!member.getHasPaid()) {
+                totalOutstanding += member.determineMembershipFee();
+            }
+        }
+        return totalOutstanding;
+    }
+
+    //-------------------Method to calculate paid percentage------------------------------------------------------------
+    public double calculatePaidPercentage() {
+        int totalFees = calculateTotalMembershipFees();
+        if (totalFees == 0) {
+            return 0.0;
+        }
+
+        int receivedPayments = calculateReceivedPayments();
+        return (double) receivedPayments / totalFees * 100;
+    }
+
+    //-------------------Method to calculate outstanding percentage------------------------------------------------------------
+    public double calculateOutstandingPercentage() {
+        int totalFees = calculateTotalMembershipFees();
+        if (totalFees == 0) {
+            return 0.0;
+        }
+
+        int receivedPayments = calculateReceivedPayments();
+        return 100 - ((double) receivedPayments / totalFees * 100);
     }
 
     //-------------------Method to filter members by their payment status-----------------------------------------------
@@ -41,31 +88,7 @@ public class Accountant {
         return filteredMembers;
     }
 
-    //-------------------Method to format members payment status to a string--------------------------------------------
-    public String formatMemberPaymentStatus(ArrayList<Member> members) {
-        if (members == null || members.isEmpty()) {
-            return "Ingen medlemmer fundet.";
-        }
-
-        String header = "Medlemsliste:\n" +
-                "-------------------------------------------------\n";
-        String footer = "-------------------------------------------------\n";
-
-        String formattedMembers = header;
-
-        for (Member member : members) {
-            formattedMembers += "Navn: " + member.getName() + "\n" +
-                    "Medlemsnummer: " + member.getMemberNumber() + "\n" +
-                    "Betalt: " + (member.getHasPaid() ? "Ja" : "Nej") + "\n" +
-                    footer;
-        }
-        return formattedMembers;
-    }
-
-
-    //TODO
     //-------------------Method to find members-------------------------------------------------------------------------
-
     public ArrayList<Member> findMembers(String searchKeyword) {
         ArrayList<Member> matchingMembers = new ArrayList<>();
 
@@ -82,7 +105,6 @@ public class Accountant {
     }
 
     //-------------------Method to update members payment status--------------------------------------------------------
-
     public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
         for (Member member : listOfMembers) {
             if (member.getMemberNumber() == memberNumber) {
@@ -98,5 +120,4 @@ public class Accountant {
     public ArrayList<Member> getListOfMembers() {
         return listOfMembers;
     }
-
 }
