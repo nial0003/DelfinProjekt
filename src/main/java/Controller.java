@@ -17,9 +17,10 @@ public class Controller {
         return accountant.filterMembersByPaymentStatus(hasPaid);
     }
 
-    public String getFormatMembers(ArrayList<Member> members) {
-        return accountant.formatMemberPaymentStatus(members);
-    }
+//    public String getFormatMembers(ArrayList<Member> members) {
+//        return accountant.formatMemberPaymentStatus(members);
+//    }
+
     public String formatMemberPaymentStatus(ArrayList<Member> members) {
         if (members == null || members.isEmpty()) {
             return "\nIngen medlemmer fundet.\n";
@@ -46,34 +47,35 @@ public class Controller {
 
     private void addAthletesToListForCompetition() {
         trainer.addAthletesToList(chairman.getListOfMembers(), false);
+    }
+
     public String getCalculateTotalMembershipFees() {
         int totalFees = accountant.calculateTotalMembershipFees();
         return "Samlede kontingent indtægter: " + totalFees + " DKK";
     }
 
-    public void saveAthleteMembersToAthleteTrainingFile() {
-        fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
-    public String getCalculateReceivedPayments (){
+    public String getCalculateReceivedPayments() {
         int totalReceived = accountant.calculateReceivedPayments();
         return "Modtagene betalinger: " + totalReceived + " DKK";
     }
 
-    public String getFoundMembers(String searchKeyword) {
-        ArrayList<Member> foundMembers = accountant.findMembers(searchKeyword);
+//    public String getFoundMembers(String searchKeyword) {
+//        ArrayList<Member> foundMembers = accountant.findMembers(searchKeyword);
+//    }
 
-    public String getCalculateOutstandingPayments (){
+    public String getCalculateOutstandingPayments() {
         int totalOutstanding = accountant.calculateOutstandingPayments();
         return "Udestående betalinger: " + totalOutstanding + " DKK";
     }
 
-    public String getCalculatePaidPercentage (){
+    public String getCalculatePaidPercentage() {
         double paidPercentage = accountant.calculatePaidPercentage();
-        return String.format("Procentdel af betalte kontingentgebyrer: %.2f%%",paidPercentage);
+        return String.format("Procentdel af betalte kontingentgebyrer: %.2f%%", paidPercentage);
     }
 
-    public String getCalculateOutstandingPercentage (){
+    public String getCalculateOutstandingPercentage() {
         double outstandingPercentage = accountant.calculateOutstandingPercentage();
-        return String.format("Procentdel af ubetalte kontingentgebyrer: %.2f%%",outstandingPercentage);
+        return String.format("Procentdel af ubetalte kontingentgebyrer: %.2f%%", outstandingPercentage);
     }
 
     public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
@@ -83,17 +85,19 @@ public class Controller {
     public ArrayList<Member> findMembers(String searchKeyword) {
         return accountant.findMembers(searchKeyword);
     }
+
     //-------------------Methods for Trainer class----------------------------------------------------------------------
-    public void saveAthleteMembersToAthleteTrainingFile(){
+    public void saveAthleteMembersToAthleteTrainingFile() {
         fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
     }
 
-    public void setAthleteTrainingTime(String name, String discipline, double newTime){
+    public void setAthleteTrainingTime(String name, String discipline, double newTime) {
         ArrayList<String> updatedTrainingTimes = trainer.setAthleteTrainingTime(name, fh.getAthletesFromAthleteTrainingFile(), discipline, newTime);
         fh.saveUpdatedAthletesToFile(updatedTrainingTimes);
     }
 
-    public void addCompetitionToAthlete(String name, String competitionName, String discipline, double time, int placement) {
+    public void addCompetitionToAthlete(String name, String competitionName, String discipline, double time,
+                                        int placement) {
         addAthletesToListForCompetition();
         fh.addCompetitionToListFromFile(trainer);
         trainer.addCompetitionToAthlete(name, competitionName, discipline, time, placement, false);
@@ -101,16 +105,14 @@ public class Controller {
         trainer.clearAthleteList();
     }
 
-    public ArrayList<String> showBestAthletes(String trainOrComp, String seniorOrJunior, String disciplin, int index) {
+    public ArrayList<String> showBestAthletes(String trainOrComp, String seniorOrJunior, String disciplin,
+                                              int index) {
         return fh.showBestAthletes(trainOrComp, seniorOrJunior, disciplin, index);
     }
 
 
-
-
-
     //-------------------Methods for Chairman class---------------------------------------------------------------------
-    public void rewriteFileWithNewData(){
+    public void rewriteFileWithNewData() {
         fh.saveToFile(chairman.getListOfMembers(), false);
     }
 
@@ -124,9 +126,9 @@ public class Controller {
         }
         return moreThanOneAthlete;
     }
-}
 
-    public void setFirstNameForMemberAtIndex(int index, String newName){
+
+    public void setFirstNameForMemberAtIndex(int index, String newName) {
         chairman.setNameForMemberAtIndex(index, newName);
     }
 
@@ -139,14 +141,12 @@ public class Controller {
     }
 
     public void setAdress(int index, String adress) {
-        chairman.setAdressForMemberAtIndex(index,adress);
+        chairman.setAdressForMemberAtIndex(index, adress);
     }
 
-    public void addAthletesToList(){
-        trainer.addAthletesToList(chairman.getListOfMembers());
-    }
-
-
+//    public void addAthletesToList() {
+//        trainer.addAthletesToList(chairman.getListOfMembers());
+//    }
 
     public void setPhonenumber(int index, int number) {
         chairman.setPhonenumberForMemberAtIndex(index, number);
@@ -168,12 +168,12 @@ public class Controller {
         return chairman.getMembershipType(index);
     }
 
-    public int getMemberIndex(String memberName){
+    public int getMemberIndex(String memberName) {
         return chairman.getMemberIndex(memberName);
     }
 
 
-    public void addMember(Member member, int indexInList){
+    public void addMember(Member member, int indexInList) {
         chairman.addMember(member, indexInList);
     }
 
@@ -182,7 +182,7 @@ public class Controller {
     }
 
     public Member getMemberFromIndex(int choice, ArrayList<Member> foundMembers) {
-        return chairman.getMemberFromIndex(choice,foundMembers);
+        return chairman.getMemberFromIndex(choice, foundMembers);
     }
 
 }
