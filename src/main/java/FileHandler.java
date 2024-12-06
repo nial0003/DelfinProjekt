@@ -7,9 +7,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class FileHandler {
-    private File file = new File("Members.csv");
+    private File members = new File("Members.csv");
     private File AthletesTrainingResults = new File("AthletesTrainingResults.csv");
     private File athleteCompetitionResults = new File("AthleteCompetitionResults.csv");
 
@@ -17,7 +16,7 @@ public class FileHandler {
     public ArrayList<Member> loadFromFile() {
         ArrayList<Member> listOfMembers = new ArrayList<>();
 
-        try (FileReader fr = new FileReader(file)) {
+        try (FileReader fr = new FileReader(members)) {
 
             BufferedReader br = new BufferedReader(fr);
 
@@ -36,7 +35,6 @@ public class FileHandler {
                 int phoneNumber = Integer.parseInt(data[7]);
                 String membershipStatus = data[8];
                 String membershipType = data[9];
-                String ageGroup = data[10]; // Ignored since it's recalculated
                 boolean hasPaid = Boolean.parseBoolean(data[11]);
                 int memberNumber = Integer.parseInt(data[12]);
                 boolean hasBeenAddedToAthletes = Boolean.parseBoolean(data[13]);
@@ -53,12 +51,13 @@ public class FileHandler {
         return listOfMembers;
     }
 
+    //-------------------Method to save members to member file----------------------------------------------------------
 
     //Saves list of members to the file, by converting member details to CSV-style string.
     //Write true if you want to add the information to the end of the file
     //Write false if you want to create a new file with new information.
-    public void saveToFile(ArrayList<Member> listOfMembers, boolean appendFile) {
-        try (FileWriter fw = new FileWriter(file, appendFile)) {
+    public void saveToMemberFile(ArrayList<Member> listOfMembers, boolean appendFile) {
+        try (FileWriter fw = new FileWriter(members, appendFile)) {
             for (Member member : listOfMembers) {
                 fw.write(member.toCSVStyle());
             }
@@ -66,7 +65,6 @@ public class FileHandler {
             throw new RuntimeException(e);
         }
     }
-
 
     //-------------------Method to save athletes to athlete file--------------------------------------------------------
     public void saveAthleteMembersToAthleteTrainingFile(ArrayList<Athlete> listOfAthletes) {
@@ -79,7 +77,6 @@ public class FileHandler {
             throw new RuntimeException(e);
         }
     }
-
 
     //-------------------Method to save competition result for athletes-------------------------------------------------
     public void saveCompetitionResultsToFile(ArrayList<Athlete> listOfAthletes) {
@@ -289,7 +286,6 @@ public class FileHandler {
         }
         return null;
     }
-
 }
 
 

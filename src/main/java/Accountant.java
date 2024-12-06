@@ -130,7 +130,7 @@ public class Accountant {
         for (Member member : listOfMembers) {
             if (member.getMemberNumber() == memberNumber) {
                 member.setHasPaid(hasPaid);
-                fh.saveToFile(listOfMembers, false);
+                fh.saveToMemberFile(listOfMembers, false);
                 return true;
             }
         }

@@ -83,7 +83,7 @@ public class Controller {
 
     //-------------------Methods for Chairman class---------------------------------------------------------------------
     public void rewriteFileWithNewData() {
-        fh.saveToFile(chairman.getListOfMembers(), false);
+        fh.saveToMemberFile(chairman.getListOfMembers(), false);
     }
 
     public ArrayList<String> findCorrectAthlete(String name) {

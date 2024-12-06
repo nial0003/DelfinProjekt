@@ -8,9 +8,6 @@ public class Chairman {
     FileHandler fh = new FileHandler();
     ArrayList<Member> listOfMembers;
     ArrayList<Member> newMember;
-    Scanner sc = new Scanner(System.in);
-
-
 
     public Chairman(){
         listOfMembers = fh.loadFromFile();
@@ -29,11 +26,7 @@ public class Chairman {
                 number,membershipStatus, membershipType,  hasPaid, false);
         newMember.add(member);
         listOfMembers.add(member);
-        fh.saveToFile(newMember, true);
-    }
-
-    public void addMember(Member member, int indexInList){
-        listOfMembers.set(indexInList, member);
+        fh.saveToMemberFile(newMember, true);
     }
 
     public int getMemberIndex(String memberName) {
@@ -114,7 +107,6 @@ public class Chairman {
                         Collectors.toCollection(ArrayList::new)));
     }
 
-
     //------------------Used for editMember ----------------------------------------------------------------------------
     //Takes a member from an indexpoint in the ArrayList
     public Member getMemberFromIndex(int choice, ArrayList<Member> listOfMembers) {
@@ -135,10 +127,4 @@ public class Chairman {
     }
     return foundMembers;
     }
-
-
-
-
-
-
 }
