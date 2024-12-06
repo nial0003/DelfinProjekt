@@ -76,21 +76,24 @@ public class Member {
     //--------------------Method to determine the annual membership fee-------------------------------------------------
     public int determineMembershipFee() {
         int fee = 0;
+        int juniorFee = 1000;
+        int seniorFee = 1600;
+        int passiveFee = 500;
 
         if (getMemberShipStatus().equals(MembershipType.AKTIV)) {
             if (getAgeGroup().equals(MembershipType.JUNIOR)) {
-                fee = 1000;
+                fee = juniorFee;
             } else if (getAgeGroup().equals(MembershipType.SENIOR)) {
-                fee = 1600;
+                fee = seniorFee;
             } else {
-                fee = 1200;
+                fee = (seniorFee * 75)/100;
             }
 
         } else if (getMemberShipStatus().equals(MembershipType.PASSIV)) {
             if (getAgeGroup().equals(MembershipType.PENSIONIST)) {
-                fee = 375;
+                fee = (passiveFee*75)/100;
             } else {
-                fee = 500;
+                fee = passiveFee;
             }
         }
         return fee;
@@ -214,7 +217,7 @@ public class Member {
         this.hasPaid = hasPaid;
     }
 
-    public boolean getHasBeenAddedToAthletes(){
+    public boolean getHasBeenAddedToAthletes() {
         return this.hasBeenAddedToAthletes;
     }
 
