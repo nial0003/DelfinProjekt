@@ -9,11 +9,11 @@ import java.util.regex.Pattern;
 
 
 public class FileHandler {
-    private File file = new File("Members");
-    private File AthletesTrainingResults = new File("AthletesTrainingResults");
-    private File athleteCompetitionResults = new File("AthleteCompetitionResults");
+    private File file = new File("Members.csv");
+    private File AthletesTrainingResults = new File("AthletesTrainingResults.csv");
+    private File athleteCompetitionResults = new File("AthleteCompetitionResults.csv");
 
-    //-------------------Loads the Members from the file and returns them in an ArrayList-------------------------------
+    //-------------------Loads the Members.csv from the file and returns them in an ArrayList-------------------------------
     public ArrayList<Member> loadFromFile() {
         ArrayList<Member> listOfMembers = new ArrayList<>();
 

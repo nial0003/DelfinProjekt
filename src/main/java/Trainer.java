@@ -34,7 +34,7 @@ public class Trainer {
         }
     }
 
-    /*Takes the name of the person you wish to find from the AthletesTrainingResults. If said person exists in the
+    /*Takes the name of the person you wish to find from the AthletesTrainingResults.csv. If said person exists in the
      * file it will isolate the discipline you wish to update from said athlete so that you can update it using the newTime.*/
     public ArrayList<String> setAthleteTrainingTime(String name, ArrayList<String> athletesFromFile, String
             discipline, Double newTime) {
