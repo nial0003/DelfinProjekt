@@ -195,6 +195,12 @@ public class Controller {
         return chairman.groupByAgeGroup();
     }
 
+    public void addMember(String firstName, String lastName, int year, int month, int day, String gender, String address, int phoneNumber, String membershipStatus, String membershipType, boolean hasPaid) {
+        chairman.addMember(firstName, lastName, year, month, day, gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
+        rewriteFileWithNewData();
+    }
+
+
 }
 
 
