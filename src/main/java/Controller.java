@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Controller {
     Chairman chairman = new Chairman();
@@ -176,6 +177,22 @@ public class Controller {
 
     public Member getMemberFromIndex(int choice, ArrayList<Member> foundMembers) {
         return chairman.getMemberFromIndex(choice, foundMembers);
+    }
+
+    public ArrayList<Member> findMember(String search) {
+        return chairman.findMembers(search);
+    }
+
+    public Map<MembershipType, ArrayList<Member>> groupByMembershipStatus() {
+        return chairman.groupByMembershipStatus();
+    }
+
+    public Map<MembershipType, ArrayList<Member>> groupByMembershipType() {
+        return chairman.groupByMembershipType();
+    }
+
+    public Map<MembershipType, ArrayList<Member>> groupByAgeGroup() {
+        return chairman.groupByAgeGroup();
     }
 
 }
