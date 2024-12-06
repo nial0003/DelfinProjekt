@@ -1,7 +1,6 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -13,7 +12,6 @@ public class UserInterface {
     private Chairman chairman;
     private Scanner sc;
     private final Accountant accountant;
-    private final Controller cont;
     private final FileHandler fh;
 
 
@@ -24,10 +22,10 @@ public class UserInterface {
         this.fh = new FileHandler();
         this.sc = new Scanner(System.in);
         this.accountant = new Accountant();
-        this.cont = new Controller();
+        this.controller = new Controller();
         chairman = new Chairman();
         sc = new Scanner(System.in);
-        controller = new Controller();
+
     }
 
     //--------------------Start of program------------------------------------------------------------------------------
@@ -247,12 +245,12 @@ public class UserInterface {
 
         while (!indexIsFound) {
             String nameOfMemberToFind = sc.nextLine();
-            foundMembers = chairman.findMembers(nameOfMemberToFind);
+            foundMembers = controller.findMember(nameOfMemberToFind);
             if (!foundMembers.isEmpty()) {
                 int index = 1;
                 for (Member member : foundMembers) {
                     if (member != null) {
-                        System.out.println(index + ") " + cont.getName(member));
+                        System.out.println(index + ") " + controller.getName(member));
                     } else {
                         System.out.println("Fejl. Ukendt medlem");
                     }
@@ -266,7 +264,7 @@ public class UserInterface {
         System.out.println("Vælg venligst et medlem");
         int choice = takeIntUserInput();
 
-        Member selectedMember = cont.getMemberFromIndex(choice, foundMembers);
+        Member selectedMember = controller.getMemberFromIndex(choice, foundMembers);
         System.out.println("Du har valgt " + selectedMember);
         return controller.getMemberIndex(selectedMember.getName());
     }
@@ -299,15 +297,15 @@ public class UserInterface {
 
             switch (input) {
                 case "1" -> {
-                    Map<MembershipType, ArrayList<Member>> groupedByStatus = chairman.groupByMembershipStatus();
+                    Map<MembershipType, ArrayList<Member>> groupedByStatus = controller.groupByMembershipStatus();
                     displayGroupedMembers(groupedByStatus);
                 }
                 case "2" -> {
-                    Map<MembershipType, ArrayList<Member>> groupedByType = chairman.groupByMembershipType();
+                    Map<MembershipType, ArrayList<Member>> groupedByType = controller.groupByMembershipType();
                     displayGroupedMembers(groupedByType);
                 }
                 case "3" -> {
-                    Map<MembershipType, ArrayList<Member>> groupedByAge = chairman.groupByAgeGroup();
+                    Map<MembershipType, ArrayList<Member>> groupedByAge = controller.groupByAgeGroup();
                     displayGroupedMembers(groupedByAge);
                 }
                 case "9" -> {
