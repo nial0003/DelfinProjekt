@@ -17,7 +17,6 @@ public class UserInterface {
     private final FileHandler fh;
 
 
-
     //--------------------Constructor-----------------------------------------------------------------------------------
     public UserInterface() {
         this.chairman = new Chairman();
@@ -33,14 +32,18 @@ public class UserInterface {
     //--------------------Start of program------------------------------------------------------------------------------
     public void startProgram() {
         System.out.println("Velkommen til Svømmeklubben Delfinen!");
+
         while (true) {
-            System.out.println("""
-                    Vælg din rolle ved at indtaste tilhørende nummer, eller afslut programmet:
-                    1. Formand
-                    2. Kassér
-                    3. Træner
-                    9. Afslut
-                    """);
+            System.out.println("=================================");
+            System.out.println("      Svømmeklubben Delfinen     ");
+            System.out.println("=================================");
+            System.out.println("| [1] [ Formand ]              |");
+            System.out.println("| [2] [ Kassér  ]              |");
+            System.out.println("| [3] [ Træner  ]              |");
+            System.out.println("| [9] [ Afslut  ]              |");
+            System.out.println("=================================");
+            System.out.print("Vælg din rolle (1-3 eller 9): ");
+
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> {
@@ -51,7 +54,7 @@ public class UserInterface {
                     }
                 }
                 case "2" -> {
-                    if (authenticateRole("Kasser", "2222")) {
+                    if (authenticateRole("Kassér", "2222")) {
                         accountantMenu();
                     } else {
                         System.out.println("Ugyldig adgangskode. Prøv igen.");
@@ -65,13 +68,14 @@ public class UserInterface {
                     }
                 }
                 case "9" -> {
-                    System.out.println("Tak for nu!");
+                    System.out.println("Tak for nu! Programmet afsluttes.");
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
             }
         }
     }
+
 
     //--------------------Method to authenticate user role--------------------------------------------------------------
     private boolean authenticateRole(String role, String expectedCode) {
@@ -83,20 +87,25 @@ public class UserInterface {
     //--------------------Chairman menu---------------------------------------------------------------------------------
     private void chairmanMenu() {
         System.out.println("Velkommen Formand!");
+
         while (true) {
-            System.out.println("""
-                    Vælg en funktion:
-                    1. Tilføj et nyt medlem
-                    2. Opdater medlemsoplysninger
-                    3. Medlemsliste
-                    9. Tilbage til hovedmenu
-                    """);
+            System.out.println("=================================");
+            System.out.println("           Formandsmenu          ");
+            System.out.println("=================================");
+            System.out.println("| [1] [ Tilføj medlem  ]       |");
+            System.out.println("| [2] [ Opdater medlem ]       |");
+            System.out.println("| [3] [ Medlemsliste   ]       |");
+            System.out.println("| [9] [ Hovedmenu      ]       |");
+            System.out.println("=================================");
+            System.out.print("Vælg en funktion (1-3 eller 9): ");
+
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> addMember();
                 case "2" -> editMember();
                 case "3" -> displayMemberList();
                 case "9" -> {
+                    System.out.println("Tilbage til hovedmenuen.");
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
@@ -130,7 +139,7 @@ public class UserInterface {
         }
         System.out.print("Køn: ");
         String gender = sc.nextLine();
-        System.out.print("Adresse: (format: gadenavn husnummer postnummer by)");
+        System.out.println("Adresse: (format: gadenavn husnummer postnummer by)");
         String address = sc.nextLine();
         System.out.print("Telefonnummer: ");
         int phoneNumber = 0;
@@ -154,14 +163,16 @@ public class UserInterface {
         System.out.print("Medlemstype (HOBBY/ATLET): ");
         String membershipType = sc.nextLine();
         System.out.print("Har betalt (ja/nej): ");
-        boolean hasPaid = Boolean.parseBoolean(sc.nextLine());
+        boolean hasPaid = sc.nextLine().equalsIgnoreCase("ja");
 
-        chairman.addMember(firstName, lastName, birthDate.getYear(), birthDate.getMonthValue(),
-                birthDate.getDayOfMonth(), gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
-        System.out.println("Medlem tilføjet!");
+        controller.addMember(firstName, lastName, birthDate.getYear(), birthDate.getMonthValue(), birthDate.getDayOfMonth(),
+                gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
+
+        System.out.println("=================================");
+        System.out.println("         Medlem tilføjet!        ");
+        System.out.println("=================================");
+        System.out.println("  Returnerer til Formandsmenuen  ");
     }
-
-
 
     //--------------------Method to edit member--------------------------------------------------------------------------
     public void editMember() {
@@ -321,155 +332,85 @@ public class UserInterface {
     //--------------------Trainer menu----------------------------------------------------------------------------------
     private void trainerMenu() {
         System.out.println("Velkommen Træner!");
-        controller.addAthletesToListForTraining();
+
+        //controller.addAthletesToList();
         controller.saveAthleteMembersToAthleteTrainingFile();
         controller.rewriteFileWithNewData();
+
         while (true) {
-            System.out.println("""
-                    Vælg en funktion:
-                    1. Opdater medlems trænings resultat
-                    2. Tilføj konkurence resultat til atlet
-                    3. Se bedste svømmer i disciplin
-                    9. Tilbage til hovedmenuen""");
+            System.out.println("===================================");
+            System.out.println("            Trænermenu             ");
+            System.out.println("===================================");
+            System.out.println("| [1] [ Opdater træningsresultat ] |");
+            System.out.println("| [2] [ Tilføj konkurrence       ] |");
+            System.out.println("| [3] [ Se bedste svømmer        ] |");
+            System.out.println("| [9] [ Hovedmenu                ] |");
+            System.out.println("===================================");
+            System.out.print("Vælg en funktion (1-3 eller 9): ");
 
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> updateTrainingResult();
                 case "2" -> addCompetitionToAthlete();
-                case "3" -> showBestAthletes();
+                case "3" -> System.out.println("(Funktionalitet ikke implementeret endnu)");
                 case "9" -> {
+                    System.out.println("Tilbage til hovedmenuen.");
                     return;
                 }
+                default -> System.out.println("Ugyldigt valg. Prøv igen.");
             }
         }
     }
 
     //--------------------Method to update training results-------------------------------------------------------------
-    private void showBestAthletes(){
-        System.out.println("""
-                Indenfor hvilken disciplin vil du gerne se de bedste svømmere?
-                1. Crawl
-                2. Butterfly
-                3. Rygcrawl
-                4. Brystsvømning""");
-        int input = sc.nextInt();
-        String disciplin = switch (input){
-            case 1 -> "CRAWL";
-            case 2 -> "BUTTERFLY";
-            case 3 -> "RYGCRAWL";
-            case 4 -> "BRYSTSVØMNING";
-            default -> "Forkert disciplin";
-        };
-        System.out.println("""
-                Vil du se seniorhold eller juniorhold?
-                1. Juniorhold
-                2. Seniorhold""");
-        input = sc.nextInt();
-        String team = switch (input){
-            case 1 -> "Juniorhold";
-            case 2 -> "Seniorhold";
-            default -> "Forkert hold valg";
-        };
-        sc.nextLine();
-        System.out.println("""
-                Træning eller konkurence?
-                1. træning
-                2. konkurence""");
-        input = sc.nextInt();
-        String trainingOrComp = switch (input){
-            case 1 -> "training";
-            case 2 -> "competition";
-            default -> "Forkert valg af træning eller konkurence";
-        };
-        sc.nextLine();
-        int index = getDisciplinIndex(disciplin);
-        ArrayList<String> fiveBestAthletes = controller.showBestAthletes(trainingOrComp, team, disciplin, index);
-        System.out.println("-------------- Bedste " + disciplin.toLowerCase() + " svømmere i træning for " + team + " --------------");
-        for (String athleteResult : fiveBestAthletes){
-            System.out.println(athleteResult);
-        }
-        System.out.println("-------------------------------------------------------------------------------");
-    }
-
-    private int getDisciplinIndex(String disciplin){
-        switch (disciplin.toUpperCase()){
-            case "BUTTERFLY": return 3;
-            case "CRAWL": return 4;
-            case "RYGCRAWL": return 5;
-            case "BRYSTSVØMNING": return 6;
-            default: return -1;
-        }
-    }
-
     private void updateTrainingResult() {
         System.out.println("Navn på atlet:");
         String name = sc.nextLine();
-        name = findCorrectAthlete(name);
         System.out.println("Navn på disciplin {Crawl, Butterfly, Rygcrawl, Brystsvømning}:");
         String discipline = sc.nextLine();
-        System.out.println("Ny trænings tid i sekunder:");
+        System.out.println("Ny trænings tid:");
         double newTime = sc.nextDouble();
-        sc.nextLine();
-        controller.setAthleteTrainingTime(name.toLowerCase(), discipline, newTime);
+        controller.setAthleteTrainingTime(name, discipline, newTime);
         System.out.println(discipline + " for " + name + " er blevet ændret til: " + newTime);
-    }
-
-    private String findCorrectAthlete(String name){
-        ArrayList<String> oneOrMoreAthletes = controller.findCorrectAthlete(name.toLowerCase());
-        int index = 1;
-        if (oneOrMoreAthletes.size() == 1){
-            return oneOrMoreAthletes.getFirst();
-        } else {
-            System.out.println("More than one Athlete of that name exists, please pick correct Athlete: ");
-            for (int i = 0; i < oneOrMoreAthletes.size(); i++) {
-                if (oneOrMoreAthletes.get(i) != null){
-                    String[] athleteString = oneOrMoreAthletes.get(i).split(",");
-                    String athleteName = athleteString[1] + ", " + athleteString[2];
-                    System.out.println(index + ") " + athleteName);
-                    index++;
-                }
-            }
-            int choice = sc.nextInt() - 1;
-            sc.nextLine();
-            return oneOrMoreAthletes.get(choice);
-        }
     }
 
     //--------------------Method to add a competition type to an athlete------------------------------------------------
     private void addCompetitionToAthlete() {
         System.out.println("Navn på atlet:");
         String name = sc.nextLine();
-        name = findCorrectAthlete(name);
         System.out.println("Navn på stævne:");
         String competitionName = sc.nextLine();
         System.out.println("Hvilken disciplin deltog han i? {Crawl, Rygcrawl, Butterfly, Brystsvømning");
         String discipline = sc.nextLine();
-        System.out.println("Hvad var deres svømmetid i sekunder?");
+        System.out.println("Hvad var deres svømmetid?");
         double swimmingResult = sc.nextDouble();
-        sc.nextLine();
         System.out.println("Hvad blev deres placering?");
         int placement = sc.nextInt();
-        sc.nextLine();
         controller.addCompetitionToAthlete(name, competitionName, discipline, swimmingResult, placement);
     }
 
     //--------------------Accountant menu-------------------------------------------------------------------------------
     private void accountantMenu() {
         System.out.println("Velkommen Kassér!");
+
         while (true) {
-            System.out.println("""
-                    Vælg en funktion:
-                    1. Vis medlemmers betalingsstatus
-                    2. Opdater betalingsstatus for medlem
-                    3. Vis statistik
-                    9. Tilbage til hovedmenu
-                    """);
+            System.out.println("===================================");
+            System.out.println("            Kassérmenu             ");
+            System.out.println("===================================");
+            System.out.println("| [1] [ Vis betalingsstatus     ] |");
+            System.out.println("| [2] [ Opdater betalingsstatus ] |");
+            System.out.println("| [3] [ Vis statistik           ] | ");
+            System.out.println("| [9] [ Hovedmenu               ] | ");
+            System.out.println("===================================");
+            System.out.print("Vælg en funktion (1-3 eller 9): ");
+
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> showPaymentStatusSubMenu();
                 case "2" -> updatePaymentStatus();
                 case "3" -> showStatisticsSubMenu();
                 case "9" -> {
+                    System.out.println("Tilbage til hovedmenuen.");
                     return;
                 }
                 default -> System.out.println("Ugyldigt valg. Prøv igen.");
