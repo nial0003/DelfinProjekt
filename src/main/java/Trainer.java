@@ -41,7 +41,7 @@ public class Trainer {
         // ([\p{L}]+) : This part isolates the Discipline of the Athlete so we can run it against the Discipline names
         //              in the file of the correct person and update the training time
         // (,\[(\d+\.\d+)]) : Isolates the value of the correct discipline so we can update it to the newTime that we've given.
-        String regex = "([\\p{L}]+)(,\\[(\\d+\\.\\d+)])?";
+        String regex = "([\\p{L}]+)(\\[(\\d+\\.\\d+)])?";
 
         // takes the regex we have made and compiles it into a pattern which we can be used to correctly find the
         // discipline and it's value from a String so we can update the value.
@@ -87,10 +87,14 @@ public class Trainer {
             String currentTime = matcher.group(3);
 
             if (currentDiscipline.equalsIgnoreCase(discipline)) {
-                updatedString.append(currentDiscipline).append(",[").append(newTime).append("]");
+                updatedString.append(currentDiscipline).append("[").append(newTime).append("],");
             } else if (currentTime != null) {
-                updatedString.append(currentDiscipline).append(",[").append(currentTime).append("]");
+                updatedString.append(currentDiscipline).append("[").append(currentTime).append("],");
             }
+        }
+
+        if (!updatedString.isEmpty() && updatedString.charAt(updatedString.length() - 1) == ',') {
+            updatedString.deleteCharAt(updatedString.length() - 1);
         }
 
         //Adds the date to show when the trainingTime was updated.

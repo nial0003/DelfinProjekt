@@ -1,6 +1,9 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -115,21 +118,21 @@ public class FileHandler {
             String nameOfAthlete = "";
             for (int i = 0; i < athleteCompResults.size(); i++) {
                 if (!athleteCompResults.get(i).contains("Stævne")) {
-                    if (!athleteCompResults.get(i).isBlank()){
+                    if (!athleteCompResults.get(i).isBlank()) {
                         int lastCommaIndex = athleteCompResults.get(i).lastIndexOf(",");
                         nameOfAthlete = athleteCompResults.get(i).substring(0, lastCommaIndex);
                     }
                     i++;
                 }
                 Matcher matcher = pattern.matcher(athleteCompResults.get(i));
-                while (matcher.find()){
+                while (matcher.find()) {
                     listResult.add(matcher.group(1));
                 }
                 String compName = listResult.get(0);
                 String disciplineName = listResult.get(1);
                 Double time = Double.valueOf(listResult.get(2));
                 int placement = Integer.parseInt(listResult.get(3));
-                trainer.addCompetitionToAthlete(nameOfAthlete, compName, disciplineName, time, placement,true);
+                trainer.addCompetitionToAthlete(nameOfAthlete, compName, disciplineName, time, placement, true);
                 listResult.clear();
             }
         } catch (IOException e) {
@@ -185,6 +188,126 @@ public class FileHandler {
             throw new RuntimeException(e);
         }
         return output;
+    }
+
+    public ArrayList<String> junOrSen(String trainOrComp, String seniorOrJunior) {
+        ArrayList<String> junOrSen = new ArrayList<>();
+        if (trainOrComp.equalsIgnoreCase("training")) {
+            ArrayList<String> listOfAthletes = getAthletesFromAthleteTrainingFile();
+            for (String athlete : listOfAthletes) {
+                String[] strs = athlete.split(",");
+                String team = strs[2];
+                if (team.equalsIgnoreCase(seniorOrJunior)) {
+                    junOrSen.add(athlete);
+                }
+            }
+        } else if (trainOrComp.equalsIgnoreCase("competition")) {
+            try (FileReader fr = new FileReader(athleteCompetitionResults)) {
+                BufferedReader br = new BufferedReader(fr);
+                String line = br.readLine();
+                while (!line.equalsIgnoreCase("end")) {
+                    String[] lineSplitted = line.split(",");
+                    String team = lineSplitted[2];
+                    if (team.equalsIgnoreCase(seniorOrJunior)) {
+                        junOrSen.add(line);
+                    }
+                    line = br.readLine();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return junOrSen;
+    }
+
+    public ArrayList<String> showBestAthletes(String trainOrComp, String seniorOrJunior, String disciplin, int index) {
+        ArrayList<String> junOrSen = junOrSen(trainOrComp, seniorOrJunior);
+        ArrayList<String> fiveBestAthletes = new ArrayList<>();
+
+        if (trainOrComp.equalsIgnoreCase("training")) {
+            Map<String, Double> athleteTimes = new HashMap<>();
+
+            // Regex to match disciplines and their times
+            String regex = "([\\p{L}]+)\\[(\\d+\\.\\d+)]";
+            Pattern pattern = Pattern.compile(regex);
+
+            for (String athlete : junOrSen) {
+                String[] parts = athlete.split(",");
+                if (parts.length < 4) {
+                    System.out.println("Invalid line format: " + athlete);
+                    continue;
+                }
+
+                String name = parts[0] + " " + parts[1];
+                String trainingData = athlete.contains("træning{") && athlete.contains("}") ?
+                        athlete.substring(athlete.indexOf("træning{") + 8, athlete.lastIndexOf('}')) : "";
+
+
+                Matcher matcher = pattern.matcher(trainingData);
+
+                while (matcher.find()) {
+                    String currentDiscipline = matcher.group(1);
+                    double time = Double.parseDouble(matcher.group(2));
+
+                    if (currentDiscipline.equalsIgnoreCase(disciplin) && time > 0.0) {
+                        athleteTimes.put(name, time);
+                    }
+                }
+            }
+
+            if (athleteTimes.isEmpty()) {
+                return fiveBestAthletes;
+            }
+
+            // Sort athletes by time
+            List<Map.Entry<String, Double>> sortedAthletes = new ArrayList<>(athleteTimes.entrySet());
+            sortedAthletes.sort(Map.Entry.comparingByValue());
+
+            for (int i = 0; i < Math.min(5, sortedAthletes.size()); i++) {
+                Map.Entry<String, Double> entry = sortedAthletes.get(i);
+                fiveBestAthletes.add((i + 1) + ". " + entry.getKey() + " - " + entry.getValue() + " seconds");
+            }
+        } else if (trainOrComp.equalsIgnoreCase("competition")) {
+            ArrayList<String> athleteData = junOrSen("competition", seniorOrJunior);
+            Map<String, Double> bestTimes = new HashMap<>();
+
+            for (String line : athleteData) {
+                String[] parts = line.split(",Stævne\\{");
+                if (parts.length < 2) continue;
+
+                String name = parts[0];
+                for (int i = 1; i < parts.length; i++) {
+                    String event = parts[i].replaceAll("}", "");
+                    String evenDiscipline = extractBetween(event, "discipline[", "]");
+                    String eventTime = extractBetween(event, "Tid[", "]");
+
+                    if (evenDiscipline != null && evenDiscipline.equalsIgnoreCase(disciplin) && eventTime != null) {
+                        double time = Double.parseDouble(eventTime);
+                        bestTimes.put(name, Math.min(bestTimes.getOrDefault(name, Double.MAX_VALUE), time));
+                    }
+                }
+            }
+
+            List<Map.Entry<String, Double>> sortedResults = new ArrayList<>(bestTimes.entrySet());
+            sortedResults.sort(Map.Entry.comparingByValue());
+
+            for (int i = 0; i < Math.min(5, sortedResults.size()); i++) {
+                Map.Entry<String, Double> entry = sortedResults.get(i);
+                String name = entry.getKey();
+                double time = entry.getValue();
+                fiveBestAthletes.add((i + 1) + ", " + name + " - " + time + " sekunder");
+            }
+        }
+        return fiveBestAthletes;
+    }
+
+    private String extractBetween(String text, String start, String end) {
+        int startIndex = text.indexOf(start);
+        int endIndex = text.indexOf(end, startIndex + start.length());
+        if (startIndex != -1 && endIndex != -1) {
+            return text.substring(startIndex + start.length(), endIndex);
+        }
+        return null;
     }
 }
 

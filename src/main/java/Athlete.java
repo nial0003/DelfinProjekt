@@ -43,7 +43,7 @@ public class Athlete extends Member {
                 SwimmingDisciplines discipline = entry.getKey();
                 List<Double> times = entry.getValue();
 
-                finalString.append(discipline).append(",");
+                finalString.append(discipline);
 
                 if (times != null && !times.isEmpty()) {
                     finalString.append("[");
@@ -55,7 +55,7 @@ public class Athlete extends Member {
                     }
                     finalString.append("],");
                 } else {
-                    finalString.append("[0.0]");
+                    finalString.append("[0.0],");
                 }
 
             }
@@ -64,9 +64,9 @@ public class Athlete extends Member {
             }
             finalString.append("}\n");
         } else {
-            finalString.append(name).append(",").append(team).append("\n");
+            finalString.append(name).append(",").append(team).append(",");
             for (Competition competition : competitionTimes){
-                finalString.append("Stævne").append(competition.toString()).append("\n");
+                finalString.append("Stævne").append(competition.toString()).append(",");
             }
             finalString.append("\n");
         }

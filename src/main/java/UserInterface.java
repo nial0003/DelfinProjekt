@@ -106,7 +106,7 @@ public class UserInterface {
             switch (input) {
                 case "1" -> updateTrainingResult();
                 case "2" -> addCompetitionToAthlete();
-                case "3" -> System.out.println("(funktionalitet ikke implementeret endnu)");
+                case "3" -> showBestAthletes();
                 case "9" -> {
                     return;
                 }
@@ -189,13 +189,69 @@ public class UserInterface {
         }
     }
 
+    private void showBestAthletes(){
+        System.out.println("""
+                Indenfor hvilken disciplin vil du gerne se de bedste svømmere?
+                1. Crawl
+                2. Butterfly
+                3. Rygcrawl
+                4. Brystsvømning""");
+        int input = sc.nextInt();
+        String disciplin = switch (input){
+            case 1 -> "CRAWL";
+            case 2 -> "BUTTERFLY";
+            case 3 -> "RYGCRAWL";
+            case 4 -> "BRYSTSVØMNING";
+            default -> "Forkert disciplin";
+        };
+        System.out.println("""
+                Vil du se seniorhold eller juniorhold?
+                1. Juniorhold
+                2. Seniorhold""");
+        input = sc.nextInt();
+        String team = switch (input){
+            case 1 -> "Juniorhold";
+            case 2 -> "Seniorhold";
+            default -> "Forkert hold valg";
+        };
+        sc.nextLine();
+        System.out.println("""
+                Træning eller konkurence?
+                1. træning
+                2. konkurence""");
+        input = sc.nextInt();
+        String trainingOrComp = switch (input){
+            case 1 -> "training";
+            case 2 -> "competition";
+            default -> "Forkert valg af træning eller konkurence";
+        };
+        sc.nextLine();
+        int index = getDisciplinIndex(disciplin);
+        ArrayList<String> fiveBestAthletes = controller.showBestAthletes(trainingOrComp, team, disciplin, index);
+        System.out.println("-------------- Bedste " + disciplin.toLowerCase() + " svømmere i træning for " + team + " --------------");
+        for (String athleteResult : fiveBestAthletes){
+            System.out.println(athleteResult);
+        }
+        System.out.println("-------------------------------------------------------------------------------");
+    }
+
+    private int getDisciplinIndex(String disciplin){
+        switch (disciplin.toUpperCase()){
+            case "BUTTERFLY": return 3;
+            case "CRAWL": return 4;
+            case "RYGCRAWL": return 5;
+            case "BRYSTSVØMNING": return 6;
+            default: return -1;
+        }
+    }
+
     private void updateTrainingResult() {
         System.out.println("Navn på atlet:");
         String name = sc.nextLine();
         name = findCorrectAthlete(name);
         System.out.println("Navn på disciplin {Crawl, Butterfly, Rygcrawl, Brystsvømning}:");
         String discipline = sc.nextLine();
-        System.out.println("Ny trænings tid:");
+        System.out.println("Ny trænings tid i sekunder:");
         double newTime = sc.nextDouble();
         sc.nextLine();
         controller.setAthleteTrainingTime(name.toLowerCase(), discipline, newTime);
@@ -231,7 +287,7 @@ public class UserInterface {
         String competitionName = sc.nextLine();
         System.out.println("Hvilken disciplin deltog han i? {Crawl, Rygcrawl, Butterfly, Brystsvømning");
         String discipline = sc.nextLine();
-        System.out.println("Hvad var deres svømmetid?");
+        System.out.println("Hvad var deres svømmetid i sekunder?");
         double swimmingResult = sc.nextDouble();
         sc.nextLine();
         System.out.println("Hvad blev deres placering?");

@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Controller {
     Chairman chairman = new Chairman();
@@ -15,24 +17,25 @@ public class Controller {
     }
 
     public String getFormatMembers(ArrayList<Member> members) {
-       return accountant.formatMemberPaymentStatus(members);
+        return accountant.formatMemberPaymentStatus(members);
     }
 
     public String getFormattedTotalMembershipFees() {
         return accountant.formatTotalMembershipFees();
     }
 
-    public void addAthletesToListForTraining(){
+    public void addAthletesToListForTraining() {
         trainer.addAthletesToList(chairman.getListOfMembers(), true);
     }
 
-    private void addAthletesToListForCompetition(){
+    private void addAthletesToListForCompetition() {
         trainer.addAthletesToList(chairman.getListOfMembers(), false);
     }
 
-    public void saveAthleteMembersToAthleteTrainingFile(){
+    public void saveAthleteMembersToAthleteTrainingFile() {
         fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
     }
+
     public String getFoundMembers(String searchKeyword) {
         ArrayList<Member> foundMembers = accountant.findMembers(searchKeyword);
 
@@ -58,29 +61,36 @@ public class Controller {
         return accountant.findMembers(searchKeyword);
     }
 
-    public void setAthleteTrainingTime(String name, String discipline, double newTime){
+    public void setAthleteTrainingTime(String name, String discipline, double newTime) {
         ArrayList<String> updatedTrainingTimes = trainer.setAthleteTrainingTime(name, fh.getAthletesFromAthleteTrainingFile(), discipline, newTime);
         fh.saveUpdatedAthletesToFile(updatedTrainingTimes);
     }
 
-    public void addCompetitionToAthlete(String name, String competitionName, String discipline, double time, int placement){
+    public void addCompetitionToAthlete(String name, String competitionName, String discipline, double time, int placement) {
         addAthletesToListForCompetition();
         fh.addCompetitionToListFromFile(trainer);
-        trainer.addCompetitionToAthlete(name, competitionName, discipline, time, placement,false);
+        trainer.addCompetitionToAthlete(name, competitionName, discipline, time, placement, false);
         fh.saveCompetitionResultsToFile(trainer.getAthletes());
         trainer.clearAthleteList();
     }
 
-    public void rewriteFileWithNewData(){
+    public ArrayList<String> showBestAthletes(String trainOrComp, String seniorOrJunior, String disciplin, int index) {
+        return fh.showBestAthletes(trainOrComp, seniorOrJunior, disciplin, index);
+    }
+
+
+
+
+    public void rewriteFileWithNewData() {
         fh.saveToFile(chairman.getListOfMembers(), false);
     }
 
-    public ArrayList<String> findCorrectAthlete(String name){
+    public ArrayList<String> findCorrectAthlete(String name) {
         ArrayList<String> athletes = fh.getAthletesFromAthleteTrainingFile();
         ArrayList<String> moreThanOneAthlete = new ArrayList<>();
-        for (String athlete : athletes){
-            if (athlete.toLowerCase().contains(name)){
-                moreThanOneAthlete.add(athletes.indexOf(athlete) + "," +athlete);
+        for (String athlete : athletes) {
+            if (athlete.toLowerCase().contains(name)) {
+                moreThanOneAthlete.add(athletes.indexOf(athlete) + "," + athlete);
             }
         }
         return moreThanOneAthlete;

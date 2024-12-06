@@ -1,15 +1,15 @@
-Larsen,Lukas,1945,1,3,Mand,Skovvej 67 2706 København Ø,226226822,AKTIV,HOBBY,PENSIONIST,false,1,true
+Larsen,Lukas,1945,1,3,Mand,Skovvej 67 2706 København Ø,226226822,AKTIV,HOBBY,PENSIONIST,false,1,false
 Olsen,Signe,1952,7,6,Kvinde,Fredensvej 29 1661 Aalborg,458802006,PASSIV,ATLET,PENSIONIST,true,2,true
 Frandsen,Frida,1980,4,26,Kvinde,Siciliensgade 3 2776 Odense,557384452,PASSIV,ATLET,SENIOR,true,3,true
 Thomsen,Emma,1962,6,22,Kvinde,Lyngbyvej 30 1244 Havdrup,774958768,AKTIV,HOBBY,PENSIONIST,false,4,false
-Mikkelsen,Maja,1941,3,7,Kvinde,Solvang 63 6434 Aarhus,884355891,PASSIV,HOBBY,PENSIONIST,false,5,true
+Mikkelsen,Maja,1941,3,7,Kvinde,Solvang 63 6434 Aarhus,884355891,PASSIV,HOBBY,PENSIONIST,false,5,false
 Knudsen,Nikolaj,1946,11,6,Mand,Gulbergsgade 49 4747 København Ø,459971119,PASSIV,ATLET,PENSIONIST,true,6,true
 Thomsen,Oliver,1970,10,5,Mand,Solvang 74 2423 Havdrup,224900824,AKTIV,ATLET,SENIOR,false,7,true
 Madsen,Ida,1982,2,14,Kvinde,Engvej 66 8742 Odense,667464537,PASSIV,ATLET,SENIOR,true,8,true
 Albrektsen,Nana,1906,1,12,Kvinde,Solvang 30 7166 Næstved,667787215,AKTIV,ATLET,PENSIONIST,true,9,true
 Jørgensen,Sofie,1933,7,15,Kvinde,Gulbergsgade 6 4938 Aarhus,224839506,PASSIV,ATLET,PENSIONIST,true,10,true
-Christensen,Mathias,1924,7,25,Mand,Lyngbyvej 50 5391 Odense,884032555,AKTIV,HOBBY,PENSIONIST,false,11,true
-Jensen,Theodor,1973,1,11,Mand,Skovvej 89 1414 Aarhus,556478103,PASSIV,HOBBY,SENIOR,false,12,true
+Christensen,Mathias,1924,7,25,Mand,Lyngbyvej 50 5391 Odense,884032555,AKTIV,HOBBY,PENSIONIST,false,11,false
+Jensen,Theodor,1973,1,11,Mand,Skovvej 89 1414 Aarhus,556478103,PASSIV,HOBBY,SENIOR,false,12,false
 Nielsen,Freja,1997,7,22,Kvinde,Holbækvej 5 4808 Lyngby,998715262,PASSIV,ATLET,SENIOR,false,13,true
 Knudsen,Morkel,1950,2,9,Mand,Fredensvej 74 1235 Odense,998598409,AKTIV,HOBBY,PENSIONIST,true,14,false
 Mikkelsen,Noah,2007,9,2,Mand,Solvang 31 4162 Roskilde,779936214,AKTIV,ATLET,JUNIOR,true,15,true
@@ -23,24 +23,24 @@ Albrektsen,Noah,2011,6,7,Mand,Siciliensgade 33 4613 Roskilde,553800476,PASSIV,AT
 Christensen,Freja,1909,2,18,Kvinde,Strandvejen 34 6659 Roskilde,664559086,PASSIV,ATLET,PENSIONIST,false,23,true
 Albrektsen,Clara,1970,2,19,Kvinde,Siciliensgade 72 7231 Helsingør,881419383,AKTIV,HOBBY,SENIOR,false,24,false
 Christensen,Anton,2014,5,17,Mand,Fredensvej 43 4824 København S,301321746,AKTIV,HOBBY,JUNIOR,false,25,false
-Olsen,Lukas,1929,7,21,Mand,Lindevang 1 9564 København S,458027990,PASSIV,HOBBY,PENSIONIST,true,26,true
-Madsen,Nana,1979,7,21,Kvinde,Gulbergsgade 56 3419 Lyngby,309867466,AKTIV,HOBBY,SENIOR,true,27,true
+Olsen,Lukas,1929,7,21,Mand,Lindevang 1 9564 København S,458027990,PASSIV,HOBBY,PENSIONIST,true,26,false
+Madsen,Nana,1979,7,21,Kvinde,Gulbergsgade 56 3419 Lyngby,309867466,AKTIV,HOBBY,SENIOR,true,27,false
 Madsen,Anton,1954,8,23,Mand,Borupvej 65 4291 Aalborg,454289150,PASSIV,ATLET,PENSIONIST,false,28,true
 Tvorup,Lukas,1939,3,18,Mand,Solvang 16 2226 Helsingør,554497164,PASSIV,ATLET,PENSIONIST,true,29,true
 Thomsen,Freja,2015,5,28,Kvinde,Fredensvej 60 1927 Roskilde,228420204,PASSIV,ATLET,JUNIOR,true,30,true
 Pedersen,Nana,2022,2,28,Kvinde,Gulbergsgade 100 1970 Aarhus,558281211,PASSIV,ATLET,JUNIOR,true,31,true
-Larsen,Signe,1930,4,20,Kvinde,Parkvej 56 9274 Helsingør,303098537,PASSIV,HOBBY,PENSIONIST,false,32,true
-Madsen,Emma,1933,8,24,Kvinde,Lyngbyvej 82 3257 Kolding,221220780,PASSIV,HOBBY,PENSIONIST,false,33,true
+Larsen,Signe,1930,4,20,Kvinde,Parkvej 56 9274 Helsingør,303098537,PASSIV,HOBBY,PENSIONIST,false,32,false
+Madsen,Emma,1933,8,24,Kvinde,Lyngbyvej 82 3257 Kolding,221220780,PASSIV,HOBBY,PENSIONIST,false,33,false
 Nielsen,Noah,1909,5,16,Mand,Lyngbyvej 82 1111 Helsingør,881371096,AKTIV,ATLET,PENSIONIST,false,34,true
 Pedersen,William,1997,6,28,Mand,Parkvej 54 8230 Næstved,884583508,AKTIV,HOBBY,SENIOR,false,35,false
 Jørgensen,Emil,1908,4,4,Mand,Nygade 84 9964 København S,665055418,PASSIV,ATLET,PENSIONIST,false,36,true
-Knudsen,Nana,1979,7,8,Kvinde,Holbækvej 13 8769 Fredericia,667112227,PASSIV,HOBBY,SENIOR,false,37,true
+Knudsen,Nana,1979,7,8,Kvinde,Holbækvej 13 8769 Fredericia,667112227,PASSIV,HOBBY,SENIOR,false,37,false
 Knudsen,Anton,1978,3,7,Mand,Hansensvej 56 9298 Hellerup,663582918,PASSIV,ATLET,SENIOR,false,38,true
 Poulsen,Lukas,2006,5,26,Mand,Nygade 65 5689 Fredericia,772537740,AKTIV,HOBBY,SENIOR,true,39,false
 Thomsen,Ida,1929,4,21,Kvinde,Søndervej 54 9005 Hellerup,307484653,PASSIV,HOBBY,PENSIONIST,true,40,false
 Nielsen,Anna,2022,2,14,Kvinde,Skovvej 74 8442 København Ø,227026173,AKTIV,ATLET,JUNIOR,true,41,true
 Tvorup,Frida,2009,11,22,Kvinde,Lyngbyvej 62 7957 Fredericia,992787104,AKTIV,ATLET,JUNIOR,false,42,true
-Jørgensen,Oliver,1912,5,6,Mand,Holbækvej 78 5857 Aarhus,551927709,PASSIV,HOBBY,PENSIONIST,false,43,true
+Jørgensen,Oliver,1912,5,6,Mand,Holbækvej 78 5857 Aarhus,551927709,PASSIV,HOBBY,PENSIONIST,false,43,false
 Olsen,Noah,1913,9,11,Mand,Østerbrogade 49 5866 København S,304477223,PASSIV,ATLET,PENSIONIST,true,44,true
 Mortensen,Lukas,1999,12,5,Mand,Holbækvej 81 7568 Roskilde,224442840,PASSIV,HOBBY,SENIOR,true,45,false
 Hansen,Frida,1987,6,3,Kvinde,Strandvejen 72 2371 Helsingør,551664356,PASSIV,ATLET,SENIOR,true,46,true
@@ -54,31 +54,31 @@ Knudsen,Emma,1978,11,24,Kvinde,Fredensvej 9 9136 København S,456608302,AKTIV,HO
 Schmidt,Nikolaj,1988,3,19,Mand,Nygade 36 3301 Aalborg,226587074,PASSIV,ATLET,SENIOR,true,54,true
 Rosenbek,William,2005,4,27,Mand,Lyngbyvej 60 7282 Hellerup,774696702,PASSIV,ATLET,SENIOR,true,55,true
 Pedersen,Malthe,1989,2,13,Mand,Fredensvej 75 6876 Fredericia,776734151,AKTIV,ATLET,SENIOR,true,56,true
-Mortensen,Maja,1906,12,13,Kvinde,Solvang 96 6061 Fredericia,774219661,AKTIV,HOBBY,PENSIONIST,false,57,true
+Mortensen,Maja,1906,12,13,Kvinde,Solvang 96 6061 Fredericia,774219661,AKTIV,HOBBY,PENSIONIST,false,57,false
 Hansen,Anton,1912,11,19,Mand,Gulbergsgade 85 8523 Hellerup,225839069,AKTIV,ATLET,PENSIONIST,true,58,true
 Christensen,Theodor,2008,12,8,Mand,Lyngbyvej 78 2806 Helsingør,667536775,PASSIV,ATLET,JUNIOR,true,59,true
 Andersen,Clara,1961,1,25,Kvinde,Lyngbyvej 15 5275 Havdrup,662988195,PASSIV,ATLET,PENSIONIST,false,60,true
 Nielsen,Ida,1989,8,24,Kvinde,Siciliensgade 78 9709 København S,996663614,AKTIV,ATLET,SENIOR,false,61,true
-Andersen,Freja,1912,5,9,Kvinde,Holbækvej 48 8449 Fredericia,889250430,AKTIV,HOBBY,PENSIONIST,false,62,true
-Tvorup,Sofia,1928,4,2,Kvinde,Lyngbyvej 99 6517 Fredericia,459163043,AKTIV,HOBBY,PENSIONIST,true,63,true
-Mortensen,Nana,2006,8,18,Kvinde,Siciliensgade 44 5218 Holbæk,669154480,PASSIV,HOBBY,SENIOR,false,64,true
+Andersen,Freja,1912,5,9,Kvinde,Holbækvej 48 8449 Fredericia,889250430,AKTIV,HOBBY,PENSIONIST,false,62,false
+Tvorup,Sofia,1928,4,2,Kvinde,Lyngbyvej 99 6517 Fredericia,459163043,AKTIV,HOBBY,PENSIONIST,true,63,false
+Mortensen,Nana,2006,8,18,Kvinde,Siciliensgade 44 5218 Holbæk,669154480,PASSIV,HOBBY,SENIOR,false,64,false
 Albrektsen,Jonathan,1939,2,22,Mand,Borupvej 90 1264 Aarhus,228097462,AKTIV,HOBBY,PENSIONIST,true,65,false
 Andersen,Malthe,1935,12,5,Mand,Østerbrogade 6 6565 Aalborg,552059964,PASSIV,ATLET,PENSIONIST,false,66,true
-Jørgensen,Nana,1974,3,23,Kvinde,Fredensvej 39 1302 Lyngby,665716628,AKTIV,HOBBY,SENIOR,true,67,true
+Jørgensen,Nana,1974,3,23,Kvinde,Fredensvej 39 1302 Lyngby,665716628,AKTIV,HOBBY,SENIOR,true,67,false
 Jørgensen,Frida,1931,8,4,Kvinde,Engvej 12 9347 København S,777590213,PASSIV,ATLET,PENSIONIST,true,68,true
 Tvorup,Frida,1997,3,8,Kvinde,Østerbrogade 33 9389 Odense,225218015,AKTIV,ATLET,SENIOR,false,69,true
 Albrektsen,Lukas,1971,2,17,Mand,Østerbrogade 8 4623 København S,995832816,AKTIV,HOBBY,SENIOR,true,70,false
-Frandsen,Clara,2017,11,18,Kvinde,Holbækvej 7 8595 Aarhus,776565975,PASSIV,HOBBY,JUNIOR,true,71,true
+Frandsen,Clara,2017,11,18,Kvinde,Holbækvej 7 8595 Aarhus,776565975,PASSIV,HOBBY,JUNIOR,true,71,false
 Nielsen,Victor,1998,3,28,Mand,Østerbrogade 13 7004 Hellerup,222591610,AKTIV,ATLET,SENIOR,false,72,true
 Hansen,Theodor,1901,10,18,Mand,Solvang 59 1432 Hellerup,303797614,AKTIV,ATLET,PENSIONIST,true,73,true
 Poulsen,Freja,1925,5,16,Kvinde,Engvej 11 6792 Hellerup,301568503,AKTIV,HOBBY,PENSIONIST,false,74,false
 Knudsen,Emma,1931,4,17,Kvinde,Lindevang 79 8597 Aarhus,775829496,AKTIV,ATLET,PENSIONIST,true,75,true
 Mortensen,Sofia,2001,8,2,Kvinde,Parkvej 79 1852 Aalborg,997828757,AKTIV,ATLET,SENIOR,false,76,true
-Pedersen,William,2021,11,23,Mand,Borupvej 7 9837 Havdrup,777911245,AKTIV,HOBBY,JUNIOR,false,77,true
-Christensen,Noah,1957,3,9,Mand,Lindevang 83 4634 København S,666356090,AKTIV,HOBBY,PENSIONIST,true,78,true
+Pedersen,William,2021,11,23,Mand,Borupvej 7 9837 Havdrup,777911245,AKTIV,HOBBY,JUNIOR,false,77,false
+Christensen,Noah,1957,3,9,Mand,Lindevang 83 4634 København S,666356090,AKTIV,HOBBY,PENSIONIST,true,78,false
 Olsen,Anna,1900,3,2,Kvinde,Thujavangen 52 9144 Aarhus,226053378,PASSIV,ATLET,PENSIONIST,false,79,true
 Thomsen,Frida,1981,7,14,Kvinde,Solvang 78 5159 Odense,884343783,AKTIV,ATLET,SENIOR,false,80,true
-Thomsen,Sofie,1901,6,4,Kvinde,Gulbergsgade 24 3971 København Ø,453935803,AKTIV,HOBBY,PENSIONIST,false,81,true
+Thomsen,Sofie,1901,6,4,Kvinde,Gulbergsgade 24 3971 København Ø,453935803,AKTIV,HOBBY,PENSIONIST,false,81,false
 Pedersen,Theodor,1958,2,18,Mand,Solvang 67 8991 Aarhus,888499858,PASSIV,HOBBY,PENSIONIST,false,82,false
 Poulsen,William,1986,9,11,Mand,Solvang 80 4694 Fredericia,454245664,AKTIV,ATLET,SENIOR,true,83,true
 Frandsen,Anton,1965,4,27,Mand,Østerbrogade 60 9332 Hellerup,662212590,PASSIV,ATLET,SENIOR,false,84,true
@@ -96,5 +96,5 @@ Mikkelsen,Maria,1948,9,21,Kvinde,Hansensvej 47 7873 Odense,994973461,AKTIV,ATLET
 Larsen,Nikolaj,1958,11,15,Mand,Østerbrogade 66 1964 København Ø,661770246,AKTIV,ATLET,PENSIONIST,true,96,true
 Olsen,Nikolaj,1992,6,27,Mand,Holbækvej 65 5045 København S,554711031,PASSIV,ATLET,SENIOR,false,97,true
 Jensen,Emil,1955,8,2,Mand,Engvej 3 9154 Holbæk,302929947,PASSIV,ATLET,PENSIONIST,true,98,true
-Mikkelsen,Sofie,1972,11,16,Kvinde,Parkvej 80 7036 Kolding,998939340,PASSIV,HOBBY,SENIOR,true,99,true
+Mikkelsen,Sofie,1972,11,16,Kvinde,Parkvej 80 7036 Kolding,998939340,PASSIV,HOBBY,SENIOR,true,99,false
 Mikkelsen,Sofia,2015,12,18,Kvinde,Lindevang 3 4870 Fredericia,229842362,PASSIV,HOBBY,JUNIOR,false,100,false
