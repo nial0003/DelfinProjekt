@@ -17,7 +17,6 @@ public class UserInterface {
     private final FileHandler fh;
 
 
-
     //--------------------Constructor-----------------------------------------------------------------------------------
     public UserInterface() {
         this.chairman = new Chairman();
@@ -156,17 +155,15 @@ public class UserInterface {
         System.out.print("Har betalt (ja/nej): ");
         boolean hasPaid = Boolean.parseBoolean(sc.nextLine());
 
-        chairman.addMember(firstName, lastName, birthDate.getYear(), birthDate.getMonthValue(),
-                birthDate.getDayOfMonth(), gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
+        chairman.addMember(firstName, lastName, birthDate.getYear(), birthDate.getMonthValue(), birthDate.getDayOfMonth(), gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
         System.out.println("Medlem tilføjet!");
     }
-
 
 
     //--------------------Method to edit member--------------------------------------------------------------------------
     public void editMember() {
         int index = findMemberIndex();
-            System.out.println("""
+        System.out.println("""
                 Hvad vil du gerne ændre?
                 1) Fornavn
                 2) Efternavn
@@ -176,53 +173,53 @@ public class UserInterface {
                 6) Aktiv/Passiv
                 7) Atlet/Hobby
                 """);
-            switch (takeIntUserInput()) {
-                case 1 -> {
-                    System.out.println("Indtast nyt fornavn");
-                    String newName = sc.nextLine();
-                    controller.setFirstNameForMemberAtIndex(index, newName);
-                    System.out.println("Fornavn er ændret til " + newName + "\n");
-                }
-                case 2 -> {
-                    System.out.println("Indtast nyt efternavn");
-                    String newName = sc.nextLine();
-                    controller.setLastNameForMemberAtIndex(index, newName);
-                    System.out.println("Efternavn er ændret til " + newName + "\n");
-                }
-                case 3 -> {
-                    System.out.println("Vælg køn: Kvinde/Mand\n");
-                    String newGender = sc.nextLine();
-                    controller.setGender(index,newGender);
-                    }
-                case 4 -> {
-                    System.out.println("Indtast ny adresse (Vej Nr PostNr By\n");
-                    String newAdress = sc.nextLine();
-                    controller.setAdress(index,newAdress);
-                }
-                case 5 -> {
-                    System.out.println("Indtast nyt telefonnummer\n");
-                    int newNumber = sc.nextInt();
-                    controller.setPhonenumber(index,newNumber);
-                }
-                case 6 -> {
-                    controller.setActivePassive(index);
-                    if (controller.getMembershipStatus(index) == MembershipType.AKTIV) {
-                        System.out.println("Medlemsstatus sat til AKTIV\n");
-                    } else {
-                        System.out.println("Medlemsstatus sat til PASSIV\n");
-                    }
-                }
-                case 7 -> {
-                    controller.setHobbyAthlete(index);
-                    if (controller.getMembershipType(index) == MembershipType.HOBBY) {
-                        System.out.println("Medlemstype sat til HOBBY\n");
-                    } else {
-                        System.out.println("Medlemstype sat til ATLET\n");
-                    }
-                }
-                default -> System.out.println("Ugyldigt valg");
+        switch (takeIntUserInput()) {
+            case 1 -> {
+                System.out.println("Indtast nyt fornavn");
+                String newName = sc.nextLine();
+                controller.setFirstNameForMemberAtIndex(index, newName);
+                System.out.println("Fornavn er ændret til " + newName + "\n");
             }
-            controller.rewriteFileWithNewData();
+            case 2 -> {
+                System.out.println("Indtast nyt efternavn");
+                String newName = sc.nextLine();
+                controller.setLastNameForMemberAtIndex(index, newName);
+                System.out.println("Efternavn er ændret til " + newName + "\n");
+            }
+            case 3 -> {
+                System.out.println("Vælg køn: Kvinde/Mand\n");
+                String newGender = sc.nextLine();
+                controller.setGender(index, newGender);
+            }
+            case 4 -> {
+                System.out.println("Indtast ny adresse (Vej Nr PostNr By\n");
+                String newAdress = sc.nextLine();
+                controller.setAdress(index, newAdress);
+            }
+            case 5 -> {
+                System.out.println("Indtast nyt telefonnummer\n");
+                int newNumber = sc.nextInt();
+                controller.setPhonenumber(index, newNumber);
+            }
+            case 6 -> {
+                controller.setActivePassive(index);
+                if (controller.getMembershipStatus(index) == MembershipType.AKTIV) {
+                    System.out.println("Medlemsstatus sat til AKTIV\n");
+                } else {
+                    System.out.println("Medlemsstatus sat til PASSIV\n");
+                }
+            }
+            case 7 -> {
+                controller.setHobbyAthlete(index);
+                if (controller.getMembershipType(index) == MembershipType.HOBBY) {
+                    System.out.println("Medlemstype sat til HOBBY\n");
+                } else {
+                    System.out.println("Medlemstype sat til ATLET\n");
+                }
+            }
+            default -> System.out.println("Ugyldigt valg");
+        }
+        controller.rewriteFileWithNewData();
     }
 
     //Finds a member by taking a string input from the chairman and checks if the input matches a name in the arrayList
@@ -240,7 +237,7 @@ public class UserInterface {
                     if (member != null) {
                         System.out.println(index + ") " + cont.getName(member));
                     } else {
-                        System.out.println("Fejl. Ukendt medlem"  );
+                        System.out.println("Fejl. Ukendt medlem");
                     }
                     index++;
                     indexIsFound = true;
@@ -269,9 +266,6 @@ public class UserInterface {
         }
         return inputInt;
     }
-
-
-
 
 
     //--------------------Member list sub menu--------------------------------------------------------------------------
@@ -345,7 +339,7 @@ public class UserInterface {
     }
 
     //--------------------Method to update training results-------------------------------------------------------------
-    private void showBestAthletes(){
+    private void showBestAthletes() {
         System.out.println("""
                 Indenfor hvilken disciplin vil du gerne se de bedste svømmere?
                 1. Crawl
@@ -353,7 +347,7 @@ public class UserInterface {
                 3. Rygcrawl
                 4. Brystsvømning""");
         int input = sc.nextInt();
-        String disciplin = switch (input){
+        String disciplin = switch (input) {
             case 1 -> "CRAWL";
             case 2 -> "BUTTERFLY";
             case 3 -> "RYGCRAWL";
@@ -365,7 +359,7 @@ public class UserInterface {
                 1. Juniorhold
                 2. Seniorhold""");
         input = sc.nextInt();
-        String team = switch (input){
+        String team = switch (input) {
             case 1 -> "Juniorhold";
             case 2 -> "Seniorhold";
             default -> "Forkert hold valg";
@@ -376,7 +370,7 @@ public class UserInterface {
                 1. træning
                 2. konkurence""");
         input = sc.nextInt();
-        String trainingOrComp = switch (input){
+        String trainingOrComp = switch (input) {
             case 1 -> "training";
             case 2 -> "competition";
             default -> "Forkert valg af træning eller konkurence";
@@ -385,19 +379,24 @@ public class UserInterface {
         int index = getDisciplinIndex(disciplin);
         ArrayList<String> fiveBestAthletes = controller.showBestAthletes(trainingOrComp, team, disciplin, index);
         System.out.println("-------------- Bedste " + disciplin.toLowerCase() + " svømmere i træning for " + team + " --------------");
-        for (String athleteResult : fiveBestAthletes){
+        for (String athleteResult : fiveBestAthletes) {
             System.out.println(athleteResult);
         }
         System.out.println("-------------------------------------------------------------------------------");
     }
 
-    private int getDisciplinIndex(String disciplin){
-        switch (disciplin.toUpperCase()){
-            case "BUTTERFLY": return 3;
-            case "CRAWL": return 4;
-            case "RYGCRAWL": return 5;
-            case "BRYSTSVØMNING": return 6;
-            default: return -1;
+    private int getDisciplinIndex(String disciplin) {
+        switch (disciplin.toUpperCase()) {
+            case "BUTTERFLY":
+                return 3;
+            case "CRAWL":
+                return 4;
+            case "RYGCRAWL":
+                return 5;
+            case "BRYSTSVØMNING":
+                return 6;
+            default:
+                return -1;
         }
     }
 
@@ -414,15 +413,15 @@ public class UserInterface {
         System.out.println(discipline + " for " + name + " er blevet ændret til: " + newTime);
     }
 
-    private String findCorrectAthlete(String name){
+    private String findCorrectAthlete(String name) {
         ArrayList<String> oneOrMoreAthletes = controller.findCorrectAthlete(name.toLowerCase());
         int index = 1;
-        if (oneOrMoreAthletes.size() == 1){
+        if (oneOrMoreAthletes.size() == 1) {
             return oneOrMoreAthletes.getFirst();
         } else {
             System.out.println("More than one Athlete of that name exists, please pick correct Athlete: ");
             for (int i = 0; i < oneOrMoreAthletes.size(); i++) {
-                if (oneOrMoreAthletes.get(i) != null){
+                if (oneOrMoreAthletes.get(i) != null) {
                     String[] athleteString = oneOrMoreAthletes.get(i).split(",");
                     String athleteName = athleteString[1] + ", " + athleteString[2];
                     System.out.println(index + ") " + athleteName);
@@ -500,9 +499,7 @@ public class UserInterface {
             System.out.println("Fundne medlemmer:");
             for (int i = 0; i < foundMembers.size(); i++) {
                 Member member = foundMembers.get(i);
-                System.out.println((i + 1) + ". Navn: " + member.getFirstName() + " " + member.getLastName() +
-                        ", ID: " + member.getMemberNumber() +
-                        ", Telefonnummer: " + member.getPhoneNumber());
+                System.out.println((i + 1) + ". Navn: " + member.getFirstName() + " " + member.getLastName() + ", ID: " + member.getMemberNumber() + ", Telefonnummer: " + member.getPhoneNumber());
             }
 
             boolean validSelection = false;
@@ -569,15 +566,15 @@ public class UserInterface {
             switch (input) {
                 case "1" -> {
                     System.out.println("Alle medlemmers betalingsstatus:");
-                    System.out.println(controller.formatMemberPaymentStatus(controller.getAllMembers()));
+                    System.out.println(controller.getFormattedMemberPaymentStatus(controller.getAllMembers()));
                 }
                 case "2" -> {
                     System.out.println("Medlemmer, der har betalt:");
-                    System.out.println(controller.formatMemberPaymentStatus(controller.getFilteredMembers(true)));
+                    System.out.println(controller.getFormattedMemberPaymentStatus(controller.getFilteredMembers(true)));
                 }
                 case "3" -> {
                     System.out.println("Medlemmer, der mangler at betale:");
-                    System.out.println(controller.formatMemberPaymentStatus(controller.getFilteredMembers(false)));
+                    System.out.println(controller.getFormattedMemberPaymentStatus(controller.getFilteredMembers(false)));
                 }
                 case "9" -> {
                     return;
@@ -600,19 +597,16 @@ public class UserInterface {
             String input = sc.nextLine();
             switch (input) {
                 case "1" -> {
-                    System.out.println("Finansielt overblik:\n" +
-                            controller.getCalculateTotalMembershipFees() + "\n" +
-                            controller.getCalculateReceivedPayments()+"\n" +
-                            controller.getCalculateOutstandingPayments() + "\n");
+                    System.out.println("Finansielt overblik:\n" + "Samlede kontingent indtægter: " + controller.getCalculateTotalMembershipFees() + " DKK\n" + "Modtagene betalinger: " + controller.getCalculateReceivedPayments() + " DKK\n" + "Udestående betalinger: " + controller.getCalculateOutstandingPayments() + " DKK\n");
                 }
                 case "2" -> {
                     System.out.println("Antal medlemmer: " + controller.getAllMembers().size() + "\n");
                 }
                 case "3" -> {
-                    System.out.println(controller.getCalculatePaidPercentage() + "\n");
+                    System.out.println(String.format("Procentdel af betalte kontingentgebyrer: %.2f%%", controller.getCalculatePaidPercentage()) + "\n");
                 }
                 case "4" -> {
-                    System.out.println(controller.getCalculateOutstandingPercentage() + "\n");
+                    System.out.println(String.format("Procentdel af ubetalte kontingentgebyrer: %.2f%%", controller.getCalculateOutstandingPercentage()) + "\n");
                 }
                 case "9" -> {
                     return;

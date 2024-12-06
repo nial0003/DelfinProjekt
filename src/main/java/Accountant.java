@@ -27,6 +27,27 @@ public class Accountant {
         return totalFees;
     }
 
+    //--------------------Method to format payments status to a user friendly String------------------------------------
+    public String formatMemberPaymentStatus(ArrayList<Member> members) {
+        if (members == null || members.isEmpty()) {
+            return "\nIngen medlemmer fundet.\n";
+        }
+
+        String header = "-------------------------------------------------\n";
+        String footer = "-------------------------------------------------\n";
+
+        String formattedMembers = header;
+
+        for (Member member : members) {
+            formattedMembers += "Navn: " + member.getName() + "\n" +
+                    "Medlemsnummer: " + member.getMemberNumber() + "\n" +
+                    "Betalt: " + (member.getHasPaid() ? "Ja" : "Nej") + "\n" +
+                    "Kontingentgebyr: " + member.determineMembershipFee() + " DKK\n" +
+                    footer;
+        }
+        return formattedMembers;
+    }
+
     //-------------------Method to calculate received payments----------------------------------------------------------
     public int calculateReceivedPayments() {
         if (isMemberListEmpty()) {

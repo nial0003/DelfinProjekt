@@ -15,29 +15,9 @@ public class Controller {
         return accountant.filterMembersByPaymentStatus(hasPaid);
     }
 
-//    public String getFormatMembers(ArrayList<Member> members) {
-//        return accountant.formatMemberPaymentStatus(members);
-//    }
-
-    public String formatMemberPaymentStatus(ArrayList<Member> members) {
-        if (members == null || members.isEmpty()) {
-            return "\nIngen medlemmer fundet.\n";
-        }
-
-        String header = "-------------------------------------------------\n";
-        String footer = "-------------------------------------------------\n";
-
-        String formattedMembers = header;
-
-        for (Member member : members) {
-            formattedMembers += "Navn: " + member.getName() + "\n" +
-                    "Medlemsnummer: " + member.getMemberNumber() + "\n" +
-                    "Betalt: " + (member.getHasPaid() ? "Ja" : "Nej") + "\n" +
-                    "Kontingentgebyr: " + member.determineMembershipFee() + " DKK\n" +
-                    footer;
-        }
-        return formattedMembers;
-    }
+    public String getFormattedMemberPaymentStatus(ArrayList<Member> members) {
+        return accountant.formatMemberPaymentStatus(members);
+  }
 
     public void addAthletesToListForTraining() {
         trainer.addAthletesToList(chairman.getListOfMembers(), true);
@@ -47,33 +27,24 @@ public class Controller {
         trainer.addAthletesToList(chairman.getListOfMembers(), false);
     }
 
-    public String getCalculateTotalMembershipFees() {
-        int totalFees = accountant.calculateTotalMembershipFees();
-        return "Samlede kontingent indtægter: " + totalFees + " DKK";
+    public int getCalculateTotalMembershipFees() {
+        return accountant.calculateTotalMembershipFees();
     }
 
-    public String getCalculateReceivedPayments() {
-        int totalReceived = accountant.calculateReceivedPayments();
-        return "Modtagene betalinger: " + totalReceived + " DKK";
+    public int getCalculateReceivedPayments() {
+        return accountant.calculateReceivedPayments();
     }
 
-//    public String getFoundMembers(String searchKeyword) {
-//        ArrayList<Member> foundMembers = accountant.findMembers(searchKeyword);
-//    }
-
-    public String getCalculateOutstandingPayments() {
-        int totalOutstanding = accountant.calculateOutstandingPayments();
-        return "Udestående betalinger: " + totalOutstanding + " DKK";
+    public int getCalculateOutstandingPayments() {
+        return accountant.calculateOutstandingPayments();
     }
 
-    public String getCalculatePaidPercentage() {
-        double paidPercentage = accountant.calculatePaidPercentage();
-        return String.format("Procentdel af betalte kontingentgebyrer: %.2f%%", paidPercentage);
+    public double getCalculatePaidPercentage() {
+        return accountant.calculatePaidPercentage();
     }
 
-    public String getCalculateOutstandingPercentage() {
-        double outstandingPercentage = accountant.calculateOutstandingPercentage();
-        return String.format("Procentdel af ubetalte kontingentgebyrer: %.2f%%", outstandingPercentage);
+    public double getCalculateOutstandingPercentage() {
+        return accountant.calculateOutstandingPercentage();
     }
 
     public boolean updateMemberPaymentStatus(int memberNumber, boolean hasPaid) {
