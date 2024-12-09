@@ -24,10 +24,6 @@ public class Athlete extends Member {
         competitionTimes = new ArrayList<>();
     }
 
-    public List<Double> getTimes(SwimmingDisciplines discipline) {
-        return new ArrayList<>(disciplineTimes.get(discipline));
-    }
-
     public ArrayList<Competition> getCompetitionTimes() {
         return competitionTimes;
     }

@@ -28,14 +28,6 @@ public class Controller {
         return accountant.formatMemberPaymentStatus(members);
   }
 
-    public void addAthletesToListForTraining() {
-        trainer.addAthletesToList(chairman.getListOfMembers(), true);
-    }
-
-    private void addAthletesToListForCompetition() {
-        trainer.addAthletesToList(chairman.getListOfMembers(), false);
-    }
-
     public int getCalculateTotalMembershipFees() {
         return accountant.calculateTotalMembershipFees();
     }
@@ -65,6 +57,10 @@ public class Controller {
     }
 
     //-------------------Methods for Trainer.Trainer class----------------------------------------------------------------------
+    private void addAthletesToListForCompetition() {
+        trainer.addAthletesToList(chairman.getListOfMembers(), false);
+    }
+
     public void saveAthleteMembersToAthleteTrainingFile() {
         fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
     }
@@ -122,10 +118,6 @@ public class Controller {
         chairman.setAdressForMemberAtIndex(index, adress);
     }
 
-//    public void addAthletesToList() {
-//        trainer.addAthletesToList(chairman.getListOfMembers());
-//    }
-
     public void setPhonenumber(int index, int number) {
         chairman.setPhonenumberForMemberAtIndex(index, number);
     }
@@ -178,8 +170,6 @@ public class Controller {
         chairman.addMember(firstName, lastName, year, month, day, gender, address, phoneNumber, membershipStatus, membershipType, hasPaid);
         rewriteFileWithNewData();
     }
-
-
 }
 
 

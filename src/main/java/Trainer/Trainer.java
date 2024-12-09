@@ -113,19 +113,6 @@ public class Trainer {
         return athletesFromFile;
     }
 
-
-    public double getAthleteTime(int x, SwimmingDisciplines discipline) {
-        Athlete athlete = athletes.get(x);
-
-        List<Double> times = athlete.getTimes(discipline);
-
-        if (times == null || times.isEmpty()) {
-            throw new IllegalArgumentException("No times recorded for the discipline: " + discipline);
-        }
-
-        return times.getFirst();
-    }
-
     public ArrayList<Athlete> getAthletes() {
         return athletes;
     }

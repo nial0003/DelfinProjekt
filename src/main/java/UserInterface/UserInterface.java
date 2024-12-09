@@ -319,7 +319,6 @@ public class UserInterface {
     private void trainerMenu() {
         System.out.println("Velkommen Træner!");
 
-        //controller.addAthletesToList();
         controller.saveAthleteMembersToAthleteTrainingFile();
         controller.rewriteFileWithNewData();
 
