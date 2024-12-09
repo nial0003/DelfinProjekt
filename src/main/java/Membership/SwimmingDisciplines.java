@@ -1,5 +1,4 @@
 package Membership;
-import UserInterface.*;
 
 public enum SwimmingDisciplines {
     BUTTERFLY,

@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Controller {
-    Chairman chairman = new Chairman();
-    Accountant accountant = new Accountant();
-    Trainer trainer = new Trainer();
-    FileHandler fh = new FileHandler();
+    private Chairman chairman = new Chairman();
+    private Accountant accountant = new Accountant();
+    private Trainer trainer = new Trainer();
+    private FileHandler fh = new FileHandler();
 
     //-------------------Methods for Accounting.Accountant class-------------------------------------------------------------------
     public ArrayList<Member> getAllMembers() {

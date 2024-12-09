@@ -9,9 +9,9 @@ import FileHandler.FileHandler;
 import Membership.*;
 
 public class Chairman {
-    FileHandler fh = new FileHandler();
-    ArrayList<Member> listOfMembers;
-    ArrayList<Member> newMember;
+    private FileHandler fh = new FileHandler();
+    private ArrayList<Member> listOfMembers;
+    private ArrayList<Member> newMember;
 
     public Chairman(){
         listOfMembers = fh.loadFromFile();

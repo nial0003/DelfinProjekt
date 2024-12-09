@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Trainer {
-    ArrayList<Athlete> athletes;
+    private ArrayList<Athlete> athletes;
 
     public Trainer() {
         athletes = new ArrayList<>();

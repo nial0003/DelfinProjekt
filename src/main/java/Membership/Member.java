@@ -2,7 +2,6 @@ package Membership;
 
 import java.time.LocalDate;
 import java.time.Period;
-import UserInterface.*;
 
 public class Member {
     private String firstName;
