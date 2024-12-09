@@ -15,18 +15,6 @@ public class Competition {
         this.placement = placement;
     }
 
-    public String getCompetitionName() {
-        return competitionName;
-    }
-
-    public double getTime() {
-        return time;
-    }
-
-    public SwimmingDisciplines getDiscipline() {
-        return discipline;
-    }
-
     @Override
     public String toString() {
         return "{[" + competitionName + "]Disciplin[" + discipline + "]Tid[" + time + "]Placering[" + placement +"]}";

@@ -1,0 +1,290 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.8">
+  <diagram id="qCLLITK7b5Z5y3y6KzPR" name="Side-1">
+    <mxGraphModel dx="2449" dy="1466" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="node10" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Accountant&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- listOfMembers: ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;- fh: FileHandler&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ calculateTotalMembershipFees(): int&lt;br/&gt;+ filterMembersByPaymentStatus(boolean): ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;+ getListOfMembers(): ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;+ formatMemberPaymentStatus(ArrayList&amp;lt;Member&amp;gt;): String&lt;br/&gt;+ calculateOutstandingPayments(): int&lt;br/&gt;+ calculateOutstandingPercentage(): double&lt;br/&gt;- isMemberListEmpty(): boolean&lt;br/&gt;+ updateMemberPaymentStatus(int, boolean): boolean&lt;br/&gt;+ calculateReceivedPayments(): int&lt;br/&gt;+ calculatePaidPercentage(): double&lt;br/&gt;+ findMembers(String): ArrayList&amp;lt;Member&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="529" y="2214" width="434" height="352" as="geometry" />
+        </mxCell>
+        <mxCell id="node7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Athlete&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- disciplineTimes: EnumMap&amp;lt;SwimmingDisciplines, List&amp;lt;Double&amp;gt;&amp;gt;&lt;br/&gt;- competitionTimes: ArrayList&amp;lt;Competition&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ toCSVStyle(String, boolean): String&lt;br/&gt;+ getCompetitionTimes(): ArrayList&amp;lt;Competition&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="142" y="1782" width="448" height="147" as="geometry" />
+        </mxCell>
+        <mxCell id="node0" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Chairman&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ fh: FileHandler&lt;br/&gt;~ listOfMembers: ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;~ newMember: ArrayList&amp;lt;Member&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ setGenderForMemberAtIndex(int, String): void&lt;br/&gt;+ setNameForMemberAtIndex(int, String): void&lt;br/&gt;+ groupByMembershipStatus(): Map&amp;lt;MembershipType, ArrayList&amp;lt;Member&amp;gt;&amp;gt;&lt;br/&gt;+ setPhonenumberForMemberAtIndex(int, int): void&lt;br/&gt;+ setHobbyAthleteForMemberAtIndex(int): void&lt;br/&gt;+ getMembershipType(int): Enum&amp;lt;MembershipType&amp;gt;&lt;br/&gt;+ setActivePassiveForMemberAtIndex(int): void&lt;br/&gt;+ getMembershipStatus(int): Enum&amp;lt;MembershipType&amp;gt;&lt;br/&gt;+ getMemberIndex(String): int&lt;br/&gt;+ setAdressForMemberAtIndex(int, String): void&lt;br/&gt;+ groupByAgeGroup(): Map&amp;lt;MembershipType, ArrayList&amp;lt;Member&amp;gt;&amp;gt;&lt;br/&gt;+ groupByMembershipType(): Map&amp;lt;MembershipType, ArrayList&amp;lt;Member&amp;gt;&amp;gt;&lt;br/&gt;+ findMembers(String): ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;+ getListOfMembers(): ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;+ addMember(String, String, int, int, int, String, String, int, String, String, boolean): void&lt;br/&gt;+ setLastNameForMemberAtIndex(int, String): void&lt;br/&gt;+ getMemberFromIndex(int, ArrayList&amp;lt;Member&amp;gt;): Member&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="1007" y="2130" width="519" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="node4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Competition&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- competitionName: String&lt;br/&gt;- time: double&lt;br/&gt;- discipline: SwimmingDisciplines&lt;br/&gt;- placement: int&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ toString(): String&lt;br/&gt;+ getDiscipline(): SwimmingDisciplines&lt;br/&gt;+ getCompetitionName(): String&lt;br/&gt;+ getTime(): double&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="271" y="1354" width="271" height="232" as="geometry" />
+        </mxCell>
+        <mxCell id="node6" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Controller&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ trainer: Trainer&lt;br/&gt;~ accountant: Accountant&lt;br/&gt;~ chairman: Chairman&lt;br/&gt;~ fh: FileHandler&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ setGender(int, String): void&lt;br/&gt;+ setActivePassive(int): void&lt;br/&gt;+ setHobbyAthlete(int): void&lt;br/&gt;+ getMemberIndex(String): int&lt;br/&gt;+ getAllMembers(): ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;+ findMembers(String): ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;+ setPhonenumber(int, int): void&lt;br/&gt;+ getMembershipType(int): Enum&amp;lt;MembershipType&amp;gt;&lt;br/&gt;+ groupByMembershipType(): Map&amp;lt;MembershipType, ArrayList&amp;lt;Member&amp;gt;&amp;gt;&lt;br/&gt;+ addCompetitionToAthlete(String, String, String, double, int): void&lt;br/&gt;+ getCalculatePaidPercentage(): double&lt;br/&gt;+ setFirstNameForMemberAtIndex(int, String): void&lt;br/&gt;+ getName(Member): String&lt;br/&gt;+ findMember(String): ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;+ addMember(String, String, int, int, int, String, String, int, String, String, boolean): void&lt;br/&gt;+ setAdress(int, String): void&lt;br/&gt;+ showBestAthletes(String, String, String, int): ArrayList&amp;lt;String&amp;gt;&lt;br/&gt;+ findCorrectAthlete(String): ArrayList&amp;lt;String&amp;gt;&lt;br/&gt;+ getCalculateOutstandingPercentage(): double&lt;br/&gt;+ groupByAgeGroup(): Map&amp;lt;MembershipType, ArrayList&amp;lt;Member&amp;gt;&amp;gt;&lt;br/&gt;- addAthletesToListForCompetition(): void&lt;br/&gt;+ getMembershipStatus(int): Enum&amp;lt;MembershipType&amp;gt;&lt;br/&gt;+ setAthleteTrainingTime(String, String, double): void&lt;br/&gt;+ getFilteredMembers(boolean): ArrayList&amp;lt;Member&amp;gt;&lt;br/&gt;+ rewriteFileWithNewData(): void&lt;br/&gt;+ getFormattedMemberPaymentStatus(ArrayList&amp;lt;Member&amp;gt;): String&lt;br/&gt;+ getCalculateOutstandingPayments(): int&lt;br/&gt;+ getCalculateReceivedPayments(): int&lt;br/&gt;+ getMemberFromIndex(int, ArrayList&amp;lt;Member&amp;gt;): Member&lt;br/&gt;+ getCalculateTotalMembershipFees(): int&lt;br/&gt;+ updateMemberPaymentStatus(int, boolean): boolean&lt;br/&gt;+ groupByMembershipStatus(): Map&amp;lt;MembershipType, ArrayList&amp;lt;Member&amp;gt;&amp;gt;&lt;br/&gt;+ setLastNameForMemberAtIndex(int, String): void&lt;br/&gt;+ saveAthleteMembersToAthleteTrainingFile(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="167" y="2734" width="519" height="952" as="geometry" />
+        </mxCell>
+        <mxCell id="node3" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FileHandler&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- members: File&lt;br/&gt;- AthletesTrainingResults: File&lt;br/&gt;- athleteCompetitionResults: File&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getAthletesFromAthleteTrainingFile(): ArrayList&amp;lt;String&amp;gt;&lt;br/&gt;+ junOrSen(String, String): ArrayList&amp;lt;String&amp;gt;&lt;br/&gt;+ saveToMemberFile(ArrayList&amp;lt;Member&amp;gt;, boolean): void&lt;br/&gt;+ addCompetitionToListFromFile(Trainer): void&lt;br/&gt;+ saveUpdatedAthletesToFile(ArrayList&amp;lt;String&amp;gt;): void&lt;br/&gt;- extractBetween(String, String, String): String&lt;br/&gt;+ saveAthleteMembersToAthleteTrainingFile(ArrayList&amp;lt;Athlete&amp;gt;): void&lt;br/&gt;+ showBestAthletes(String, String, String, int): ArrayList&amp;lt;String&amp;gt;&lt;br/&gt;+ saveCompetitionResultsToFile(ArrayList&amp;lt;Athlete&amp;gt;): void&lt;br/&gt;+ loadFromFile(): ArrayList&amp;lt;Member&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="629" y="1674" width="475" height="352" as="geometry" />
+        </mxCell>
+        <mxCell id="node2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Member&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- memberShipStatus: Enum&lt;br/&gt;- memberNumber: int&lt;br/&gt;- name: String&lt;br/&gt;- gender: String&lt;br/&gt;- hasBeenAddedToAthletes: boolean&lt;br/&gt;- lastName: String&lt;br/&gt;- ageGroup: Enum&lt;br/&gt;- ld: LocalDate&lt;br/&gt;~ memberCounter: int&lt;br/&gt;- hasPaid: boolean&lt;br/&gt;- firstName: String&lt;br/&gt;- age: int&lt;br/&gt;- address: String&lt;br/&gt;- membershipType: Enum&lt;br/&gt;- phoneNumber: int&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getFirstName(): String&lt;br/&gt;+ getLd(): LocalDate&lt;br/&gt;+ getGender(): String&lt;br/&gt;+ getAddress(): String&lt;br/&gt;+ calculateAge(LocalDate): int&lt;br/&gt;+ setHasBeenAddedToAthletes(boolean): void&lt;br/&gt;+ determineMembershipFee(): int&lt;br/&gt;+ getLastName(): String&lt;br/&gt;+ getHasBeenAddedToAthletes(): boolean&lt;br/&gt;+ getName(): String&lt;br/&gt;+ getMembershipType(): Enum&amp;lt;MembershipType&amp;gt;&lt;br/&gt;+ getMemberShipStatus(): Enum&amp;lt;MembershipType&amp;gt;&lt;br/&gt;+ setFirstName(String): void&lt;br/&gt;+ getAgeGroup(): Enum&amp;lt;MembershipType&amp;gt;&lt;br/&gt;+ setMembershipStatus(Enum&amp;lt;MembershipType&amp;gt;): void&lt;br/&gt;+ setAddress(String): void&lt;br/&gt;+ getPhoneNumber(): int&lt;br/&gt;+ setGender(String): void&lt;br/&gt;+ setLastName(String): void&lt;br/&gt;+ setMembershipType(Enum&amp;lt;MembershipType&amp;gt;): void&lt;br/&gt;+ setPhoneNumber(int): void&lt;br/&gt;+ toString(): String&lt;br/&gt;+ getHasPaid(): boolean&lt;br/&gt;+ setHasPaid(boolean): void&lt;br/&gt;+ toCSVStyle(): String&lt;br/&gt;+ getMemberNumber(): int&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="492" y="298" width="388" height="1024" as="geometry" />
+        </mxCell>
+        <mxCell id="node12" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;MemberTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ determineMembershipFeeSenior(): void&lt;br/&gt;~ determineMembershipFeePassive(): void&lt;br/&gt;~ determineMembershipFeeElder(): void&lt;br/&gt;~ determineMembershipFeePassiveElder(): void&lt;br/&gt;~ determineMembershipFeeJunior(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="1160" y="1771" width="333" height="159" as="geometry" />
+        </mxCell>
+        <mxCell id="node11" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;MembershipType&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ HOBBY: &lt;br/&gt;+ SENIOR: &lt;br/&gt;+ AKTIV: &lt;br/&gt;+ ATLET: &lt;br/&gt;+ JUNIOR: &lt;br/&gt;+ PENSIONIST: &lt;br/&gt;+ PASSIV: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ valueOf(String): MembershipType&lt;br/&gt;+ values(): MembershipType[]&lt;br/&gt;+ ageGroup(int): Enum&amp;lt;MembershipType&amp;gt;&lt;br/&gt;+ membershipStatus(String): Enum&amp;lt;MembershipType&amp;gt;&lt;br/&gt;+ membershipType(String): Enum&amp;lt;MembershipType&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="1017" y="3786" width="378" height="334" as="geometry" />
+        </mxCell>
+        <mxCell id="node9" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;SwimmingDisciplines&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ RYGCRAWL: &lt;br/&gt;+ BUTTERFLY: &lt;br/&gt;+ CRAWL: &lt;br/&gt;+ BRYSTSVØMNING: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ values(): SwimmingDisciplines[]&lt;br/&gt;+ valueOf(String): SwimmingDisciplines&lt;br/&gt;+ getSwimmingDiscipline(String): SwimmingDisciplines&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="221" y="-14" width="371" height="208" as="geometry" />
+        </mxCell>
+        <mxCell id="node5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Trainer&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;~ athletes: ArrayList&amp;lt;Athlete&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ addAthletesToList(ArrayList&amp;lt;Member&amp;gt;, boolean): void&lt;br/&gt;+ setAthleteTrainingTime(String, ArrayList&amp;lt;String&amp;gt;, String, Double): ArrayList&amp;lt;String&amp;gt;&lt;br/&gt;+ addCompetitionToAthlete(String, String, String, double, int, boolean): void&lt;br/&gt;+ getAthletes(): ArrayList&amp;lt;Athlete&amp;gt;&lt;br/&gt;+ clearAthleteList(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-77" y="2298" width="526" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="node1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UserInterface&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- controller: Controller&lt;br/&gt;- sc: Scanner&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- trainerMenu(): void&lt;br/&gt;- showStatisticsSubMenu(): void&lt;br/&gt;- showPaymentStatusSubMenu(): void&lt;br/&gt;- updatePaymentStatus(): void&lt;br/&gt;- addCompetitionToAthlete(): void&lt;br/&gt;- chairmanMenu(): void&lt;br/&gt;- accountantMenu(): void&lt;br/&gt;+ takeIntUserInput(): int&lt;br/&gt;- displayMemberList(): void&lt;br/&gt;- displayGroupedMembers(Map&amp;lt;MembershipType, ArrayList&amp;lt;Member&amp;gt;&amp;gt;): void&lt;br/&gt;+ startProgram(): void&lt;br/&gt;- getDisciplinIndex(String): int&lt;br/&gt;- authenticateRole(String, String): boolean&lt;br/&gt;- addMember(): void&lt;br/&gt;- showBestAthletes(): void&lt;br/&gt;+ editMember(): void&lt;br/&gt;- updateTrainingResult(): void&lt;br/&gt;+ findMemberIndex(): int&lt;br/&gt;- findCorrectAthlete(String): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="445" y="4138" width="523" height="544" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node10" target="node3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="746" y="2050" />
+              <mxPoint x="866" y="2050" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label24" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge4" vertex="1" connectable="0">
+          <mxGeometry x="735" y="2122" as="geometry" />
+        </mxCell>
+        <mxCell id="label28" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge4" vertex="1" connectable="0">
+          <mxGeometry x="825" y="2030" as="geometry" />
+        </mxCell>
+        <mxCell id="label29" value="fh" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge4" vertex="1" connectable="0">
+          <mxGeometry x="829" y="2050" as="geometry" />
+        </mxCell>
+        <mxCell id="edge8" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node10" target="node2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="746" y="2170" />
+              <mxPoint x="606" y="2170" />
+              <mxPoint x="606" y="1650" />
+              <mxPoint x="686" y="1650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label48" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge8" vertex="1" connectable="0">
+          <mxGeometry x="624" y="2150" as="geometry" />
+        </mxCell>
+        <mxCell id="label52" value="*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge8" vertex="1" connectable="0">
+          <mxGeometry x="677" y="1367" as="geometry" />
+        </mxCell>
+        <mxCell id="label53" value="listOfMembers" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge8" vertex="1" connectable="0">
+          <mxGeometry x="686" y="1327" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.250;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" parent="1" source="node7" target="node4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="254" y="1730" />
+              <mxPoint x="246" y="1730" />
+              <mxPoint x="246" y="1330" />
+              <mxPoint x="406" y="1330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label12" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge2" vertex="1" connectable="0">
+          <mxGeometry x="249" y="1710" as="geometry" />
+        </mxCell>
+        <mxCell id="label16" value="*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge2" vertex="1" connectable="0">
+          <mxGeometry x="237" y="1587" as="geometry" />
+        </mxCell>
+        <mxCell id="label17" value="competitionTimes" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge2" vertex="1" connectable="0">
+          <mxGeometry x="246" y="1587" as="geometry" />
+        </mxCell>
+        <mxCell id="edge0" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.750;exitY=0.000;exitDx=0;exitDy=0;entryX=0.167;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node7" target="node2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="478" y="1750" />
+              <mxPoint x="557" y="1750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge10" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node0" target="node3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1266" y="2090" />
+              <mxPoint x="1126" y="2090" />
+              <mxPoint x="1126" y="2070" />
+              <mxPoint x="866" y="2070" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label60" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge10" vertex="1" connectable="0">
+          <mxGeometry x="1077" y="2050" as="geometry" />
+        </mxCell>
+        <mxCell id="label64" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge10" vertex="1" connectable="0">
+          <mxGeometry x="991" y="2050" as="geometry" />
+        </mxCell>
+        <mxCell id="label65" value="fh" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge10" vertex="1" connectable="0">
+          <mxGeometry x="1032" y="2070" as="geometry" />
+        </mxCell>
+        <mxCell id="edge11" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node0" target="node2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1266" y="2090" />
+              <mxPoint x="1126" y="2090" />
+              <mxPoint x="1126" y="1650" />
+              <mxPoint x="686" y="1650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label66" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge11" vertex="1" connectable="0">
+          <mxGeometry x="1214" y="2070" as="geometry" />
+        </mxCell>
+        <mxCell id="label70" value="*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge11" vertex="1" connectable="0">
+          <mxGeometry x="677" y="1327" as="geometry" />
+        </mxCell>
+        <mxCell id="label71" value="listOfMembers" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge11" vertex="1" connectable="0">
+          <mxGeometry x="686" y="1367" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node4" target="node9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label30" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge5" vertex="1" connectable="0">
+          <mxGeometry x="395" y="1267" as="geometry" />
+        </mxCell>
+        <mxCell id="label34" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge5" vertex="1" connectable="0">
+          <mxGeometry x="395" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="label35" value="discipline" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge5" vertex="1" connectable="0">
+          <mxGeometry x="406" y="199" as="geometry" />
+        </mxCell>
+        <mxCell id="edge13" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" parent="1" source="node6" target="node10" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="426" y="2710" />
+              <mxPoint x="466" y="2710" />
+              <mxPoint x="466" y="2670" />
+              <mxPoint x="506" y="2670" />
+              <mxPoint x="506" y="2190" />
+              <mxPoint x="746" y="2190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label78" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge13" vertex="1" connectable="0">
+          <mxGeometry x="481" y="2650" as="geometry" />
+        </mxCell>
+        <mxCell id="label82" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge13" vertex="1" connectable="0">
+          <mxGeometry x="561" y="2170" as="geometry" />
+        </mxCell>
+        <mxCell id="label83" value="accountant" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge13" vertex="1" connectable="0">
+          <mxGeometry x="594" y="2190" as="geometry" />
+        </mxCell>
+        <mxCell id="edge7" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" parent="1" source="node6" target="node0" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="426" y="2710" />
+              <mxPoint x="466" y="2710" />
+              <mxPoint x="466" y="2670" />
+              <mxPoint x="1546" y="2670" />
+              <mxPoint x="1546" y="2110" />
+              <mxPoint x="1266" y="2110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label42" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge7" vertex="1" connectable="0">
+          <mxGeometry x="731" y="2650" as="geometry" />
+        </mxCell>
+        <mxCell id="label46" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge7" vertex="1" connectable="0">
+          <mxGeometry x="1471" y="2090" as="geometry" />
+        </mxCell>
+        <mxCell id="label47" value="chairman" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge7" vertex="1" connectable="0">
+          <mxGeometry x="1546" y="2380" as="geometry" />
+        </mxCell>
+        <mxCell id="edge6" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node6" target="node3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="426" y="2710" />
+              <mxPoint x="466" y="2710" />
+              <mxPoint x="466" y="2670" />
+              <mxPoint x="986" y="2670" />
+              <mxPoint x="986" y="2190" />
+              <mxPoint x="866" y="2190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label36" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge6" vertex="1" connectable="0">
+          <mxGeometry x="591" y="2650" as="geometry" />
+        </mxCell>
+        <mxCell id="label40" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge6" vertex="1" connectable="0">
+          <mxGeometry x="855" y="2098" as="geometry" />
+        </mxCell>
+        <mxCell id="label41" value="fh" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge6" vertex="1" connectable="0">
+          <mxGeometry x="866" y="2098" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" parent="1" source="node6" target="node5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="426" y="2710" />
+              <mxPoint x="466" y="2710" />
+              <mxPoint x="466" y="2270" />
+              <mxPoint x="186" y="2270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label18" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge3" vertex="1" connectable="0">
+          <mxGeometry x="455" y="2627" as="geometry" />
+        </mxCell>
+        <mxCell id="label22" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge3" vertex="1" connectable="0">
+          <mxGeometry x="455" y="2407" as="geometry" />
+        </mxCell>
+        <mxCell id="label23" value="trainer" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge3" vertex="1" connectable="0">
+          <mxGeometry x="226" y="2273" as="geometry" />
+        </mxCell>
+        <mxCell id="edge12" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.833;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node12" target="node2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1326" y="1630" />
+              <mxPoint x="815" y="1630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label74" value="«create»" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge12" vertex="1" connectable="0">
+          <mxGeometry x="1045" y="1610" as="geometry" />
+        </mxCell>
+        <mxCell id="edge9" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.250;entryY=0.000;entryDx=0;entryDy=0;" parent="1" source="node5" target="node7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="186" y="2250" />
+              <mxPoint x="126" y="2250" />
+              <mxPoint x="126" y="1750" />
+              <mxPoint x="254" y="1750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label54" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge9" vertex="1" connectable="0">
+          <mxGeometry x="151" y="2230" as="geometry" />
+        </mxCell>
+        <mxCell id="label58" value="*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge9" vertex="1" connectable="0">
+          <mxGeometry x="164" y="1730" as="geometry" />
+        </mxCell>
+        <mxCell id="label59" value="athletes" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge9" vertex="1" connectable="0">
+          <mxGeometry x="254" y="1756" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=diamondThinstartSize=12;endArrow=openThin;endSize=12;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;" parent="1" source="node1" target="node6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="706" y="2690" />
+              <mxPoint x="426" y="2690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label6" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge1" vertex="1" connectable="0">
+          <mxGeometry x="695" y="4113" as="geometry" />
+        </mxCell>
+        <mxCell id="label10" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge1" vertex="1" connectable="0">
+          <mxGeometry x="695" y="3259" as="geometry" />
+        </mxCell>
+        <mxCell id="label11" value="controller" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;strokeColor=default;" parent="edge1" vertex="1" connectable="0">
+          <mxGeometry x="706" y="3259" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
