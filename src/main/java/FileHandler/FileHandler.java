@@ -13,9 +13,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileHandler {
-    private File members = new File("Members.csv");
-    private File AthletesTrainingResults = new File("AthletesTrainingResults.csv");
-    private File athleteCompetitionResults = new File("AthleteCompetitionResults.csv");
+    private File members = new File("CSV-Files\\Members.csv");
+    private File AthletesTrainingResults = new File("CSV-Files\\AthletesTrainingResults.csv");
+    private File athleteCompetitionResults = new File("CSV-Files\\AthleteCompetitionResults.csv");
 
     //-------------------Loads the Members.csv from the file and returns them in an ArrayList-------------------------------
     public ArrayList<Member> loadFromFile() {
