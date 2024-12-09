@@ -1,3 +1,9 @@
+package Trainer;
+
+import Membership.Member;
+import Membership.MembershipType;
+import Membership.SwimmingDisciplines;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +17,7 @@ public class Trainer {
         athletes = new ArrayList<>();
     }
 
-    //Checks if a member is an Athlete and if it is, it'll add them to the special athletes ArrayList
+    //Checks if a member is an Trainer.Athlete and if it is, it'll add them to the special athletes ArrayList
     public void addAthletesToList(ArrayList<Member> members, boolean isItForTraining) {
         for (Member member : members) {
             if (isItForTraining) {
@@ -38,7 +44,7 @@ public class Trainer {
      * file it will isolate the discipline you wish to update from said athlete so that you can update it using the newTime.*/
     public ArrayList<String> setAthleteTrainingTime(String name, ArrayList<String> athletesFromFile, String
             discipline, Double newTime) {
-        // ([\p{L}]+) : This part isolates the Discipline of the Athlete so we can run it against the Discipline names
+        // ([\p{L}]+) : This part isolates the Discipline of the Trainer.Athlete so we can run it against the Discipline names
         //              in the file of the correct person and update the training time
         // (,\[(\d+\.\d+)]) : Isolates the value of the correct discipline so we can update it to the newTime that we've given.
         String regex = "([\\p{L}]+)(\\[(\\d+\\.\\d+)])?";
@@ -61,10 +67,10 @@ public class Trainer {
             throw new NullPointerException("Atlet ikke fundet i filen");
         }
 
-        //From here we isolate the training times from the Athlete if the Athlete was indeed in the file.
+        //From here we isolate the training times from the Trainer.Athlete if the Trainer.Athlete was indeed in the file.
         //This is done by giving the first index of "træning{" and creating a subString, trainingTimes, between
         //the first indexOf "træning{" and lastiIndexOf '}'. We also isolate the name and training team of the
-        //Athlete in the prefix String.
+        //Trainer.Athlete in the prefix String.
         int trainingStart = athlete.indexOf("træning{");
         if (trainingStart == -1) {
             throw new IllegalArgumentException("Træningstider ikke fundet i atletens data");
@@ -102,7 +108,7 @@ public class Trainer {
 
         String updatedAthlete = prefix + updatedString + "},DayOfTraining[" + dateOfTraining + "]";
 
-        //Replaces the Athlete we have updated at the place where we got the original Athlete.
+        //Replaces the Trainer.Athlete we have updated at the place where we got the original Trainer.Athlete.
         athletesFromFile.set(athleteIndex, updatedAthlete);
         return athletesFromFile;
     }
@@ -124,7 +130,7 @@ public class Trainer {
         return athletes;
     }
 
-    //adds a competition to a given Athlete at the end
+    //adds a competition to a given Trainer.Athlete at the end
     public void addCompetitionToAthlete(String name, String competitionName, String discipline,
                                         double time, int placement, boolean alreadyOnList) {
         if (alreadyOnList) {

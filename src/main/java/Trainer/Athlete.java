@@ -1,3 +1,7 @@
+package Trainer;
+
+import Membership.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.EnumMap;

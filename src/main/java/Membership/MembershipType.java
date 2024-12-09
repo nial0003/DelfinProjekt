@@ -1,3 +1,6 @@
+package Membership;
+import UserInterface.*;
+
 public enum MembershipType {
     JUNIOR,
     SENIOR,

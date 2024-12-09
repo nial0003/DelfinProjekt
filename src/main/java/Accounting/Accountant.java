@@ -1,3 +1,7 @@
+package Accounting;
+
+import Membership.*;
+import FileHandler.*;
 import java.util.ArrayList;
 
 public class Accountant {

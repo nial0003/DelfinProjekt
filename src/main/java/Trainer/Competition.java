@@ -1,3 +1,7 @@
+package Trainer;
+
+import Membership.SwimmingDisciplines;
+
 public class Competition {
     private String competitionName;
     private SwimmingDisciplines discipline;

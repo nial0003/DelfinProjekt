@@ -1,3 +1,8 @@
+package FileHandler;
+
+import Trainer.*;
+import Membership.*;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -96,8 +101,8 @@ public class FileHandler {
     //-------------------Method to save competition results to results file---------------------------------------------
 
     // Goes through the file AthletecompetitionResults and checks if each line matches the pattern given
-    // if it does it saves the specific information as a competition and adds it to the correct Athlete based
-    // on the name of the Athlete in the file.
+    // if it does it saves the specific information as a competition and adds it to the correct Trainer.Athlete based
+    // on the name of the Trainer.Athlete in the file.
     public void addCompetitionToListFromFile(Trainer trainer) {
         try (FileReader fr = new FileReader(athleteCompetitionResults)) {
             BufferedReader br = new BufferedReader(fr);

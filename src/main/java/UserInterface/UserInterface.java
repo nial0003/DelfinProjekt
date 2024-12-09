@@ -1,3 +1,8 @@
+package UserInterface;
+
+import DomainModel.Controller;
+import Membership.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -68,7 +73,7 @@ public class UserInterface {
         return inputCode.equals(expectedCode);
     }
 
-    //--------------------Chairman menu---------------------------------------------------------------------------------
+    //--------------------Chairman.Chairman menu---------------------------------------------------------------------------------
     private void chairmanMenu() {
         System.out.println("Velkommen Formand!");
 
@@ -266,7 +271,7 @@ public class UserInterface {
         return inputInt;
     }
 
-    //--------------------Member list sub menu--------------------------------------------------------------------------
+    //--------------------Membership.Member list sub menu--------------------------------------------------------------------------
     private void displayMemberList() {
         while (true) {
             System.out.println("""
@@ -310,7 +315,7 @@ public class UserInterface {
         }
     }
 
-    //--------------------Trainer menu----------------------------------------------------------------------------------
+    //--------------------Trainer.Trainer menu----------------------------------------------------------------------------------
     private void trainerMenu() {
         System.out.println("Velkommen Træner!");
 
@@ -423,7 +428,7 @@ public class UserInterface {
         if (oneOrMoreAthletes.size() == 1) {
             return oneOrMoreAthletes.getFirst();
         } else {
-            System.out.println("More than one Athlete of that name exists, please pick correct Athlete: ");
+            System.out.println("More than one Trainer.Athlete of that name exists, please pick correct Trainer.Athlete: ");
             for (int i = 0; i < oneOrMoreAthletes.size(); i++) {
                 if (oneOrMoreAthletes.get(i) != null) {
                     String[] athleteString = oneOrMoreAthletes.get(i).split(",");
@@ -453,7 +458,7 @@ public class UserInterface {
         controller.addCompetitionToAthlete(name, competitionName, discipline, swimmingResult, placement);
     }
 
-    //--------------------Accountant menu-------------------------------------------------------------------------------
+    //--------------------Accounting.Accountant menu-------------------------------------------------------------------------------
     private void accountantMenu() {
         System.out.println("Velkommen Kassér!");
 

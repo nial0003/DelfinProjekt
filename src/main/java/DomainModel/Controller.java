@@ -1,3 +1,11 @@
+package DomainModel;
+
+import Accounting.Accountant;
+import Chairman.Chairman;
+import Membership.*;
+import Trainer.*;
+import FileHandler.*;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -7,7 +15,7 @@ public class Controller {
     Trainer trainer = new Trainer();
     FileHandler fh = new FileHandler();
 
-    //-------------------Methods for Accountant class-------------------------------------------------------------------
+    //-------------------Methods for Accounting.Accountant class-------------------------------------------------------------------
     public ArrayList<Member> getAllMembers() {
         return accountant.getListOfMembers();
     }
@@ -56,7 +64,7 @@ public class Controller {
         return accountant.findMembers(searchKeyword);
     }
 
-    //-------------------Methods for Trainer class----------------------------------------------------------------------
+    //-------------------Methods for Trainer.Trainer class----------------------------------------------------------------------
     public void saveAthleteMembersToAthleteTrainingFile() {
         fh.saveAthleteMembersToAthleteTrainingFile(trainer.getAthletes());
     }
@@ -81,7 +89,7 @@ public class Controller {
     }
 
 
-    //-------------------Methods for Chairman class---------------------------------------------------------------------
+    //-------------------Methods for Chairman.Chairman class---------------------------------------------------------------------
     public void rewriteFileWithNewData() {
         fh.saveToMemberFile(chairman.getListOfMembers(), false);
     }
