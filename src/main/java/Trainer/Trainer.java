@@ -127,9 +127,13 @@ public class Trainer {
                 }
             }
         } else {
-            String[] athleteToAddCompetition = name.split(",");
-            int index = Integer.parseInt(athleteToAddCompetition[0]);
-            athletes.get(index).getCompetitionTimes().add(new Competition(competitionName, discipline, time, placement));
+            for (Athlete athlete : athletes) {
+                String[] nameOfAthlete = name.split(",");
+                String nameToFind = nameOfAthlete[1] + "," + nameOfAthlete[2];
+                if (athlete.getName().contains(nameToFind)) {
+                    athlete.getCompetitionTimes().add(new Competition(competitionName, discipline, time, placement));
+                }
+            }
         }
     }
     public void clearAthleteList() {
