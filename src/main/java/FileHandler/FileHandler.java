@@ -4,6 +4,7 @@ import Trainer.*;
 import Membership.*;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +14,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileHandler {
-    private File members = new File("CSV-Files\\Members.csv");
-    private File AthletesTrainingResults = new File("CSV-Files\\AthletesTrainingResults.csv");
-    private File athleteCompetitionResults = new File("CSV-Files\\AthleteCompetitionResults.csv");
+    private File members;
+    private File AthletesTrainingResults;
+    private File athleteCompetitionResults;
 
-    //-------------------Loads the Members.csv from the file and returns them in an ArrayList-------------------------------
+    //-------------------Use Paths.get() to create platform-independent paths-------------------------------------------
+    public FileHandler() {
+        this.members = Paths.get("CSV-Files", "Members.csv").toFile();
+        this.AthletesTrainingResults = Paths.get("CSV-Files", "AthletesTrainingResults.csv").toFile();
+        this.athleteCompetitionResults = Paths.get("CSV-Files", "AthleteCompetitionResults.csv").toFile();
+    }
+
+    //-------------------Loads the Members.csv from the file and returns them in an ArrayList---------------------------
     public ArrayList<Member> loadFromFile() {
         ArrayList<Member> listOfMembers = new ArrayList<>();
 
