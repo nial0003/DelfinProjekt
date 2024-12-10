@@ -128,8 +128,15 @@ public class UserInterface {
         }
         System.out.print("Køn: ");
         String gender = sc.nextLine();
-        System.out.println("Adresse: (format: gadenavn husnummer postnummer by)");
-        String address = sc.nextLine();
+        System.out.print("Vejnavn: ");
+        String streetName = sc.nextLine();
+        System.out.print("Husnummer: ");
+        String houseNumber = sc.nextLine();
+        System.out.print("Postnummer: ");
+        String postalCode = sc.nextLine();
+        System.out.print("By: ");
+        String city = sc.nextLine();
+        String address = streetName + " " + houseNumber + " " + postalCode + " " + city;
         System.out.print("Telefonnummer: ");
         int phoneNumber = 0;
         while (true) {
