@@ -384,7 +384,8 @@ public class UserInterface {
         System.out.println("""
                 Træning eller konkurence?
                 1. træning
-                2. konkurence""");
+                2. konkurence
+                """);
         input = sc.nextInt();
         String trainingOrComp = switch (input) {
             case 1 -> "training";

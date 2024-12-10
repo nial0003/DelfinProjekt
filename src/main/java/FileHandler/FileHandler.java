@@ -11,15 +11,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileHandler {
-    private File members;
-    private File AthletesTrainingResults;
-    private File athleteCompetitionResults;
+    private File members = new File("CSV-Files/Members.csv");
+    private File AthletesTrainingResults = new File("CSV-Files/AthletesTrainingResults.csv");;
+    private File athleteCompetitionResults = new File("CSV-Files/AthleteCompetitionResults.csv");
 
     //-------------------Use Paths.get() to create platform-independent paths-------------------------------------------
     public FileHandler() {
-        this.members = Paths.get("CSV-Files", "Members.csv").toFile();
-        this.AthletesTrainingResults = Paths.get("CSV-Files", "AthletesTrainingResults.csv").toFile();
-        this.athleteCompetitionResults = Paths.get("CSV-Files", "AthleteCompetitionResults.csv").toFile();
     }
 
     //-------------------Loads the Members.csv from the file and returns them in an ArrayList---------------------------
@@ -269,14 +266,23 @@ public class FileHandler {
             Map<String, Double> bestTimes = new HashMap<>();
 
             for (String line : athleteData) {
+                System.out.println("Processing line: " + line);
                 String[] parts = line.split(",Stævne\\{");
+                System.out.println("Parsed parts: " + Arrays.toString(parts));
                 if (parts.length < 2) continue;
 
                 String name = parts[0];
+                System.out.println("Athlete name: " + name);
+
                 for (int i = 1; i < parts.length; i++) {
                     String event = parts[i].replaceAll("}", "");
-                    String evenDiscipline = extractBetween(event, "discipline[", "]");
+
+                    // Add the extractBetween calls here
+                    String evenDiscipline = extractBetween(event, "Disciplin[", "]");
                     String eventTime = extractBetween(event, "Tid[", "]");
+
+                    // Debug extracted values
+                    System.out.println("Event discipline: " + evenDiscipline + ", Event time: " + eventTime);
 
                     if (evenDiscipline != null && evenDiscipline.equalsIgnoreCase(disciplin) && eventTime != null) {
                         double time = Double.parseDouble(eventTime);
@@ -285,8 +291,11 @@ public class FileHandler {
                 }
             }
 
+            System.out.println("Best times map before sorting: " + bestTimes);
+
             List<Map.Entry<String, Double>> sortedResults = new ArrayList<>(bestTimes.entrySet());
             sortedResults.sort(Map.Entry.comparingByValue());
+            System.out.println("Sorted results: " + sortedResults);
 
             for (int i = 0; i < Math.min(5, sortedResults.size()); i++) {
                 Map.Entry<String, Double> entry = sortedResults.get(i);
@@ -295,16 +304,17 @@ public class FileHandler {
                 fiveBestAthletes.add((i + 1) + ", " + name + " - " + time + " sekunder");
             }
         }
+
+
         return fiveBestAthletes;
     }
-
-    private String extractBetween(String text, String start, String end) {
-        int startIndex = text.indexOf(start);
-        int endIndex = text.indexOf(end, startIndex + start.length());
-        if (startIndex != -1 && endIndex != -1) {
-            return text.substring(startIndex + start.length(), endIndex);
-        }
-        return null;
+    private String extractBetween(String source, String start, String end) {
+        int startIndex = source.toLowerCase().indexOf(start.toLowerCase());
+        if (startIndex == -1) return null;
+        startIndex += start.length();
+        int endIndex = source.indexOf(end, startIndex);
+        if (endIndex == -1) return null;
+        return source.substring(startIndex, endIndex);
     }
 }
 
