@@ -228,7 +228,6 @@ public class FileHandler {
             for (String athlete : junOrSen) {
                 String[] parts = athlete.split(",");
                 if (parts.length < 4) {
-                    System.out.println("Invalid line format: " + athlete);
                     continue;
                 }
 
@@ -266,13 +265,10 @@ public class FileHandler {
             Map<String, Double> bestTimes = new HashMap<>();
 
             for (String line : athleteData) {
-                System.out.println("Processing line: " + line);
                 String[] parts = line.split(",Stævne\\{");
-                System.out.println("Parsed parts: " + Arrays.toString(parts));
                 if (parts.length < 2) continue;
 
                 String name = parts[0];
-                System.out.println("Athlete name: " + name);
 
                 for (int i = 1; i < parts.length; i++) {
                     String event = parts[i].replaceAll("}", "");
@@ -281,9 +277,6 @@ public class FileHandler {
                     String evenDiscipline = extractBetween(event, "Disciplin[", "]");
                     String eventTime = extractBetween(event, "Tid[", "]");
 
-                    // Debug extracted values
-                    System.out.println("Event discipline: " + evenDiscipline + ", Event time: " + eventTime);
-
                     if (evenDiscipline != null && evenDiscipline.equalsIgnoreCase(disciplin) && eventTime != null) {
                         double time = Double.parseDouble(eventTime);
                         bestTimes.put(name, Math.min(bestTimes.getOrDefault(name, Double.MAX_VALUE), time));
@@ -291,11 +284,9 @@ public class FileHandler {
                 }
             }
 
-            System.out.println("Best times map before sorting: " + bestTimes);
 
             List<Map.Entry<String, Double>> sortedResults = new ArrayList<>(bestTimes.entrySet());
             sortedResults.sort(Map.Entry.comparingByValue());
-            System.out.println("Sorted results: " + sortedResults);
 
             for (int i = 0; i < Math.min(5, sortedResults.size()); i++) {
                 Map.Entry<String, Double> entry = sortedResults.get(i);
