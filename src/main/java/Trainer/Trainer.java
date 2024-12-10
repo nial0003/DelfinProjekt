@@ -128,12 +128,8 @@ public class Trainer {
             }
         } else {
             String[] athleteToAddCompetition = name.split(",");
-            name = athleteToAddCompetition[1] + "," + athleteToAddCompetition[2];
-            for (Athlete athlete : athletes) {
-                if (athlete.getName().contains(name)) {
-                    athlete.getCompetitionTimes().add(new Competition(competitionName, discipline, time, placement));
-                }
-            }
+            int index = Integer.parseInt(athleteToAddCompetition[0]);
+            athletes.get(index).getCompetitionTimes().add(new Competition(competitionName, discipline, time, placement));
         }
     }
     public void clearAthleteList() {

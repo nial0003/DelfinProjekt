@@ -2,12 +2,11 @@ Olsen,Signe,Seniorhold,træning{BUTTERFLY[155.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTS
 Frandsen,Frida,Seniorhold,træning{BUTTERFLY[176.5],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[0.0]}
 Knudsen,Nikolaj,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[176.2],RYGCRAWL[176.2],BRYSTSVØMNING[0.0]}
 Thomsen,Oliver,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[159.5]}
-Madsen,Ida,Seniorhold,træning{BUTTERFLY[174.1],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[0.0]}
 Albrektsen,Nana,Seniorhold,træning{BUTTERFLY[150.7],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[0.0]}
 Jørgensen,Sofie,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[157.1]}
 Nielsen,Freja,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[159.5]}
 Mikkelsen,Noah,Juniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[175.2]}
-Tvorup,Nana,Juniorhold,træning{BUTTERFLY[0.0],CRAWL[169.9],RYGCRAWL[169.9],BRYSTSVØMNING[0.0]}
+Tvorup,Nana,Juniorhold,træning{BUTTERFLY[144.2],CRAWL[169.9],RYGCRAWL[169.9],BRYSTSVØMNING[0.0]},DayOfTraining[2024-12-10]
 Mikkelsen,Maja,Seniorhold,træning{BUTTERFLY[144.8],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[0.0]}
 Jørgensen,Anna,Seniorhold,træning{BUTTERFLY[164.5],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[0.0]}
 Rosenbek,Oliver,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[147.1],RYGCRAWL[147.1],BRYSTSVØMNING[0.0]}
@@ -37,7 +36,6 @@ Andersen,Clara,Seniorhold,træning{BUTTERFLY[158.6],CRAWL[0.0],RYGCRAWL[0.0],BRY
 Nielsen,Ida,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[146.2]}
 Andersen,Malthe,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[151.4]}
 Jørgensen,Frida,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[173.4],BRYSTSVØMNING[0.0]}
-Tvorup,Frida,Seniorhold,træning{BUTTERFLY[163.3],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[0.0]}
 Nielsen,Victor,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[154.3],RYGCRAWL[154.3],BRYSTSVØMNING[0.0]}
 Hansen,Theodor,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[163.3],BRYSTSVØMNING[0.0]}
 Knudsen,Emma,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[149.8]}
@@ -49,10 +47,7 @@ Frandsen,Anton,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[174.8],BRY
 Christensen,Jonathan,Seniorhold,træning{BUTTERFLY[168.5],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[0.0]}
 Madsen,Ida,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[147.2]}
 Olsen,Frida,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[141.0]}
-Thomsen,Frida,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[154.2]}
-Olsen,Signe,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[176.8],BRYSTSVØMNING[0.0]}
 Olsen,Maja,Seniorhold,træning{BUTTERFLY[165.8],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[0.0]}
-Jensen,Morkel,Seniorhold,træning{BUTTERFLY[156.6],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[0.0]}
 Mikkelsen,Maria,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[147.6]}
 Larsen,Nikolaj,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[0.0],RYGCRAWL[0.0],BRYSTSVØMNING[150.8]}
 Olsen,Nikolaj,Seniorhold,træning{BUTTERFLY[0.0],CRAWL[167.1],RYGCRAWL[167.1],BRYSTSVØMNING[0.0]}

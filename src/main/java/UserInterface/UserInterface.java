@@ -420,12 +420,15 @@ public class UserInterface {
         System.out.println("Navn på atlet:");
         String name = sc.nextLine();
         name = findCorrectAthlete(name);
+        String[] athleteName = name.split(",");
         System.out.println("Navn på disciplin {Crawl, Butterfly, Rygcrawl, Brystsvømning}:");
         String discipline = sc.nextLine();
         System.out.println("Ny trænings tid:");
         double newTime = sc.nextDouble();
         controller.setAthleteTrainingTime(name, discipline, newTime);
+        name = athleteName[0] + " " + athleteName[1];
         System.out.println(discipline + " for " + name + " er blevet ændret til: " + newTime);
+        sc.nextLine();
     }
 
     private String findCorrectAthlete(String name) {
@@ -453,6 +456,7 @@ public class UserInterface {
     private void addCompetitionToAthlete() {
         System.out.println("Navn på atlet:");
         String name = sc.nextLine();
+        name = findCorrectAthlete(name);
         System.out.println("Navn på stævne:");
         String competitionName = sc.nextLine();
         System.out.println("Hvilken disciplin deltog han i? {Crawl, Rygcrawl, Butterfly, Brystsvømning");
@@ -462,6 +466,7 @@ public class UserInterface {
         System.out.println("Hvad blev deres placering?");
         int placement = sc.nextInt();
         controller.addCompetitionToAthlete(name, competitionName, discipline, swimmingResult, placement);
+        sc.nextLine();
     }
 
     //--------------------Accounting.Accountant menu-------------------------------------------------------------------------------

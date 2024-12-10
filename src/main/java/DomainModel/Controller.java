@@ -73,7 +73,7 @@ public class Controller {
     public void addCompetitionToAthlete(String name, String competitionName, String discipline, double time,
                                         int placement) {
         addAthletesToListForCompetition();
-        fh.addCompetitionToListFromFile(trainer);
+        fh.addCompetitionToListFromFile(name, trainer);
         trainer.addCompetitionToAthlete(name, competitionName, discipline, time, placement, false);
         fh.saveCompetitionResultsToFile(trainer.getAthletes());
         trainer.clearAthleteList();

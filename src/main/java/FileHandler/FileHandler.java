@@ -6,10 +6,7 @@ import Membership.*;
 import java.io.*;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -111,11 +108,10 @@ public class FileHandler {
     // Goes through the file AthletecompetitionResults and checks if each line matches the pattern given
     // if it does it saves the specific information as a competition and adds it to the correct Trainer.Athlete based
     // on the name of the Trainer.Athlete in the file.
-    public void addCompetitionToListFromFile(Trainer trainer) {
+    public void addCompetitionToListFromFile(String name, Trainer trainer) {
         try (FileReader fr = new FileReader(athleteCompetitionResults)) {
             BufferedReader br = new BufferedReader(fr);
             ArrayList<String> athleteCompResults = new ArrayList<>();
-            ArrayList<String> listResult = new ArrayList<>();
 
             String line = br.readLine();
             while (!line.contentEquals("end")) {
@@ -125,25 +121,36 @@ public class FileHandler {
                 line = br.readLine();
             }
             Pattern pattern = Pattern.compile("\\[(.*?)]");
-            String nameOfAthlete = "";
-            for (int i = 0; i < athleteCompResults.size(); i++) {
-                if (!athleteCompResults.get(i).contains("Stævne")) {
-                    if (!athleteCompResults.get(i).isBlank()) {
-                        int lastCommaIndex = athleteCompResults.get(i).lastIndexOf(",");
-                        nameOfAthlete = athleteCompResults.get(i).substring(0, lastCommaIndex);
+
+            for (String athleteEntry : athleteCompResults) {
+                // Split the line into athlete info and competitions
+                String[] parts = athleteEntry.split(",Stævne\\{");
+                String athleteInfo = parts[0];
+                String[] competitions = Arrays.copyOfRange(parts, 1, parts.length);
+
+                // Extract the athlete's name from athleteInfo
+                int lastCommaIndex = athleteInfo.lastIndexOf(",");
+                String nameOfAthlete = athleteInfo.substring(0, lastCommaIndex);
+
+                for (String competition : competitions) {
+                    // Add back the opening brace removed by split
+                    competition = "Stævne{" + competition;
+
+                    Matcher matcher = pattern.matcher(competition);
+                    ArrayList<String> listResult = new ArrayList<>();
+                    while (matcher.find()) {
+                        listResult.add(matcher.group(1));
                     }
-                    i++;
+
+                    // Ensure listResult contains all expected parts
+                    if (listResult.size() >= 4) {
+                        String compName = listResult.get(0);
+                        String disciplineName = listResult.get(1);
+                        Double time = Double.valueOf(listResult.get(2));
+                        int placement = Integer.parseInt(listResult.get(3));
+                        trainer.addCompetitionToAthlete(nameOfAthlete, compName, disciplineName, time, placement, true);
+                    }
                 }
-                Matcher matcher = pattern.matcher(athleteCompResults.get(i));
-                while (matcher.find()) {
-                    listResult.add(matcher.group(1));
-                }
-                String compName = listResult.get(0);
-                String disciplineName = listResult.get(1);
-                Double time = Double.valueOf(listResult.get(2));
-                int placement = Integer.parseInt(listResult.get(3));
-                trainer.addCompetitionToAthlete(nameOfAthlete, compName, disciplineName, time, placement, true);
-                listResult.clear();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
